@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply font-body text-neutral-ink bg-white antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading;
+  }
+
+  *:focus-visible {
+    outline: 3px solid #F5A623;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-brand-gold text-brand-primaryDark font-heading font-semibold rounded-button px-6 min-h-[48px] transition-colors duration-200 hover:bg-amber-400 focus:bg-amber-400 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer;
+  }
+
+  .btn-secondary-light {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-brand-primaryLight text-brand-primaryLight font-heading font-semibold rounded-button px-6 min-h-[48px] transition-colors duration-200 hover:bg-brand-primaryLight hover:text-white focus:bg-brand-primaryLight focus:text-white disabled:opacity-40 cursor-pointer;
+  }
+
+  .btn-secondary-dark {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-white text-white font-heading font-semibold rounded-button px-6 min-h-[48px] transition-colors duration-200 hover:bg-white/10 focus:bg-white/10 disabled:opacity-40 cursor-pointer;
+  }
+
+  .blob {
+    @apply absolute rounded-full pointer-events-none;
+    filter: blur(60px);
+  }
+
+  .section-wrap {
+    @apply mx-auto max-w-container px-4 md:px-8;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .skip-link {
+    @apply absolute left-2 top-2 z-50 -translate-y-20 focus:translate-y-0 bg-brand-primaryDark text-white px-4 py-2 rounded-button font-heading font-semibold transition-transform;
+  }
+
+  .lang-pill {
+    @apply inline-flex items-center rounded-pill border bg-white/10 p-0.5 backdrop-blur;
+  }
+
+  .lang-pill button {
+    @apply px-3 py-1 text-sm font-heading font-semibold rounded-pill cursor-pointer transition-colors duration-150;
+  }
+
+  .lang-pill button[aria-pressed="true"] {
+    @apply bg-white text-brand-primaryDark;
+  }
+
+  .lang-pill button[aria-pressed="false"] {
+    @apply text-white/80 hover:text-white;
+  }
+
+  /* Solid header variant after scroll */
+  .lang-pill--solid {
+    @apply border-brand-primaryDark/10 bg-neutral-surface;
+  }
+
+  .lang-pill--solid button[aria-pressed="true"] {
+    @apply bg-brand-primaryDark text-white;
+  }
+
+  .lang-pill--solid button[aria-pressed="false"] {
+    @apply text-brand-primaryDark/70 hover:text-brand-primaryDark;
+  }
+}

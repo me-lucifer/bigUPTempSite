@@ -1,0 +1,14 @@
+{
+  "name": "bigup-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BigUp V5 — Public marketing website (bilingual FR/EN single-page).",
+  "scripts": {
+    "dev": "tailwindcss -i ./styles/tailwind.css -o ./assets/tailwind.css --watch",
+    "build": "tailwindcss -i ./styles/tailwind.css -o ./assets/tailwind.css --minify",
+    "serve": "npx serve . -l 5173"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.10"
+  }
+}

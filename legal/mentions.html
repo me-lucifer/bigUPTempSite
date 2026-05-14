@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BigUp — Mentions légales</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="../assets/tailwind.css" />
+  </head>
+  <body class="bg-white text-brand-primaryDark">
+    <header class="bg-white shadow-brand">
+      <div class="section-wrap flex items-center justify-between py-3">
+        <a href="../index.html" class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span class="font-heading font-bold text-xl">BigUp</span>
+        </a>
+        <a href="../index.html" class="text-sm font-heading font-semibold text-brand-primaryDark hover:underline" data-legal-back-fr="Retour à l'accueil" data-legal-back-en="Back to home">Retour à l'accueil</a>
+      </div>
+    </header>
+
+    <main class="section-wrap max-w-3xl py-16 md:py-24">
+      <h1 class="font-heading font-bold text-3xl md:text-4xl mb-6">Mentions légales</h1>
+      <p class="text-lg text-neutral-muted leading-relaxed mb-4" data-stub-fr="Cette page est en cours de rédaction et sera disponible prochainement." data-stub-en="This page is being drafted and will be available shortly.">Cette page est en cours de rédaction et sera disponible prochainement.</p>
+      <p class="text-neutral-muted leading-relaxed" data-contact-fr="Pour toute question, contactez-nous à" data-contact-en="For any question, contact us at">Pour toute question, contactez-nous à <a href="mailto:contact@big-up.ai" class="text-brand-primaryLight underline">contact@big-up.ai</a>.</p>
+    </main>
+
+    <footer class="bg-brand-primaryDark text-white py-10">
+      <div class="section-wrap text-center text-white/70 text-sm">© 2026 BigUp.</div>
+    </footer>
+
+    <script>
+      (function () {
+        const stored = localStorage.getItem('bigup.lang');
+        const lang = stored === 'en' ? 'en' : (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+        document.documentElement.lang = lang;
+        if (lang === 'en') {
+          document.title = 'BigUp — Legal mentions';
+          document.querySelector('h1').textContent = 'Legal mentions';
+          document.querySelectorAll('[data-stub-en]').forEach((el) => (el.textContent = el.dataset.stubEn));
+          document.querySelectorAll('[data-contact-en]').forEach((el) => {
+            el.innerHTML = el.dataset.contactEn + ' <a href="mailto:contact@big-up.ai" class="text-brand-primaryLight underline">contact@big-up.ai</a>.';
+          });
+          document.querySelectorAll('[data-legal-back-en]').forEach((el) => (el.textContent = el.dataset.legalBackEn));
+        }
+      })();
+    </script>
+  </body>
+</html>
