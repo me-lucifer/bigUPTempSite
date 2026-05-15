@@ -20,23 +20,25 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="canonical" href="https://big-up.ai/" />
 
-    <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
     />
 
     <link rel="stylesheet" href="assets/tailwind.css" />
 
-    <!-- Critical inline CSS so the hero paints before tailwind.css resolves -->
     <style>
       .hero-gradient {
         background: linear-gradient(180deg, #6c3ce0 0%, #2d1b69 55%, #1a0a3e 100%);
       }
       body { font-family: 'Inter', system-ui, sans-serif; color: #1a0a3e; }
       h1, h2, h3, h4 { font-family: 'Poppins', system-ui, sans-serif; }
+      .text-highlight-gold {
+        background: linear-gradient(180deg, transparent 60%, rgba(245,166,35,0.55) 60%);
+        padding: 0 0.1em;
+      }
     </style>
   </head>
 
@@ -53,7 +55,6 @@
         <!-- Logo lockup -->
         <a href="#top" class="flex items-center gap-2 cursor-pointer" aria-label="BigUp">
           <span class="inline-flex items-center justify-center w-8 h-8 shrink-0">
-            <!-- Lucide Zap -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -85,18 +86,13 @@
         <!-- Desktop nav -->
         <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
           <a
-            href="#how"
-            data-i18n="nav.howItWorks"
+            href="#top"
+            data-i18n="nav.home"
             class="text-sm font-heading font-semibold text-white/90 hover:text-white"
           ></a>
           <a
-            href="#talents"
-            data-i18n="nav.forTalents"
-            class="text-sm font-heading font-semibold text-white/90 hover:text-white"
-          ></a>
-          <a
-            href="#recruiters"
-            data-i18n="nav.forRecruiters"
+            href="#piliers"
+            data-i18n="nav.piliers"
             class="text-sm font-heading font-semibold text-white/90 hover:text-white"
           ></a>
           <a
@@ -111,7 +107,7 @@
           ></a>
         </nav>
 
-        <!-- Right-side: language pill + CTA -->
+        <!-- Right-side: language pill + Login + Download CTA -->
         <div class="flex items-center gap-2 md:gap-3">
           <div
             class="lang-pill"
@@ -119,24 +115,22 @@
             data-i18n-attr="aria-label:lang.toggleLabel"
             aria-label=""
           >
-            <button
-              type="button"
-              data-lang="fr"
-              aria-pressed="true"
-              data-i18n="lang.fr"
-            >FR</button>
-            <button
-              type="button"
-              data-lang="en"
-              aria-pressed="false"
-              data-i18n="lang.en"
-            >EN</button>
+            <button type="button" data-lang="fr" aria-pressed="true" data-i18n="lang.fr">FR</button>
+            <button type="button" data-lang="en" aria-pressed="false" data-i18n="lang.en">EN</button>
           </div>
+
+          <!-- Login (lives in mobile app for Phase 1; redirects to app download) -->
+          <a
+            href="#contact"
+            id="login-link"
+            class="hidden sm:inline-flex items-center gap-1.5 text-sm font-heading font-semibold text-white/90 hover:text-white px-3 py-2 rounded-button cursor-pointer"
+            data-i18n="nav.login"
+          ></a>
 
           <a
             href="#contact"
-            class="btn-primary text-sm hidden sm:inline-flex !min-h-[40px] !px-4"
-            data-i18n="cta.earlyAccess"
+            class="btn-primary text-sm hidden md:inline-flex !min-h-[40px] !px-4"
+            data-i18n="cta.downloadApp"
           ></a>
 
           <!-- Mobile menu toggle -->
@@ -171,12 +165,12 @@
       <!-- Mobile menu drawer -->
       <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-brand">
         <nav class="section-wrap py-4 flex flex-col gap-3" aria-label="Mobile">
-          <a href="#how" data-i18n="nav.howItWorks" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#talents" data-i18n="nav.forTalents" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#recruiters" data-i18n="nav.forRecruiters" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
+          <a href="#top" data-i18n="nav.home" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
+          <a href="#piliers" data-i18n="nav.piliers" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
           <a href="#methodology" data-i18n="nav.methodology" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
           <a href="#contact" data-i18n="nav.contact" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#contact" class="btn-primary mt-2" data-i18n="cta.earlyAccess"></a>
+          <a href="#contact" data-i18n="nav.login" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
+          <a href="#contact" class="btn-primary mt-2" data-i18n="cta.downloadApp"></a>
         </nav>
       </div>
     </header>
@@ -185,12 +179,12 @@
       <span id="top" aria-hidden="true"></span>
 
       <!-- ============== HERO ============== -->
-      <section class="hero-gradient relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+      <section class="hero-gradient relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
         <!-- decorative blobs -->
-        <div class="blob bg-blob-orange opacity-20 w-72 h-72 -top-10 -left-16" aria-hidden="true"></div>
-        <div class="blob bg-blob-yellow opacity-15 w-80 h-80 top-40 -right-24" aria-hidden="true"></div>
+        <div class="blob blob--gold opacity-25 w-72 h-72 -top-10 -left-16" aria-hidden="true"></div>
+        <div class="blob blob--purple opacity-30 w-80 h-80 top-40 -right-24" aria-hidden="true"></div>
 
-        <div class="section-wrap relative grid lg:grid-cols-2 gap-12 items-center">
+        <div class="section-wrap relative grid lg:grid-cols-2 gap-10 items-center">
           <div class="text-white">
             <p
               class="uppercase tracking-widest text-xs md:text-sm font-heading font-semibold text-white/70 mb-4"
@@ -198,10 +192,13 @@
             ></p>
 
             <h1
-              class="font-heading font-bold leading-[1.1] text-white"
+              class="font-heading font-bold leading-[1.08] text-white"
               style="font-size: clamp(2.25rem, 5vw, 4rem);"
-              data-i18n="hero.h1"
-            ></h1>
+            >
+              <span class="text-highlight-gold" data-i18n="hero.h1Highlight"></span>
+              <br />
+              <span data-i18n="hero.h1"></span>
+            </h1>
 
             <p
               class="mt-6 text-lg leading-relaxed text-white/85 max-w-xl"
@@ -232,191 +229,204 @@
                 <span data-i18n="hero.secondaryCta"></span>
               </button>
             </div>
-          </div>
 
-          <!-- Stylized phone mockup (no fake UI per brief) -->
-          <div class="relative flex justify-center lg:justify-end" aria-hidden="true">
-            <div
-              class="relative w-[260px] sm:w-[300px] aspect-[9/19] rounded-[2.5rem] bg-gradient-to-b from-[#3d1f8a] to-[#1a0a3e] p-3 shadow-2xl ring-1 ring-white/10"
-            >
-              <div class="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-5 bg-black/60 rounded-b-2xl"></div>
-              <div
-                class="w-full h-full rounded-[2rem] bg-brand-primaryDark/80 backdrop-blur-sm relative overflow-hidden"
-              >
-                <!-- soft purple glow -->
-                <div
-                  class="absolute inset-0 opacity-60"
-                  style="background: radial-gradient(circle at 50% 30%, rgba(108,60,224,0.45), transparent 60%);"
-                ></div>
-                <!-- centered bolt -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="#F5A623"
-                    stroke="#F5A623"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="w-16 h-16 opacity-90"
-                  >
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                  </svg>
-                </div>
+            <!-- App Store + Google Play badges -->
+            <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
+              <span class="text-white/60 text-xs uppercase tracking-widest" data-i18n="hero.storeNote"></span>
+              <div class="flex items-center gap-3">
+                <!-- TODO: Replace with the real Play Store URL once the app is published -->
+                <a
+                  href="#"
+                  class="store-badge"
+                  aria-label="Google Play"
+                  data-store="play"
+                >
+                  <img src="assets/badge-googleplay.svg" alt="Google Play" width="160" height="54" />
+                </a>
+                <!-- TODO: Replace with the real App Store URL once the app is published -->
+                <a
+                  href="#"
+                  class="store-badge"
+                  aria-label="App Store"
+                  data-store="apple"
+                >
+                  <img src="assets/badge-appstore.svg" alt="App Store" width="160" height="54" />
+                </a>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- ============== DUAL-AUDIENCE PANELS ============== -->
-      <section
-        id="talents"
-        class="relative bg-neutral-surface py-16 md:py-24 overflow-hidden"
-      >
-        <div class="blob bg-blob-orange opacity-15 w-72 h-72 -top-16 left-1/4" aria-hidden="true"></div>
-        <div class="blob bg-blob-red opacity-10 w-80 h-80 bottom-0 -right-24" aria-hidden="true"></div>
-
-        <div class="section-wrap relative">
-          <h2
-            class="text-center font-heading font-bold text-brand-primaryDark mb-12 reveal"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-            data-i18n="audience.h2"
-          ></h2>
-
-          <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-            <!-- Talent panel -->
-            <article class="bg-white rounded-card shadow-brand p-6 md:p-8 reveal flex flex-col">
-              <p
-                class="text-xs font-heading font-semibold uppercase tracking-widest text-brand-primaryLight mb-3"
-                data-i18n="talent.eyebrow"
-              ></p>
-              <h3
-                class="font-heading font-bold text-brand-primaryDark mb-4"
-                style="font-size: clamp(1.5rem, 2.5vw, 2rem);"
-                data-i18n="talent.headline"
-              ></h3>
-              <p class="text-neutral-muted leading-relaxed mb-6" data-i18n="talent.subhead"></p>
-
-              <ul class="space-y-3 mb-8">
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-green/15 text-brand-green shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  </span>
-                  <span class="text-brand-primaryDark" data-i18n="talent.bullet1"></span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-green/15 text-brand-green shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  </span>
-                  <span class="text-brand-primaryDark" data-i18n="talent.bullet2"></span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-green/15 text-brand-green shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  </span>
-                  <span class="text-brand-primaryDark" data-i18n="talent.bullet3"></span>
-                </li>
-              </ul>
-
-              <div class="mt-auto">
-                <a href="#contact" class="btn-primary w-full sm:w-auto" data-i18n="talent.cta"></a>
-              </div>
-            </article>
-
-            <!-- Recruiter panel -->
-            <article
-              id="recruiters"
-              class="bg-white rounded-card shadow-brand p-6 md:p-8 reveal flex flex-col"
-            >
-              <p
-                class="text-xs font-heading font-semibold uppercase tracking-widest text-brand-primaryLight mb-3"
-                data-i18n="recruiter.eyebrow"
-              ></p>
-              <h3
-                class="font-heading font-bold text-brand-primaryDark mb-4"
-                style="font-size: clamp(1.5rem, 2.5vw, 2rem);"
-                data-i18n="recruiter.headline"
-              ></h3>
-              <p class="text-neutral-muted leading-relaxed mb-6" data-i18n="recruiter.subhead"></p>
-
-              <ul class="space-y-3 mb-8">
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-blue/15 text-brand-blue shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  </span>
-                  <span class="text-brand-primaryDark" data-i18n="recruiter.bullet1"></span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-blue/15 text-brand-blue shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  </span>
-                  <span class="text-brand-primaryDark" data-i18n="recruiter.bullet2"></span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-blue/15 text-brand-blue shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  </span>
-                  <span class="text-brand-primaryDark" data-i18n="recruiter.bullet3"></span>
-                </li>
-              </ul>
-
-              <div class="mt-auto">
-                <a
-                  id="recruiter-cta"
-                  href="mailto:contact@big-up.ai?subject=Recruiter%20Access%20Inquiry"
-                  data-calendly-url="{{CALENDLY_URL}}"
-                  class="btn-secondary-light w-full sm:w-auto"
-                  data-i18n="recruiter.cta"
-                ></a>
-              </div>
-            </article>
+          <!-- Hero illustration -->
+          <div class="relative flex justify-center lg:justify-end">
+            <img
+              src="assets/hero-illustration.svg"
+              data-i18n-attr="alt:hero.illustrationAlt"
+              alt=""
+              width="500"
+              height="600"
+              class="w-[260px] sm:w-[340px] lg:w-[440px] max-w-full"
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </div>
       </section>
 
-      <!-- ============== THREE VALUE PROPS ============== -->
-      <section class="bg-white py-16 md:py-24">
-        <div class="section-wrap">
-          <h2
-            class="text-center font-heading font-bold text-brand-primaryDark mb-12 reveal"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-            data-i18n="valueProps.h2"
-          ></h2>
+      <!-- ============== 3 PILIERS ============== -->
+      <section id="piliers" class="relative bg-neutral-surface py-16 md:py-24 overflow-hidden">
+        <div class="blob blob--gold opacity-10 w-72 h-72 -top-16 left-1/3" aria-hidden="true"></div>
+
+        <div class="section-wrap relative">
+          <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+            <p class="uppercase tracking-widest text-xs font-heading font-semibold text-brand-gold mb-3"
+               data-i18n="piliers.eyebrow"></p>
+            <h2 class="font-heading font-bold text-brand-primaryDark mb-4"
+                style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
+                data-i18n="piliers.h2"></h2>
+            <p class="text-lg text-neutral-muted" data-i18n="piliers.subhead"></p>
+          </div>
 
           <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-            <article class="rounded-card border border-neutral-surface p-6 md:p-7 reveal">
-              <div class="inline-flex items-center justify-center w-12 h-12 rounded-button bg-brand-gold/10 mb-5">
-                <!-- Lucide ShieldCheck -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            <!-- ===== Pilier 1 — EdTech ===== -->
+            <article id="edtech" class="pilier-card pilier-card--edtech reveal">
+              <div class="pilier-card__band"></div>
+              <div class="pilier-card__icon-row" aria-hidden="true">
+                <!-- Lucide GraduationCap -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
               </div>
-              <h3 class="font-heading font-semibold text-brand-primaryDark text-xl mb-2" data-i18n="valueProp1.title"></h3>
-              <p class="text-neutral-muted leading-relaxed" data-i18n="valueProp1.body"></p>
+
+              <img
+                src="assets/pilier-edtech.svg"
+                data-i18n-attr="alt:piliers.edtech.illustrationAlt"
+                alt=""
+                width="360" height="240"
+                class="w-full aspect-[3/2] object-cover"
+                loading="lazy"
+              />
+
+              <div class="p-6 md:p-7 flex flex-col grow">
+                <p class="text-xs font-heading font-semibold uppercase tracking-widest text-[#1FA85F] mb-2"
+                   data-i18n="piliers.edtech.eyebrow"></p>
+                <h3 class="font-heading font-bold text-brand-primaryDark text-xl md:text-2xl mb-3"
+                    data-i18n="piliers.edtech.title"></h3>
+                <p class="text-neutral-muted leading-relaxed mb-4"
+                   data-i18n="piliers.edtech.body"></p>
+
+                <ul class="space-y-2 mb-6 text-sm">
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1FA85F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.edtech.bullet1"></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1FA85F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.edtech.bullet2"></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1FA85F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.edtech.bullet3"></span>
+                  </li>
+                </ul>
+
+                <a href="#contact" class="pilier-card__cta mt-auto" data-i18n="piliers.edtech.cta"></a>
+              </div>
             </article>
 
-            <article class="rounded-card border border-neutral-surface p-6 md:p-7 reveal">
-              <div class="inline-flex items-center justify-center w-12 h-12 rounded-button bg-brand-gold/10 mb-5">
-                <!-- Lucide Briefcase -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            <!-- ===== Pilier 2 — Réseau ===== -->
+            <article id="reseau" class="pilier-card pilier-card--reseau reveal">
+              <div class="pilier-card__band"></div>
+              <div class="pilier-card__icon-row" aria-hidden="true">
+                <!-- Lucide Hammer -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"></path><path d="m18 15 4-4"></path><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"></path></svg>
               </div>
-              <h3 class="font-heading font-semibold text-brand-primaryDark text-xl mb-2" data-i18n="valueProp2.title"></h3>
-              <p class="text-neutral-muted leading-relaxed" data-i18n="valueProp2.body"></p>
+
+              <img
+                src="assets/pilier-reseau.svg"
+                data-i18n-attr="alt:piliers.reseau.illustrationAlt"
+                alt=""
+                width="360" height="240"
+                class="w-full aspect-[3/2] object-cover"
+                loading="lazy"
+              />
+
+              <div class="p-6 md:p-7 flex flex-col grow">
+                <p class="text-xs font-heading font-semibold uppercase tracking-widest text-[#D9613A] mb-2"
+                   data-i18n="piliers.reseau.eyebrow"></p>
+                <h3 class="font-heading font-bold text-brand-primaryDark text-xl md:text-2xl mb-3"
+                    data-i18n="piliers.reseau.title"></h3>
+                <p class="text-neutral-muted leading-relaxed mb-4"
+                   data-i18n="piliers.reseau.body"></p>
+
+                <ul class="space-y-2 mb-6 text-sm">
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9613A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.reseau.bullet1"></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9613A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.reseau.bullet2"></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9613A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.reseau.bullet3"></span>
+                  </li>
+                </ul>
+
+                <a href="#contact" class="pilier-card__cta mt-auto" data-i18n="piliers.reseau.cta"></a>
+              </div>
             </article>
 
-            <article class="rounded-card border border-neutral-surface p-6 md:p-7 reveal">
-              <div class="inline-flex items-center justify-center w-12 h-12 rounded-button bg-brand-gold/10 mb-5">
-                <!-- Lucide Users -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <!-- ===== Pilier 3 — Visibilité ===== -->
+            <article id="visibilite" class="pilier-card pilier-card--visibilite reveal">
+              <div class="pilier-card__band"></div>
+              <div class="pilier-card__icon-row" aria-hidden="true">
+                <!-- Lucide Megaphone -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
               </div>
-              <h3 class="font-heading font-semibold text-brand-primaryDark text-xl mb-2" data-i18n="valueProp3.title"></h3>
-              <p class="text-neutral-muted leading-relaxed" data-i18n="valueProp3.body"></p>
+
+              <div class="relative">
+                <img
+                  src="assets/pilier-visibilite.svg"
+                  data-i18n-attr="alt:piliers.visibilite.illustrationAlt"
+                  alt=""
+                  width="360" height="240"
+                  class="w-full aspect-[3/2] object-cover"
+                  loading="lazy"
+                />
+                <span class="absolute top-3 right-3 sponsored-chip" data-i18n="piliers.visibilite.sponsoredLabel"></span>
+              </div>
+
+              <div class="p-6 md:p-7 flex flex-col grow">
+                <p class="text-xs font-heading font-semibold uppercase tracking-widest text-[#2A7AC4] mb-2"
+                   data-i18n="piliers.visibilite.eyebrow"></p>
+                <h3 class="font-heading font-bold text-brand-primaryDark text-xl md:text-2xl mb-3"
+                    data-i18n="piliers.visibilite.title"></h3>
+                <p class="text-neutral-muted leading-relaxed mb-4"
+                   data-i18n="piliers.visibilite.body"></p>
+
+                <ul class="space-y-2 mb-6 text-sm">
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A7AC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.visibilite.bullet1"></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A7AC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.visibilite.bullet2"></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A7AC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class="text-brand-primaryDark" data-i18n="piliers.visibilite.bullet3"></span>
+                  </li>
+                </ul>
+
+                <a href="#contact" class="pilier-card__cta mt-auto" data-i18n="piliers.visibilite.cta"></a>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
       <!-- ============== HOW IT WORKS ============== -->
-      <section id="how" class="bg-neutral-surface py-16 md:py-24">
+      <section id="how" class="bg-white py-16 md:py-24">
         <div class="section-wrap">
           <h2
             class="text-center font-heading font-bold text-brand-primaryDark mb-10 reveal"
@@ -424,8 +434,7 @@
             data-i18n="how.h2"
           ></h2>
 
-          <!-- Tabs -->
-          <div role="tablist" class="flex justify-center gap-2 mb-10 bg-white rounded-pill p-1 max-w-xl mx-auto shadow-brand">
+          <div role="tablist" class="flex justify-center gap-2 mb-10 bg-neutral-surface rounded-pill p-1 max-w-xl mx-auto shadow-brand">
             <button
               type="button"
               role="tab"
@@ -448,11 +457,9 @@
             ></button>
           </div>
 
-          <!-- Talent panel -->
           <div id="panel-talents" role="tabpanel" aria-labelledby="tab-talents">
             <ol class="grid md:grid-cols-4 gap-6 lg:gap-8 relative">
-              <!-- step 1 -->
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand relative">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">1</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
@@ -460,7 +467,7 @@
                 <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.talent.step1.title"></h3>
                 <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.talent.step1.body"></p>
               </li>
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">2</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg>
@@ -468,7 +475,7 @@
                 <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.talent.step2.title"></h3>
                 <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.talent.step2.body"></p>
               </li>
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">3</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
@@ -476,7 +483,7 @@
                 <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.talent.step3.title"></h3>
                 <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.talent.step3.body"></p>
               </li>
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">4</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg>
@@ -487,10 +494,9 @@
             </ol>
           </div>
 
-          <!-- Recruiter panel -->
           <div id="panel-recruiters" role="tabpanel" aria-labelledby="tab-recruiters" hidden>
             <ol class="grid md:grid-cols-4 gap-6 lg:gap-8 relative">
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">1</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg>
@@ -498,7 +504,7 @@
                 <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.recruiter.step1.title"></h3>
                 <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.recruiter.step1.body"></p>
               </li>
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">2</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
@@ -506,7 +512,7 @@
                 <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.recruiter.step2.title"></h3>
                 <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.recruiter.step2.body"></p>
               </li>
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">3</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
@@ -514,7 +520,7 @@
                 <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.recruiter.step3.title"></h3>
                 <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.recruiter.step3.body"></p>
               </li>
-              <li class="bg-white rounded-card p-5 md:p-6 shadow-brand">
+              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
                 <div class="flex items-center gap-3 mb-4">
                   <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">4</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg>
@@ -559,21 +565,16 @@
 
       <!-- TRUST-SLOT: recruiter-logo-wall — un-hide when 5+ logos exist -->
       <section data-trust="recruiter-logo-wall" style="display:none;" class="bg-neutral-surface py-16">
-        <div class="section-wrap text-center">
-          <!-- placeholder for future logo wall -->
-        </div>
+        <div class="section-wrap text-center"></div>
       </section>
-
       <!-- TRUST-SLOT: testimonial-carousel — un-hide after first 3 hires -->
       <section data-trust="testimonial-carousel" style="display:none;" class="bg-white py-16">
         <div class="section-wrap"></div>
       </section>
-
       <!-- TRUST-SLOT: stats-counter — un-hide when "X talents placed" is non-trivial -->
       <section data-trust="stats-counter" style="display:none;" class="bg-neutral-surface py-16">
         <div class="section-wrap"></div>
       </section>
-
       <!-- TRUST-SLOT: press-mentions — un-hide when any exist -->
       <section data-trust="press-mentions" style="display:none;" class="bg-white py-16">
         <div class="section-wrap"></div>
@@ -581,16 +582,29 @@
 
       <!-- ============== FINAL CTA ============== -->
       <section class="hero-gradient relative overflow-hidden py-16 md:py-24">
-        <div class="blob bg-blob-yellow opacity-15 w-80 h-80 -top-20 -left-20" aria-hidden="true"></div>
-        <div class="blob bg-blob-red opacity-15 w-72 h-72 bottom-0 -right-16" aria-hidden="true"></div>
+        <div class="blob blob--gold opacity-20 w-80 h-80 -top-20 -left-20" aria-hidden="true"></div>
+        <div class="blob blob--purple opacity-30 w-72 h-72 bottom-0 -right-16" aria-hidden="true"></div>
 
         <div class="section-wrap relative text-center text-white">
           <h2
-            class="font-heading font-bold mb-8 reveal"
+            class="font-heading font-bold mb-4 reveal"
             style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
             data-i18n="finalCta.h2"
           ></h2>
-          <a href="#contact" class="btn-primary reveal" data-i18n="finalCta.button"></a>
+          <p class="text-lg text-white/85 max-w-2xl mx-auto mb-8 reveal" data-i18n="finalCta.subhead"></p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center reveal">
+            <a href="#contact" class="btn-primary" data-i18n="finalCta.button"></a>
+            <a href="#contact" class="btn-secondary-dark" data-i18n="finalCta.secondary"></a>
+          </div>
+
+          <div class="mt-8 flex items-center justify-center gap-3 reveal">
+            <a href="#" class="store-badge" aria-label="Google Play">
+              <img src="assets/badge-googleplay.svg" alt="Google Play" width="160" height="54" />
+            </a>
+            <a href="#" class="store-badge" aria-label="App Store">
+              <img src="assets/badge-appstore.svg" alt="App Store" width="160" height="54" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -611,7 +625,6 @@
             novalidate
             class="bg-neutral-surface rounded-card p-6 md:p-8 shadow-brand space-y-5"
           >
-            <!-- Honeypot -->
             <div aria-hidden="true" style="position:absolute; left:-9999px;">
               <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
             </div>
@@ -721,22 +734,31 @@
     <!-- ============== FOOTER ============== -->
     <footer class="bg-brand-primaryDark text-white pt-12 pb-6">
       <div class="section-wrap grid gap-8 md:grid-cols-4">
-        <!-- Brand col -->
         <div>
           <a href="#top" class="flex items-center gap-2 mb-3 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             <span class="font-heading font-bold text-xl">BigUp</span>
           </a>
           <p class="text-white/70 text-sm mb-1" data-i18n="logo.strapline"></p>
-          <p class="text-white/60 text-xs" data-i18n="footer.availability"></p>
+          <p class="text-white/60 text-xs mb-4" data-i18n="footer.availability"></p>
+
+          <div class="flex items-center gap-2">
+            <a href="#" class="store-badge" aria-label="Google Play">
+              <img src="assets/badge-googleplay.svg" alt="Google Play" width="140" height="46" style="height:38px" />
+            </a>
+            <a href="#" class="store-badge" aria-label="App Store">
+              <img src="assets/badge-appstore.svg" alt="App Store" width="140" height="46" style="height:38px" />
+            </a>
+          </div>
         </div>
 
         <div>
           <h3 class="font-heading font-semibold text-sm uppercase tracking-wider text-white/80 mb-3" data-i18n="footer.productHeading"></h3>
           <ul class="space-y-2 text-sm">
-            <li><a href="#how" data-i18n="nav.howItWorks" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="#talents" data-i18n="nav.forTalents" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="#recruiters" data-i18n="nav.forRecruiters" class="text-white/80 hover:text-white"></a></li>
+            <li><a href="#piliers" data-i18n="nav.piliers" class="text-white/80 hover:text-white"></a></li>
+            <li><a href="#edtech" data-i18n="piliers.edtech.title" class="text-white/80 hover:text-white"></a></li>
+            <li><a href="#reseau" data-i18n="piliers.reseau.title" class="text-white/80 hover:text-white"></a></li>
+            <li><a href="#visibilite" data-i18n="piliers.visibilite.title" class="text-white/80 hover:text-white"></a></li>
             <li><a href="#methodology" data-i18n="nav.methodology" class="text-white/80 hover:text-white"></a></li>
           </ul>
         </div>
@@ -821,12 +843,10 @@
         }
 
         function applyDict(dict, lang) {
-          // text content
           document.querySelectorAll('[data-i18n]').forEach((el) => {
             const key = el.getAttribute('data-i18n');
             if (key && dict[key] !== undefined) el.textContent = dict[key];
           });
-          // attribute interpolations -- "attr:key" or "attr:key;attr2:key2"
           document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
             const spec = el.getAttribute('data-i18n-attr');
             spec.split(';').forEach((pair) => {
@@ -836,9 +856,7 @@
               }
             });
           });
-          // <html lang>
           document.documentElement.setAttribute('lang', lang);
-          // <html dir> stays ltr for both FR/EN
           document.documentElement.setAttribute('dir', 'ltr');
         }
 
@@ -848,11 +866,9 @@
           if (persist) localStorage.setItem(STORAGE_KEY, lang);
           const dict = await loadDict(lang);
           applyDict(dict, lang);
-          // toggle pill
           document.querySelectorAll('.lang-pill button[data-lang]').forEach((btn) => {
             btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
           });
-          // OG locale
           const ogLoc = document.querySelector('meta[property="og:locale"]');
           if (ogLoc) ogLoc.setAttribute('content', lang === 'fr' ? 'fr_FR' : 'en_US');
         }
@@ -888,13 +904,13 @@
           const navLinks = header.querySelectorAll('nav[aria-label="Primary"] a');
           const langPill = header.querySelector('.lang-pill');
           const menuToggle = document.getElementById('menu-toggle');
+          const loginLink = document.getElementById('login-link');
 
           function update() {
             const scrolled = window.scrollY > 24;
             header.dataset.scrolled = String(scrolled);
             header.classList.toggle('bg-white', scrolled);
             header.classList.toggle('shadow-brand', scrolled);
-            // Wordmark color
             if (scrolled) {
               wordmark.classList.remove('text-white');
               wordmark.classList.add('text-brand-primaryDark');
@@ -904,6 +920,10 @@
                 a.classList.remove('text-white/90', 'hover:text-white');
                 a.classList.add('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
               });
+              if (loginLink) {
+                loginLink.classList.remove('text-white/90', 'hover:text-white');
+                loginLink.classList.add('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
+              }
               langPill.classList.add('lang-pill--solid');
               menuToggle.classList.remove('text-white');
               menuToggle.classList.add('text-brand-primaryDark');
@@ -916,6 +936,10 @@
                 a.classList.add('text-white/90', 'hover:text-white');
                 a.classList.remove('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
               });
+              if (loginLink) {
+                loginLink.classList.add('text-white/90', 'hover:text-white');
+                loginLink.classList.remove('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
+              }
               langPill.classList.remove('lang-pill--solid');
               menuToggle.classList.add('text-white');
               menuToggle.classList.remove('text-brand-primaryDark');
@@ -940,7 +964,6 @@
               }
             });
           });
-          // initial state
           activateTab(document.getElementById('tab-talents'));
 
           function activateTab(tab) {
@@ -992,10 +1015,8 @@
           if (!form) return;
           form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // honeypot
             if (form.website && form.website.value) return;
             const dict = dictionaries[currentLang] || {};
-            // basic native validation
             if (!form.reportValidity()) return;
 
             submit.disabled = true;
@@ -1008,7 +1029,6 @@
 
             try {
               if (isPlaceholder) {
-                // No real endpoint wired yet — simulate success in dev/demo
                 await new Promise((r) => setTimeout(r, 600));
               } else {
                 const fd = new FormData(form);
@@ -1034,17 +1054,6 @@
           });
         }
 
-        function wireRecruiterCta() {
-          const a = document.getElementById('recruiter-cta');
-          if (!a) return;
-          const url = a.getAttribute('data-calendly-url') || '';
-          if (url && url.indexOf('{{') === -1) {
-            a.setAttribute('href', url);
-            a.setAttribute('target', '_blank');
-            a.setAttribute('rel', 'noopener noreferrer');
-          }
-        }
-
         function wireReveals() {
           const els = document.querySelectorAll('.reveal');
           if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1065,7 +1074,6 @@
           els.forEach((el) => io.observe(el));
         }
 
-        // Bootstrap
         document.addEventListener('DOMContentLoaded', async () => {
           wireLangPill();
           wireMobileMenu();
@@ -1073,7 +1081,6 @@
           wireTabs();
           wireVideoModal();
           wireForm();
-          wireRecruiterCta();
           wireReveals();
           await setLang(detectInitialLang(), false);
         });

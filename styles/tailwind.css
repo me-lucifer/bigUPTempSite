@@ -109,4 +109,67 @@
   .lang-pill--solid button[aria-pressed="false"] {
     @apply text-brand-primaryDark/70 hover:text-brand-primaryDark;
   }
+
+  /* ====== 3 Piliers cards ====== */
+  .pilier-card {
+    @apply relative bg-white rounded-card shadow-brand overflow-hidden flex flex-col h-full transition-transform duration-200;
+  }
+  .pilier-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(26, 10, 62, 0.10);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pilier-card:hover { transform: none; }
+  }
+
+  .pilier-card__band {
+    @apply h-2 w-full;
+  }
+  .pilier-card__icon-row {
+    @apply absolute top-6 left-6 inline-flex items-center justify-center w-12 h-12 rounded-button shadow-brand z-10;
+  }
+
+  /* EdTech (green) */
+  .pilier-card--edtech .pilier-card__band   { background: #1FA85F; }
+  .pilier-card--edtech .pilier-card__icon-row { background: #1FA85F; color: #FFFFFF; }
+  .pilier-card--edtech .pilier-card__cta {
+    @apply bg-[#1FA85F] hover:bg-[#178a4d] text-white;
+  }
+
+  /* Réseau (terracotta) */
+  .pilier-card--reseau .pilier-card__band   { background: #D9613A; }
+  .pilier-card--reseau .pilier-card__icon-row { background: #D9613A; color: #FFFFFF; }
+  .pilier-card--reseau .pilier-card__cta {
+    @apply bg-[#D9613A] hover:bg-[#bd4f2c] text-white;
+  }
+
+  /* Visibilité (blue) */
+  .pilier-card--visibilite .pilier-card__band   { background: #2A7AC4; }
+  .pilier-card--visibilite .pilier-card__icon-row { background: #2A7AC4; color: #FFFFFF; }
+  .pilier-card--visibilite .pilier-card__cta {
+    @apply bg-[#2A7AC4] hover:bg-[#1f649f] text-white;
+  }
+
+  .pilier-card__cta {
+    @apply inline-flex items-center justify-center gap-2 rounded-button px-5 min-h-[44px] text-sm font-heading font-semibold transition-colors duration-200 cursor-pointer;
+  }
+
+  /* Store badge link */
+  .store-badge {
+    @apply inline-flex items-center transition-transform duration-200 cursor-pointer;
+  }
+  .store-badge:hover { transform: translateY(-2px); }
+  .store-badge img { display: block; height: 44px; width: auto; }
+
+  /* Sponsored chip used inside Visibilité illustration / card */
+  .sponsored-chip {
+    @apply inline-flex items-center gap-1 rounded-pill bg-brand-gold text-brand-primaryDark px-2 py-0.5 text-[10px] font-heading font-bold uppercase tracking-wider;
+  }
+
+  /* Multi-color hero blob accents */
+  .blob--gold   { background: #F5A623; }
+  .blob--orange { background: #F5A623; }
+  .blob--red    { background: #E74C3C; }
+  .blob--yellow { background: #F1C40F; }
+  .blob--purple { background: #6C3CE0; }
 }

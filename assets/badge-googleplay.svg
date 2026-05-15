@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 54" role="img" aria-label="Get it on Google Play">
+  <rect width="160" height="54" rx="9" fill="#000000" />
+  <rect x="0.5" y="0.5" width="159" height="53" rx="8.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" />
+  <!-- Google Play triangle logo -->
+  <g transform="translate(14, 14)">
+    <path d="M0,1 L0,25 L12,13 Z" fill="#34A853" />
+    <path d="M0,1 L13,7 L17,11 L12,13 Z" fill="#FBBC04" />
+    <path d="M0,25 L13,19 L17,15 L12,13 Z" fill="#EA4335" />
+    <path d="M13,7 L13,19 L17,15 L17,11 Z" fill="#4285F4" />
+  </g>
+  <!-- Text -->
+  <text x="46" y="22" font-family="Inter, sans-serif" font-size="9" fill="#FFFFFF" opacity="0.8">GET IT ON</text>
+  <text x="46" y="40" font-family="Poppins, sans-serif" font-weight="700" font-size="16" fill="#FFFFFF">Google Play</text>
+</svg>

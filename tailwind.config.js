@@ -13,10 +13,21 @@ module.exports = {
           red:          '#E74C3C',
           blue:         '#3498DB',
         },
+        // 3 Piliers accents -- warmer, slightly desaturated vs. raw web colors so they
+        // sit politely next to the purple+gold brand instead of fighting it.
+        pilier: {
+          edtech:        '#1FA85F',  // green   -- Certifiez
+          edtechSoft:    '#E6F7EE',
+          reseau:        '#D9613A',  // terracotta -- Reseau Artisans
+          reseauSoft:    '#FBEAE2',
+          visibilite:    '#2A7AC4',  // blue   -- Booster Visibilite
+          visibiliteSoft:'#E4F0FA',
+        },
         blob: {
           orange: '#F5A623',
           red:    '#E74C3C',
           yellow: '#F1C40F',
+          purple: '#6C3CE0',
         },
         neutral: {
           white:   '#FFFFFF',

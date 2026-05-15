@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-label="Réseau professionnel illustration">
+  <defs>
+    <linearGradient id="reseauBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBEAE2" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="360" height="240" fill="url(#reseauBg)" />
+
+  <!-- Map dots / pins in background -->
+  <g opacity="0.55">
+    <circle cx="50"  cy="50"  r="3" fill="#D9613A" />
+    <circle cx="90"  cy="180" r="3" fill="#D9613A" />
+    <circle cx="320" cy="60"  r="3" fill="#D9613A" />
+    <circle cx="305" cy="170" r="3" fill="#D9613A" />
+    <circle cx="200" cy="40"  r="2" fill="#D9613A" />
+  </g>
+
+  <!-- Connection lines (light) -->
+  <g stroke="#D9613A" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.55" fill="none">
+    <path d="M 110,120 L 250,80" />
+    <path d="M 110,120 L 250,160" />
+    <path d="M 250,80 L 250,160" />
+  </g>
+
+  <!-- Center node (artisan) -->
+  <g transform="translate(110, 120)">
+    <circle r="36" fill="#FFFFFF" stroke="#D9613A" stroke-width="3" />
+    <!-- avatar head -->
+    <circle cx="0" cy="-8" r="10" fill="#8B5A3C" />
+    <!-- shoulders -->
+    <path d="M -20,18 Q 0,2 20,18 L 20,28 L -20,28 Z" fill="#1FA85F" />
+    <!-- verified mini -->
+    <circle cx="22" cy="-20" r="9" fill="#1FA85F" stroke="#FFFFFF" stroke-width="2" />
+    <path d="M 18,-20 L 21,-17 L 27,-23" stroke="#FFFFFF" stroke-width="2" fill="none"
+          stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Right top node -->
+  <g transform="translate(250, 80)">
+    <circle r="24" fill="#FFFFFF" stroke="#D9613A" stroke-width="2" />
+    <circle cx="0" cy="-5" r="7" fill="#8B5A3C" />
+    <path d="M -14,12 Q 0,0 14,12 L 14,18 L -14,18 Z" fill="#6C3CE0" />
+  </g>
+
+  <!-- Right bottom node -->
+  <g transform="translate(250, 160)">
+    <circle r="24" fill="#FFFFFF" stroke="#D9613A" stroke-width="2" />
+    <circle cx="0" cy="-5" r="7" fill="#A0673F" />
+    <path d="M -14,12 Q 0,0 14,12 L 14,18 L -14,18 Z" fill="#2A7AC4" />
+  </g>
+
+  <!-- Map pin overlay top-left -->
+  <g transform="translate(34, 38)">
+    <path d="M 0,0 C -10,0 -16,8 -16,16 C -16,28 0,42 0,42 C 0,42 16,28 16,16 C 16,8 10,0 0,0 Z"
+          fill="#D9613A" />
+    <circle cx="0" cy="16" r="6" fill="#FFFFFF" />
+  </g>
+
+  <!-- Star rating bottom-right -->
+  <g transform="translate(295, 200)" fill="#F5A623">
+    <polygon points="0,-8 2,-2 8,-2 3,2 5,8 0,4 -5,8 -3,2 -8,-2 -2,-2" />
+    <polygon transform="translate(14,0)" points="0,-8 2,-2 8,-2 3,2 5,8 0,4 -5,8 -3,2 -8,-2 -2,-2" />
+    <polygon transform="translate(28,0)" points="0,-8 2,-2 8,-2 3,2 5,8 0,4 -5,8 -3,2 -8,-2 -2,-2" />
+  </g>
+</svg>
