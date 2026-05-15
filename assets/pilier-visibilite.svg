@@ -26,10 +26,18 @@
   <!-- Profile card (the boosted profile) -->
   <g transform="translate(180, 90)">
     <rect x="0" y="0" width="150" height="110" rx="10" fill="#FFFFFF" stroke="#2A7AC4" stroke-width="2" />
-    <!-- Sponsored badge top-right -->
+    <!-- Sponsored badge top-right (language-neutral star + arrow icon
+         so the SVG doesn't need translation; the HTML "Sponsored/Sponsorisé"
+         chip on top of the card carries the i18n label) -->
     <g>
-      <rect x="98" y="-8" width="60" height="22" rx="11" fill="#F5A623" />
-      <text x="128" y="7" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700" font-size="10" fill="#1A0A3E">Sponsorisé</text>
+      <rect x="100" y="-8" width="44" height="22" rx="11" fill="#F5A623" />
+      <!-- star -->
+      <polygon points="115,3 117,8 122,8 118,11 120,16 115,13 110,16 112,11 108,8 113,8"
+               fill="#1A0A3E" />
+      <!-- upward arrow (boost) -->
+      <path d="M 130,9 L 134,4 L 138,9 M 134,4 L 134,13"
+            stroke="#1A0A3E" stroke-width="1.8" fill="none"
+            stroke-linecap="round" stroke-linejoin="round" />
     </g>
     <!-- avatar -->
     <circle cx="30" cy="40" r="20" fill="#FBEAE2" stroke="#D9613A" stroke-width="2" />
@@ -38,11 +46,15 @@
     <!-- text rows -->
     <rect x="60" y="32" width="80" height="6" rx="3" fill="#1A0A3E" opacity="0.85" />
     <rect x="60" y="44" width="60" height="5" rx="3" fill="#1A0A3E" opacity="0.35" />
-    <!-- skill chips -->
-    <rect x="12" y="74" width="46" height="18" rx="9" fill="#E4F0FA" />
-    <text x="35" y="86" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="9" fill="#2A7AC4">Vérifié</text>
-    <rect x="64" y="74" width="42" height="18" rx="9" fill="#E6F7EE" />
-    <text x="85" y="86" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="9" fill="#1FA85F">95/100</text>
+    <!-- skill chips: verified checkmark + numeric score (language-neutral) -->
+    <rect x="12" y="74" width="42" height="18" rx="9" fill="#E4F0FA" />
+    <!-- check icon -->
+    <path d="M 22,82 L 28,86 L 38,78"
+          stroke="#2A7AC4" stroke-width="2" fill="none"
+          stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="44" cy="83" r="3" fill="#2A7AC4" opacity="0.25" />
+    <rect x="60" y="74" width="46" height="18" rx="9" fill="#E6F7EE" />
+    <text x="83" y="86" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="9" fill="#1FA85F">95/100</text>
   </g>
 
   <!-- Stars (boosted signal) -->
