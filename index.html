@@ -147,22 +147,23 @@
           </button>
 
           <!-- Honest product proof points (replaces fake user stats).
-               grid-cols-1 on mobile so values don't crash into each other,
-               three columns from sm+ where there's room. Shorter values keep
-               them fitting at the narrowest column width. -->
-          <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-xl"
+               flex-wrap (not grid) so each item gets the width its content
+               actually needs — equal columns kept squeezing the longer
+               values into overflow. Items wrap to a new row only if the
+               viewport is genuinely too narrow for them. -->
+          <div class="mt-12 flex flex-wrap gap-x-10 gap-y-6"
                style="animation: fadeUp .6s .4s ease both;">
-            <div class="min-w-0">
+            <div>
               <div class="font-heading font-extrabold text-xl md:text-2xl text-brand-dark leading-none whitespace-nowrap"
                    data-i18n="hero.proof.1.value"></div>
               <div class="text-xs text-brand-muted mt-2" data-i18n="hero.proof.1.label"></div>
             </div>
-            <div class="min-w-0">
+            <div>
               <div class="font-heading font-extrabold text-xl md:text-2xl text-brand-teal leading-none whitespace-nowrap"
                    data-i18n="hero.proof.2.value"></div>
               <div class="text-xs text-brand-muted mt-2" data-i18n="hero.proof.2.label"></div>
             </div>
-            <div class="min-w-0">
+            <div>
               <div class="font-heading font-extrabold text-xl md:text-2xl text-brand-orange leading-none whitespace-nowrap"
                    data-i18n="hero.proof.3.value"></div>
               <div class="text-xs text-brand-muted mt-2" data-i18n="hero.proof.3.label"></div>
