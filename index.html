@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1A0A3E" />
+    <meta name="theme-color" content="#1AADA3" />
     <meta name="color-scheme" content="light" />
 
-    <title data-i18n="meta.title">BigUp</title>
+    <title data-i18n="meta.title">Big-Up</title>
     <meta name="description" data-i18n-attr="content:meta.description" content="" />
 
     <meta property="og:type" content="website" />
@@ -24,672 +24,560 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
     />
 
     <link rel="stylesheet" href="assets/tailwind.css" />
-
-    <style>
-      .hero-gradient {
-        background: linear-gradient(180deg, #6c3ce0 0%, #2d1b69 55%, #1a0a3e 100%);
-      }
-      body { font-family: 'Inter', system-ui, sans-serif; color: #1a0a3e; }
-      h1, h2, h3, h4 { font-family: 'Poppins', system-ui, sans-serif; }
-      .text-highlight-gold {
-        background: linear-gradient(180deg, transparent 60%, rgba(245,166,35,0.55) 60%);
-        padding: 0 0.1em;
-      }
-    </style>
   </head>
 
   <body>
     <a href="#main" class="skip-link" data-i18n="skip.toMain">Aller au contenu principal</a>
 
-    <!-- ============== HEADER ============== -->
-    <header
-      id="site-header"
-      class="fixed inset-x-0 top-0 z-40 transition-colors duration-300"
-      data-scrolled="false"
-    >
-      <div class="section-wrap flex items-center justify-between py-3 md:py-4">
-        <!-- Logo lockup -->
-        <a href="#top" class="flex items-center gap-2 cursor-pointer" aria-label="BigUp">
-          <span class="inline-flex items-center justify-center w-8 h-8 shrink-0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="#F5A623"
-              stroke="#F5A623"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="w-7 h-7 md:w-8 md:h-8"
-              aria-hidden="true"
-            >
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-            </svg>
-          </span>
-          <span class="flex flex-col leading-tight">
-            <span
-              data-logo-wordmark
-              class="font-heading font-bold text-xl md:text-2xl text-white"
-              >BigUp</span
-            >
-            <span
-              data-logo-strapline
-              data-i18n="logo.strapline"
-              class="text-[10px] md:text-xs text-white/70"
-            ></span>
-          </span>
+    <!-- ============== NAV ============== -->
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <a href="#top" class="logo" aria-label="Big-Up">
+        <span class="logo-dot" aria-hidden="true"></span>
+        <span data-i18n="logo.name">Big-Up</span>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-10 list-none">
+        <li><a href="#piliers" class="nav-link" data-i18n="nav.features"></a></li>
+        <li><a href="#how" class="nav-link" data-i18n="nav.howItWorks"></a></li>
+        <li><a href="#temoignages" class="nav-link" data-i18n="nav.testimonials"></a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav.contact"></a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <div
+          class="lang-pill"
+          role="group"
+          data-i18n-attr="aria-label:lang.toggleLabel"
+          aria-label=""
+        >
+          <button type="button" data-lang="fr" aria-pressed="true" data-i18n="lang.fr">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false" data-i18n="lang.en">EN</button>
+        </div>
+
+        <a href="#cta" class="nav-cta">
+          <span data-i18n="nav.start"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
 
-        <!-- Desktop nav -->
-        <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
-          <a
-            href="#top"
-            data-i18n="nav.home"
-            class="text-sm font-heading font-semibold text-white/90 hover:text-white"
-          ></a>
-          <a
-            href="#piliers"
-            data-i18n="nav.piliers"
-            class="text-sm font-heading font-semibold text-white/90 hover:text-white"
-          ></a>
-          <a
-            href="#methodology"
-            data-i18n="nav.methodology"
-            class="text-sm font-heading font-semibold text-white/90 hover:text-white"
-          ></a>
-          <a
-            href="#contact"
-            data-i18n="nav.contact"
-            class="text-sm font-heading font-semibold text-white/90 hover:text-white"
-          ></a>
-        </nav>
-
-        <!-- Right-side: language pill + Login + Download CTA -->
-        <div class="flex items-center gap-2 md:gap-3">
-          <div
-            class="lang-pill"
-            role="group"
-            data-i18n-attr="aria-label:lang.toggleLabel"
-            aria-label=""
-          >
-            <button type="button" data-lang="fr" aria-pressed="true" data-i18n="lang.fr">FR</button>
-            <button type="button" data-lang="en" aria-pressed="false" data-i18n="lang.en">EN</button>
-          </div>
-
-          <!-- Login (lives in mobile app for Phase 1; redirects to app download) -->
-          <a
-            href="#contact"
-            id="login-link"
-            class="hidden sm:inline-flex items-center gap-1.5 text-sm font-heading font-semibold text-white/90 hover:text-white px-3 py-2 rounded-button cursor-pointer"
-            data-i18n="nav.login"
-          ></a>
-
-          <a
-            href="#contact"
-            class="btn-primary text-sm hidden md:inline-flex !min-h-[40px] !px-4"
-            data-i18n="cta.downloadApp"
-          ></a>
-
-          <!-- Mobile menu toggle -->
-          <button
-            type="button"
-            id="menu-toggle"
-            class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-button text-white cursor-pointer"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            data-i18n-attr="aria-label:nav.menuOpen"
-            aria-label=""
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="w-6 h-6"
-              aria-hidden="true"
-            >
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-        </div>
+        <button
+          type="button"
+          id="menu-toggle"
+          class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-chunk text-brand-dark cursor-pointer"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          data-i18n-attr="aria-label:nav.menuOpen"
+          aria-label=""
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
       </div>
+    </nav>
 
-      <!-- Mobile menu drawer -->
-      <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-brand">
-        <nav class="section-wrap py-4 flex flex-col gap-3" aria-label="Mobile">
-          <a href="#top" data-i18n="nav.home" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#piliers" data-i18n="nav.piliers" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#methodology" data-i18n="nav.methodology" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#contact" data-i18n="nav.contact" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#contact" data-i18n="nav.login" class="py-2 font-heading font-semibold text-brand-primaryDark"></a>
-          <a href="#contact" class="btn-primary mt-2" data-i18n="cta.downloadApp"></a>
-        </nav>
-      </div>
-    </header>
+    <!-- mobile drawer -->
+    <div id="mobile-menu" class="lg:hidden hidden fixed top-16 inset-x-0 z-30 bg-white shadow-brand">
+      <ul class="section-wrap py-4 flex flex-col gap-2 list-none">
+        <li><a href="#piliers" class="block py-2 nav-link" data-i18n="nav.features"></a></li>
+        <li><a href="#how" class="block py-2 nav-link" data-i18n="nav.howItWorks"></a></li>
+        <li><a href="#temoignages" class="block py-2 nav-link" data-i18n="nav.testimonials"></a></li>
+        <li><a href="#contact" class="block py-2 nav-link" data-i18n="nav.contact"></a></li>
+        <li class="pt-2"><a href="#cta" class="nav-cta w-full justify-center"><span data-i18n="nav.start"></span></a></li>
+      </ul>
+    </div>
 
     <main id="main">
       <span id="top" aria-hidden="true"></span>
 
       <!-- ============== HERO ============== -->
-      <section class="hero-gradient relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
-        <!-- decorative blobs -->
-        <div class="blob blob--gold opacity-25 w-72 h-72 -top-10 -left-16" aria-hidden="true"></div>
-        <div class="blob blob--purple opacity-30 w-80 h-80 top-40 -right-24" aria-hidden="true"></div>
+      <section class="relative overflow-hidden pt-28 lg:pt-36 pb-16 lg:pb-24 min-h-[100vh] grid lg:grid-cols-2 gap-10 lg:gap-16 items-center section-wrap">
+        <!-- backgrounds -->
+        <div class="absolute inset-0 -z-10 bg-hero-radial pointer-events-none"></div>
+        <div class="hero-shape -top-24 -right-16 w-[420px] h-[420px]" aria-hidden="true"></div>
 
-        <div class="section-wrap relative grid lg:grid-cols-2 gap-10 items-center">
-          <div class="text-white">
-            <p
-              class="uppercase tracking-widest text-xs md:text-sm font-heading font-semibold text-white/70 mb-4"
-              data-i18n="hero.eyebrow"
-            ></p>
+        <div class="relative z-10">
+          <p class="hero-tag">
+            <svg viewBox="0 0 24 16" class="w-5 h-3.5" aria-hidden="true">
+              <rect width="8" height="16" fill="#F77F00" />
+              <rect x="8" width="8" height="16" fill="#FFFFFF" />
+              <rect x="16" width="8" height="16" fill="#009A6F" />
+            </svg>
+            <span data-i18n="hero.tag"></span>
+          </p>
 
-            <h1
-              class="font-heading font-bold leading-[1.08] text-white"
-              style="font-size: clamp(2.25rem, 5vw, 4rem);"
+          <h1 class="mt-6 text-brand-dark font-extrabold leading-[1.08]"
+              style="font-size: clamp(2.5rem, 5vw, 4.2rem); animation: fadeUp .6s .1s ease both;">
+            <span data-i18n="hero.h1.line1"></span><br />
+            <span data-i18n="hero.h1.line2.a"></span>
+            <span class="text-brand-teal" data-i18n="hero.h1.line2.b"></span><br />
+            <span data-i18n="hero.h1.line3.a"></span>
+            <span class="text-brand-orange" data-i18n="hero.h1.line3.b"></span>
+          </h1>
+
+          <p class="mt-6 text-lg leading-relaxed text-brand-muted max-w-lg"
+             style="animation: fadeUp .6s .2s ease both;"
+             data-i18n="hero.subhead"></p>
+
+          <div class="mt-10 flex flex-col sm:flex-row gap-4" style="animation: fadeUp .6s .3s ease both;">
+            <a href="#cta" class="btn-primary">
+              <span data-i18n="hero.primaryCta"></span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#piliers" class="btn-secondary">
+              <span data-i18n="hero.secondaryCta"></span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <button
+              type="button"
+              id="open-video"
+              class="btn-secondary"
+              aria-haspopup="dialog"
             >
-              <span class="text-highlight-gold" data-i18n="hero.h1Highlight"></span>
-              <br />
-              <span data-i18n="hero.h1"></span>
-            </h1>
-
-            <p
-              class="mt-6 text-lg leading-relaxed text-white/85 max-w-xl"
-              data-i18n="hero.subhead"
-            ></p>
-
-            <div class="mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="#contact" class="btn-primary" data-i18n="hero.primaryCta"></a>
-              <button
-                type="button"
-                id="open-video"
-                class="btn-secondary-dark"
-                aria-haspopup="dialog"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                >
-                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
-                </svg>
-                <span data-i18n="hero.secondaryCta"></span>
-              </button>
-            </div>
-
-            <!-- App Store + Google Play badges -->
-            <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
-              <span class="text-white/60 text-xs uppercase tracking-widest" data-i18n="hero.storeNote"></span>
-              <div class="flex items-center gap-3">
-                <!-- TODO: Replace with the real Play Store URL once the app is published -->
-                <a
-                  href="#"
-                  class="store-badge"
-                  aria-label="Google Play"
-                  data-store="play"
-                >
-                  <img src="assets/badge-googleplay.svg" alt="Google Play" width="160" height="54" />
-                </a>
-                <!-- TODO: Replace with the real App Store URL once the app is published -->
-                <a
-                  href="#"
-                  class="store-badge"
-                  aria-label="App Store"
-                  data-store="apple"
-                >
-                  <img src="assets/badge-appstore.svg" alt="App Store" width="160" height="54" />
-                </a>
-              </div>
-            </div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+              <span data-i18n="hero.watchDemo"></span>
+            </button>
           </div>
 
-          <!-- Hero illustration -->
-          <div class="relative flex justify-center lg:justify-end">
-            <img
-              src="assets/hero-illustration.svg"
-              data-i18n-attr="alt:hero.illustrationAlt"
-              alt=""
-              width="500"
-              height="600"
-              class="w-[260px] sm:w-[340px] lg:w-[440px] max-w-full"
-              loading="eager"
-              decoding="async"
-            />
+          <!-- Honest product proof points (replaces fake user stats) -->
+          <div class="mt-12 grid grid-cols-3 gap-6 max-w-xl" style="animation: fadeUp .6s .4s ease both;">
+            <div>
+              <div class="font-heading font-extrabold text-2xl md:text-3xl text-brand-dark leading-none"
+                   data-i18n="hero.proof.1.value"></div>
+              <div class="text-xs text-brand-muted mt-1" data-i18n="hero.proof.1.label"></div>
+            </div>
+            <div>
+              <div class="font-heading font-extrabold text-2xl md:text-3xl text-brand-teal leading-none"
+                   data-i18n="hero.proof.2.value"></div>
+              <div class="text-xs text-brand-muted mt-1" data-i18n="hero.proof.2.label"></div>
+            </div>
+            <div>
+              <div class="font-heading font-extrabold text-2xl md:text-3xl text-brand-orange leading-none"
+                   data-i18n="hero.proof.3.value"></div>
+              <div class="text-xs text-brand-muted mt-1" data-i18n="hero.proof.3.label"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero visual: profile card mockup + floating mini cards -->
+        <div class="relative z-10 hidden lg:block" style="animation: fadeUp .6s .2s ease both;" aria-hidden="false">
+          <div class="relative p-8">
+            <div class="profile-card">
+              <div class="profile-card__bar"></div>
+              <div class="profile-row">
+                <div class="avatar-initial">K</div>
+                <div>
+                  <h3 class="font-heading font-bold text-base text-brand-dark" data-i18n="hero.card.name"></h3>
+                  <p class="text-xs text-brand-muted" data-i18n="hero.card.role"></p>
+                </div>
+                <span class="badge-verified">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="hero.card.badge"></span>
+                </span>
+              </div>
+
+              <div class="mb-6">
+                <div class="text-xs text-brand-muted mb-2" data-i18n="hero.card.scoreLabel"></div>
+                <div class="score-bar-track"><div class="score-bar-fill" style="--score: 92%;"></div></div>
+                <div class="font-heading font-extrabold text-2xl text-brand-teal mt-2" data-i18n="hero.card.scoreValue"></div>
+              </div>
+
+              <div class="flex flex-wrap gap-2">
+                <span class="tag-chip" data-i18n="hero.card.tag1"></span>
+                <span class="tag-chip" data-i18n="hero.card.tag2"></span>
+                <span class="tag-chip" data-i18n="hero.card.tag3"></span>
+                <span class="tag-chip" data-i18n="hero.card.tagMore"></span>
+              </div>
+            </div>
+
+            <!-- Floating card top-right -->
+            <div class="float-card -top-2 -right-4" style="animation-delay: 0s;">
+              <div class="float-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="float-label" data-i18n="hero.float.1.label"></div>
+              <div class="float-val" data-i18n="hero.float.1.value"></div>
+            </div>
+
+            <!-- Floating card bottom-left -->
+            <div class="float-card -bottom-2 -left-4" style="animation-delay: 2s;">
+              <div class="float-icon is-orange" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="float-label" data-i18n="hero.float.2.label"></div>
+              <div class="float-val" data-i18n="hero.float.2.value"></div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ============== 3 PILIERS ============== -->
-      <section id="piliers" class="relative bg-neutral-surface py-16 md:py-24 overflow-hidden">
-        <div class="blob blob--gold opacity-10 w-72 h-72 -top-16 left-1/3" aria-hidden="true"></div>
+      <section id="piliers" class="relative overflow-hidden bg-brand-dark py-24 lg:py-28">
+        <div class="absolute inset-0 bg-pillars-radial pointer-events-none"></div>
 
-        <div class="section-wrap relative">
-          <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-            <p class="uppercase tracking-widest text-xs font-heading font-semibold text-brand-gold mb-3"
-               data-i18n="piliers.eyebrow"></p>
-            <h2 class="font-heading font-bold text-brand-primaryDark mb-4"
-                style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-                data-i18n="piliers.h2"></h2>
-            <p class="text-lg text-neutral-muted" data-i18n="piliers.subhead"></p>
-          </div>
+        <div class="section-wrap relative z-10">
+          <p class="section-label" data-i18n="piliers.label"></p>
+          <h2 class="section-title on-dark max-w-2xl" data-i18n="piliers.title"></h2>
 
-          <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-            <!-- ===== Pilier 1 — EdTech ===== -->
-            <article id="edtech" class="pilier-card pilier-card--edtech reveal">
-              <div class="pilier-card__band"></div>
-              <div class="pilier-card__icon-row" aria-hidden="true">
+          <div class="grid md:grid-cols-3 gap-6 mt-14">
+            <article class="pillar-card edtech reveal">
+              <span class="pillar-num" aria-hidden="true">01</span>
+              <span class="pillar-icon" aria-hidden="true">
                 <!-- Lucide GraduationCap -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
-              </div>
-
-              <img
-                src="assets/pilier-edtech.svg"
-                data-i18n-attr="alt:piliers.edtech.illustrationAlt"
-                alt=""
-                width="360" height="240"
-                class="w-full aspect-[3/2] object-cover"
-                loading="lazy"
-              />
-
-              <div class="p-6 md:p-7 flex flex-col grow">
-                <p class="text-xs font-heading font-semibold uppercase tracking-widest text-[#1FA85F] mb-2"
-                   data-i18n="piliers.edtech.eyebrow"></p>
-                <h3 class="font-heading font-bold text-brand-primaryDark text-xl md:text-2xl mb-3"
-                    data-i18n="piliers.edtech.title"></h3>
-                <p class="text-neutral-muted leading-relaxed mb-4"
-                   data-i18n="piliers.edtech.body"></p>
-
-                <ul class="space-y-2 mb-6 text-sm">
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1FA85F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.edtech.bullet1"></span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1FA85F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.edtech.bullet2"></span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1FA85F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.edtech.bullet3"></span>
-                  </li>
-                </ul>
-
-                <a href="#contact" class="pilier-card__cta mt-auto" data-i18n="piliers.edtech.cta"></a>
-              </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+              </span>
+              <h3 data-i18n="piliers.edtech.title"></h3>
+              <p data-i18n="piliers.edtech.body"></p>
+              <ul>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.edtech.bullet1"></span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.edtech.bullet2"></span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.edtech.bullet3"></span>
+                </li>
+              </ul>
+              <a href="#contact" class="pillar-link">
+                <span data-i18n="piliers.edtech.cta"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
             </article>
 
-            <!-- ===== Pilier 2 — Réseau ===== -->
-            <article id="reseau" class="pilier-card pilier-card--reseau reveal">
-              <div class="pilier-card__band"></div>
-              <div class="pilier-card__icon-row" aria-hidden="true">
+            <article class="pillar-card reseau reveal" style="transition-delay:.1s">
+              <span class="pillar-num" aria-hidden="true">02</span>
+              <span class="pillar-icon" aria-hidden="true">
                 <!-- Lucide Hammer -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"></path><path d="m18 15 4-4"></path><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"></path></svg>
-              </div>
-
-              <img
-                src="assets/pilier-reseau.svg"
-                data-i18n-attr="alt:piliers.reseau.illustrationAlt"
-                alt=""
-                width="360" height="240"
-                class="w-full aspect-[3/2] object-cover"
-                loading="lazy"
-              />
-
-              <div class="p-6 md:p-7 flex flex-col grow">
-                <p class="text-xs font-heading font-semibold uppercase tracking-widest text-[#D9613A] mb-2"
-                   data-i18n="piliers.reseau.eyebrow"></p>
-                <h3 class="font-heading font-bold text-brand-primaryDark text-xl md:text-2xl mb-3"
-                    data-i18n="piliers.reseau.title"></h3>
-                <p class="text-neutral-muted leading-relaxed mb-4"
-                   data-i18n="piliers.reseau.body"></p>
-
-                <ul class="space-y-2 mb-6 text-sm">
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9613A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.reseau.bullet1"></span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9613A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.reseau.bullet2"></span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9613A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.reseau.bullet3"></span>
-                  </li>
-                </ul>
-
-                <a href="#contact" class="pilier-card__cta mt-auto" data-i18n="piliers.reseau.cta"></a>
-              </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white"><path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg>
+              </span>
+              <h3 data-i18n="piliers.reseau.title"></h3>
+              <p data-i18n="piliers.reseau.body"></p>
+              <ul>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.reseau.bullet1"></span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.reseau.bullet2"></span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.reseau.bullet3"></span>
+                </li>
+              </ul>
+              <a href="#contact" class="pillar-link">
+                <span data-i18n="piliers.reseau.cta"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
             </article>
 
-            <!-- ===== Pilier 3 — Visibilité ===== -->
-            <article id="visibilite" class="pilier-card pilier-card--visibilite reveal">
-              <div class="pilier-card__band"></div>
-              <div class="pilier-card__icon-row" aria-hidden="true">
+            <article class="pillar-card visibilite reveal" style="transition-delay:.2s">
+              <span class="pillar-num" aria-hidden="true">03</span>
+              <span class="pillar-icon" aria-hidden="true">
                 <!-- Lucide Megaphone -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
-              </div>
-
-              <div class="relative">
-                <img
-                  src="assets/pilier-visibilite.svg"
-                  data-i18n-attr="alt:piliers.visibilite.illustrationAlt"
-                  alt=""
-                  width="360" height="240"
-                  class="w-full aspect-[3/2] object-cover"
-                  loading="lazy"
-                />
-                <span class="absolute top-3 right-3 sponsored-chip" data-i18n="piliers.visibilite.sponsoredLabel"></span>
-              </div>
-
-              <div class="p-6 md:p-7 flex flex-col grow">
-                <p class="text-xs font-heading font-semibold uppercase tracking-widest text-[#2A7AC4] mb-2"
-                   data-i18n="piliers.visibilite.eyebrow"></p>
-                <h3 class="font-heading font-bold text-brand-primaryDark text-xl md:text-2xl mb-3"
-                    data-i18n="piliers.visibilite.title"></h3>
-                <p class="text-neutral-muted leading-relaxed mb-4"
-                   data-i18n="piliers.visibilite.body"></p>
-
-                <ul class="space-y-2 mb-6 text-sm">
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A7AC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.visibilite.bullet1"></span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A7AC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.visibilite.bullet2"></span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A7AC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-1 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span class="text-brand-primaryDark" data-i18n="piliers.visibilite.bullet3"></span>
-                  </li>
-                </ul>
-
-                <a href="#contact" class="pilier-card__cta mt-auto" data-i18n="piliers.visibilite.cta"></a>
-              </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+              </span>
+              <h3 data-i18n="piliers.visibilite.title"></h3>
+              <p data-i18n="piliers.visibilite.body"></p>
+              <ul>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.visibilite.bullet1"></span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.visibilite.bullet2"></span>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="piliers.visibilite.bullet3"></span>
+                </li>
+              </ul>
+              <a href="#contact" class="pillar-link">
+                <span data-i18n="piliers.visibilite.cta"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
             </article>
           </div>
         </div>
       </section>
 
       <!-- ============== HOW IT WORKS ============== -->
-      <section id="how" class="bg-white py-16 md:py-24">
-        <div class="section-wrap">
-          <h2
-            class="text-center font-heading font-bold text-brand-primaryDark mb-10 reveal"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-            data-i18n="how.h2"
-          ></h2>
+      <section id="how" class="bg-brand-cream py-24 lg:py-28">
+        <div class="section-wrap grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div>
+            <p class="section-label" data-i18n="how.label"></p>
+            <h2 class="section-title max-w-md" data-i18n="how.title"></h2>
 
-          <div role="tablist" class="flex justify-center gap-2 mb-10 bg-neutral-surface rounded-pill p-1 max-w-xl mx-auto shadow-brand">
-            <button
-              type="button"
-              role="tab"
-              id="tab-talents"
-              aria-controls="panel-talents"
-              aria-selected="true"
-              data-tab="talents"
-              class="flex-1 px-4 py-2.5 rounded-pill text-sm md:text-base font-heading font-semibold transition-colors cursor-pointer"
-              data-i18n="how.tabTalents"
-            ></button>
-            <button
-              type="button"
-              role="tab"
-              id="tab-recruiters"
-              aria-controls="panel-recruiters"
-              aria-selected="false"
-              data-tab="recruiters"
-              class="flex-1 px-4 py-2.5 rounded-pill text-sm md:text-base font-heading font-semibold transition-colors cursor-pointer"
-              data-i18n="how.tabRecruiters"
-            ></button>
-          </div>
-
-          <div id="panel-talents" role="tabpanel" aria-labelledby="tab-talents">
-            <ol class="grid md:grid-cols-4 gap-6 lg:gap-8 relative">
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">1</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+            <ol class="mt-10 list-none">
+              <li class="step reveal">
+                <span class="step-num">01</span>
+                <div class="step-content">
+                  <h4 data-i18n="how.step1.title"></h4>
+                  <p data-i18n="how.step1.body"></p>
                 </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.talent.step1.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.talent.step1.body"></p>
               </li>
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">2</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg>
+              <li class="step reveal" style="transition-delay:.1s">
+                <span class="step-num">02</span>
+                <div class="step-content">
+                  <h4 data-i18n="how.step2.title"></h4>
+                  <p data-i18n="how.step2.body"></p>
                 </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.talent.step2.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.talent.step2.body"></p>
               </li>
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">3</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+              <li class="step reveal" style="transition-delay:.2s">
+                <span class="step-num">03</span>
+                <div class="step-content">
+                  <h4 data-i18n="how.step3.title"></h4>
+                  <p data-i18n="how.step3.body"></p>
                 </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.talent.step3.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.talent.step3.body"></p>
               </li>
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">4</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg>
+              <li class="step reveal" style="transition-delay:.3s">
+                <span class="step-num">04</span>
+                <div class="step-content">
+                  <h4 data-i18n="how.step4.title"></h4>
+                  <p data-i18n="how.step4.body"></p>
                 </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.talent.step4.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.talent.step4.body"></p>
               </li>
             </ol>
           </div>
 
-          <div id="panel-recruiters" role="tabpanel" aria-labelledby="tab-recruiters" hidden>
-            <ol class="grid md:grid-cols-4 gap-6 lg:gap-8 relative">
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">1</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg>
+          <!-- Phone mockup -->
+          <div class="hidden md:flex justify-center items-center relative" aria-hidden="true">
+            <div class="phone-glow"></div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-topbar">
+                  <span class="brand" data-i18n="logo.name"></span>
+                  <div class="notch"></div>
+                  <span class="text-white text-xs">●●●</span>
                 </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.recruiter.step1.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.recruiter.step1.body"></p>
-              </li>
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">2</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                <div class="phone-content">
+                  <div class="phone-greeting">
+                    <span data-i18n="phone.greeting.hello"></span>
+                    <span><span data-i18n="phone.greeting.name"></span> 👋</span>
+                  </div>
+                  <div class="phone-score-card">
+                    <div class="text-xs opacity-80" data-i18n="phone.scoreLabel"></div>
+                    <div class="font-heading font-extrabold text-3xl">88</div>
+                    <div class="text-xs opacity-80" data-i18n="phone.scoreDelta"></div>
+                  </div>
+                  <div class="phone-menu">
+                    <div class="phone-menu-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1AADA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+                      <span class="text-[11px] font-semibold text-brand-text" data-i18n="phone.menu.cert.label"></span>
+                      <span class="text-[10px] text-brand-muted" data-i18n="phone.menu.cert.sub"></span>
+                    </div>
+                    <div class="phone-menu-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F07B1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+                      <span class="text-[11px] font-semibold text-brand-text" data-i18n="phone.menu.map.label"></span>
+                      <span class="text-[10px] text-brand-muted" data-i18n="phone.menu.map.sub"></span>
+                    </div>
+                    <div class="phone-menu-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1AADA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="20" height="14" x="2" y="7" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                      <span class="text-[11px] font-semibold text-brand-text" data-i18n="phone.menu.opps.label"></span>
+                      <span class="text-[10px] text-brand-muted" data-i18n="phone.menu.opps.sub"></span>
+                    </div>
+                    <div class="phone-menu-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5B8DB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                      <span class="text-[11px] font-semibold text-brand-text" data-i18n="phone.menu.stats.label"></span>
+                      <span class="text-[10px] text-brand-muted" data-i18n="phone.menu.stats.sub"></span>
+                    </div>
+                  </div>
+                  <div class="mt-3 bg-white rounded-chunk p-3">
+                    <div class="text-[10px] text-brand-muted mb-2" data-i18n="phone.requests.title"></div>
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-extrabold font-heading" style="background:linear-gradient(135deg,#F07B1D,#C0472E);">A</div>
+                      <div>
+                        <div class="text-[11px] font-semibold" data-i18n="phone.requests.sample.name"></div>
+                        <div class="text-[10px] text-brand-muted" data-i18n="phone.requests.sample.detail"></div>
+                      </div>
+                      <div class="ml-auto bg-brand-teal text-white text-[10px] rounded-pill px-2 py-0.5 font-semibold" data-i18n="phone.requests.sample.tag"></div>
+                    </div>
+                  </div>
                 </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.recruiter.step2.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.recruiter.step2.body"></p>
-              </li>
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">3</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.recruiter.step3.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.recruiter.step3.body"></p>
-              </li>
-              <li class="bg-neutral-surface rounded-card p-5 md:p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-primaryLight text-white font-heading font-bold">4</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6C3CE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg>
-                </div>
-                <h3 class="font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="how.recruiter.step4.title"></h3>
-                <p class="text-sm text-neutral-muted leading-relaxed" data-i18n="how.recruiter.step4.body"></p>
-              </li>
-            </ol>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ============== METHODOLOGY ============== -->
-      <section id="methodology" class="bg-neutral-surface py-16 md:py-24">
-        <div class="section-wrap max-w-3xl">
-          <h2
-            class="font-heading font-bold text-brand-primaryDark mb-6 reveal"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-            data-i18n="methodology.h2"
-          ></h2>
-          <p class="text-lg text-brand-primaryDark/85 leading-relaxed mb-4 reveal" data-i18n="methodology.p1"></p>
-          <p class="text-lg text-brand-primaryDark/85 leading-relaxed mb-8 reveal" data-i18n="methodology.p2"></p>
+      <!-- ============== STATS BAND (honest values) ============== -->
+      <section class="stats-band">
+        <div class="stat-block reveal">
+          <div class="big-num" data-i18n="stats.1.value"></div>
+          <div class="big-label" data-i18n="stats.1.label"></div>
+        </div>
+        <div class="stat-block reveal" style="transition-delay:.1s">
+          <div class="big-num" data-i18n="stats.2.value"></div>
+          <div class="big-label" data-i18n="stats.2.label"></div>
+        </div>
+        <div class="stat-block reveal" style="transition-delay:.2s">
+          <div class="big-num" data-i18n="stats.3.value"></div>
+          <div class="big-label" data-i18n="stats.3.label"></div>
+        </div>
+        <div class="stat-block reveal" style="transition-delay:.3s">
+          <div class="big-num" data-i18n="stats.4.value"></div>
+          <div class="big-label" data-i18n="stats.4.label"></div>
+        </div>
+      </section>
 
-          <div class="inline-flex items-center gap-2 bg-brand-gold text-brand-primaryDark rounded-pill px-4 py-2 text-sm font-heading font-semibold shadow-brand reveal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1A0A3E" stroke="#1A0A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <!-- ============== METHODOLOGY ============== -->
+      <section id="methodology" class="bg-white py-24 lg:py-28">
+        <div class="section-wrap max-w-4xl">
+          <p class="section-label" data-i18n="methodology.label"></p>
+          <h2 class="section-title mb-6" data-i18n="methodology.title"></h2>
+          <p class="text-lg text-brand-text/85 leading-relaxed mb-4 reveal" data-i18n="methodology.p1"></p>
+          <p class="text-lg text-brand-text/85 leading-relaxed mb-8 reveal" data-i18n="methodology.p2"></p>
+          <div class="methodology-banner reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             <span data-i18n="methodology.banner"></span>
           </div>
         </div>
       </section>
 
-      <!-- ============== ENGAGEMENT / MISSION ============== -->
-      <section class="bg-white py-16 md:py-24">
-        <div class="section-wrap max-w-3xl text-center">
-          <h2
-            class="font-heading font-bold text-brand-primaryDark mb-6 reveal"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-            data-i18n="engagement.h2"
-          ></h2>
-          <p class="text-lg text-neutral-muted leading-relaxed reveal" data-i18n="engagement.p"></p>
-        </div>
-      </section>
+      <!-- ============== TÉMOIGNAGES (honest placeholders) ============== -->
+      <section id="temoignages" class="bg-white py-24 lg:py-28">
+        <div class="section-wrap">
+          <p class="section-label" data-i18n="temo.label"></p>
+          <h2 class="section-title mb-2" data-i18n="temo.title"></h2>
+          <p class="text-brand-muted max-w-xl mb-12" data-i18n="temo.subhead"></p>
 
-      <!-- TRUST-SLOT: recruiter-logo-wall — un-hide when 5+ logos exist -->
-      <section data-trust="recruiter-logo-wall" style="display:none;" class="bg-neutral-surface py-16">
-        <div class="section-wrap text-center"></div>
-      </section>
-      <!-- TRUST-SLOT: testimonial-carousel — un-hide after first 3 hires -->
-      <section data-trust="testimonial-carousel" style="display:none;" class="bg-white py-16">
-        <div class="section-wrap"></div>
-      </section>
-      <!-- TRUST-SLOT: stats-counter — un-hide when "X talents placed" is non-trivial -->
-      <section data-trust="stats-counter" style="display:none;" class="bg-neutral-surface py-16">
-        <div class="section-wrap"></div>
-      </section>
-      <!-- TRUST-SLOT: press-mentions — un-hide when any exist -->
-      <section data-trust="press-mentions" style="display:none;" class="bg-white py-16">
-        <div class="section-wrap"></div>
-      </section>
+          <div class="grid md:grid-cols-3 gap-6">
+            <article class="temo-card reveal">
+              <span class="temo-placeholder-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span data-i18n="temo.placeholderBadge"></span>
+              </span>
+              <div class="temo-quote">"</div>
+              <p class="temo-text" data-i18n="temo.1.quote"></p>
+              <div class="temo-stars" aria-label="5 stars">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="temo-author">
+                <div class="temo-avatar" style="background: linear-gradient(135deg,#1AADA3,#5B8DB8);" data-i18n="temo.1.initial"></div>
+                <div>
+                  <div class="temo-name" data-i18n="temo.1.name"></div>
+                  <div class="temo-role" data-i18n="temo.1.role"></div>
+                </div>
+              </div>
+            </article>
 
-      <!-- ============== FINAL CTA ============== -->
-      <section class="hero-gradient relative overflow-hidden py-16 md:py-24">
-        <div class="blob blob--gold opacity-20 w-80 h-80 -top-20 -left-20" aria-hidden="true"></div>
-        <div class="blob blob--purple opacity-30 w-72 h-72 bottom-0 -right-16" aria-hidden="true"></div>
+            <article class="temo-card reveal" style="transition-delay:.1s">
+              <span class="temo-placeholder-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span data-i18n="temo.placeholderBadge"></span>
+              </span>
+              <div class="temo-quote">"</div>
+              <p class="temo-text" data-i18n="temo.2.quote"></p>
+              <div class="temo-stars" aria-label="5 stars">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="temo-author">
+                <div class="temo-avatar" style="background: linear-gradient(135deg,#F07B1D,#C0472E);" data-i18n="temo.2.initial"></div>
+                <div>
+                  <div class="temo-name" data-i18n="temo.2.name"></div>
+                  <div class="temo-role" data-i18n="temo.2.role"></div>
+                </div>
+              </div>
+            </article>
 
-        <div class="section-wrap relative text-center text-white">
-          <h2
-            class="font-heading font-bold mb-4 reveal"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-            data-i18n="finalCta.h2"
-          ></h2>
-          <p class="text-lg text-white/85 max-w-2xl mx-auto mb-8 reveal" data-i18n="finalCta.subhead"></p>
-          <div class="flex flex-col sm:flex-row gap-3 justify-center reveal">
-            <a href="#contact" class="btn-primary" data-i18n="finalCta.button"></a>
-            <a href="#contact" class="btn-secondary-dark" data-i18n="finalCta.secondary"></a>
-          </div>
-
-          <div class="mt-8 flex items-center justify-center gap-3 reveal">
-            <a href="#" class="store-badge" aria-label="Google Play">
-              <img src="assets/badge-googleplay.svg" alt="Google Play" width="160" height="54" />
-            </a>
-            <a href="#" class="store-badge" aria-label="App Store">
-              <img src="assets/badge-appstore.svg" alt="App Store" width="160" height="54" />
-            </a>
+            <article class="temo-card reveal" style="transition-delay:.2s">
+              <span class="temo-placeholder-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span data-i18n="temo.placeholderBadge"></span>
+              </span>
+              <div class="temo-quote">"</div>
+              <p class="temo-text" data-i18n="temo.3.quote"></p>
+              <div class="temo-stars" aria-label="5 stars">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="temo-author">
+                <div class="temo-avatar" style="background: linear-gradient(135deg,#D4943A,#F07B1D);" data-i18n="temo.3.initial"></div>
+                <div>
+                  <div class="temo-name" data-i18n="temo.3.name"></div>
+                  <div class="temo-role" data-i18n="temo.3.role"></div>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
       <!-- ============== EARLY ACCESS FORM ============== -->
-      <section id="contact" class="bg-white py-16 md:py-24">
+      <section id="contact" class="bg-brand-cream py-24 lg:py-28">
         <div class="section-wrap max-w-2xl">
-          <h2
-            class="text-center font-heading font-bold text-brand-primaryDark mb-3"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.75rem);"
-            data-i18n="form.h2"
-          ></h2>
-          <p class="text-center text-neutral-muted mb-10" data-i18n="form.subhead"></p>
+          <h2 class="text-center section-title mb-3" data-i18n="form.h2"></h2>
+          <p class="text-center text-brand-muted mb-10" data-i18n="form.subhead"></p>
 
           <form
             id="early-access-form"
             action="{{FORM_ENDPOINT}}"
             method="POST"
             novalidate
-            class="bg-neutral-surface rounded-card p-6 md:p-8 shadow-brand space-y-5"
+            class="form-wrap space-y-5"
           >
+            <!-- honeypot -->
             <div aria-hidden="true" style="position:absolute; left:-9999px;">
               <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
             </div>
 
             <div>
-              <label for="fullName" class="block font-heading font-semibold text-brand-primaryDark mb-2">
-                <span data-i18n="form.fullName"></span> <span class="text-brand-red" aria-hidden="true">*</span>
+              <label for="fullName" class="form-field-label">
+                <span data-i18n="form.fullName"></span> <span class="text-brand-rust" aria-hidden="true">*</span>
               </label>
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                required
-                aria-required="true"
-                autocomplete="name"
-                class="w-full min-h-[48px] rounded-button border border-neutral-muted/30 bg-white px-4 text-brand-primaryDark placeholder:text-neutral-muted focus:border-brand-primaryLight"
-              />
+              <input id="fullName" name="fullName" type="text" required aria-required="true" autocomplete="name" class="form-field" />
             </div>
 
             <div>
-              <label for="email" class="block font-heading font-semibold text-brand-primaryDark mb-2">
-                <span data-i18n="form.email"></span> <span class="text-brand-red" aria-hidden="true">*</span>
+              <label for="email" class="form-field-label">
+                <span data-i18n="form.email"></span> <span class="text-brand-rust" aria-hidden="true">*</span>
               </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                aria-required="true"
-                autocomplete="email"
-                class="w-full min-h-[48px] rounded-button border border-neutral-muted/30 bg-white px-4 text-brand-primaryDark placeholder:text-neutral-muted focus:border-brand-primaryLight"
-              />
+              <input id="email" name="email" type="email" required aria-required="true" autocomplete="email" class="form-field" />
             </div>
 
             <fieldset>
-              <legend class="font-heading font-semibold text-brand-primaryDark mb-2">
-                <span data-i18n="form.role"></span> <span class="text-brand-red" aria-hidden="true">*</span>
+              <legend class="form-field-label">
+                <span data-i18n="form.role"></span> <span class="text-brand-rust" aria-hidden="true">*</span>
               </legend>
               <div class="flex flex-wrap gap-3">
-                <label class="inline-flex items-center gap-2 cursor-pointer bg-white border border-neutral-muted/30 rounded-button px-4 min-h-[48px]">
-                  <input type="radio" name="role" value="talent" required class="accent-brand-primaryLight" />
+                <label class="radio-chip">
+                  <input type="radio" name="role" value="talent" required class="accent-brand-teal" />
                   <span data-i18n="form.roleTalent"></span>
                 </label>
-                <label class="inline-flex items-center gap-2 cursor-pointer bg-white border border-neutral-muted/30 rounded-button px-4 min-h-[48px]">
-                  <input type="radio" name="role" value="recruiter" required class="accent-brand-primaryLight" />
+                <label class="radio-chip">
+                  <input type="radio" name="role" value="recruiter" required class="accent-brand-teal" />
                   <span data-i18n="form.roleRecruiter"></span>
                 </label>
-                <label class="inline-flex items-center gap-2 cursor-pointer bg-white border border-neutral-muted/30 rounded-button px-4 min-h-[48px]">
-                  <input type="radio" name="role" value="other" required class="accent-brand-primaryLight" />
+                <label class="radio-chip">
+                  <input type="radio" name="role" value="other" required class="accent-brand-teal" />
                   <span data-i18n="form.roleOther"></span>
                 </label>
               </div>
             </fieldset>
 
             <div>
-              <label for="country" class="block font-heading font-semibold text-brand-primaryDark mb-2">
-                <span data-i18n="form.country"></span> <span class="text-brand-red" aria-hidden="true">*</span>
+              <label for="country" class="form-field-label">
+                <span data-i18n="form.country"></span> <span class="text-brand-rust" aria-hidden="true">*</span>
               </label>
-              <select
-                id="country"
-                name="country"
-                required
-                aria-required="true"
-                class="w-full min-h-[48px] rounded-button border border-neutral-muted/30 bg-white px-4 text-brand-primaryDark focus:border-brand-primaryLight"
-              >
+              <select id="country" name="country" required aria-required="true" class="form-field">
                 <option value="Côte d'Ivoire" selected data-i18n="country.civ"></option>
                 <option value="Sénégal" data-i18n="country.sen"></option>
                 <option value="Burkina Faso" data-i18n="country.bfa"></option>
@@ -710,15 +598,8 @@
             </div>
 
             <div>
-              <label for="message" class="block font-heading font-semibold text-brand-primaryDark mb-2" data-i18n="form.message"></label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                data-i18n-attr="placeholder:form.messagePlaceholder"
-                placeholder=""
-                class="w-full rounded-button border border-neutral-muted/30 bg-white px-4 py-3 text-brand-primaryDark placeholder:text-neutral-muted focus:border-brand-primaryLight"
-              ></textarea>
+              <label for="message" class="form-field-label" data-i18n="form.message"></label>
+              <textarea id="message" name="message" rows="4" data-i18n-attr="placeholder:form.messagePlaceholder" placeholder="" class="form-field"></textarea>
             </div>
 
             <button type="submit" id="form-submit" class="btn-primary w-full">
@@ -729,60 +610,71 @@
           </form>
         </div>
       </section>
-    </main>
 
-    <!-- ============== FOOTER ============== -->
-    <footer class="bg-brand-primaryDark text-white pt-12 pb-6">
-      <div class="section-wrap grid gap-8 md:grid-cols-4">
-        <div>
-          <a href="#top" class="flex items-center gap-2 mb-3 cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <span class="font-heading font-bold text-xl">BigUp</span>
-          </a>
-          <p class="text-white/70 text-sm mb-1" data-i18n="logo.strapline"></p>
-          <p class="text-white/60 text-xs mb-4" data-i18n="footer.availability"></p>
+      <!-- ============== FINAL CTA ============== -->
+      <section id="cta" class="relative overflow-hidden bg-brand-dark text-center py-24 lg:py-28">
+        <div class="absolute inset-0 bg-cta-radial pointer-events-none"></div>
 
-          <div class="flex items-center gap-2">
-            <a href="#" class="store-badge" aria-label="Google Play">
-              <img src="assets/badge-googleplay.svg" alt="Google Play" width="140" height="46" style="height:38px" />
+        <div class="relative z-10 section-wrap">
+          <h2 class="font-heading font-extrabold text-white leading-tight mb-4 reveal"
+              style="font-size: clamp(2rem, 4vw, 3.2rem);"
+              data-i18n="cta.h2"></h2>
+          <p class="text-white/65 max-w-md mx-auto mb-10 reveal" data-i18n="cta.subhead"></p>
+
+          <div class="flex flex-col sm:flex-row justify-center gap-4 reveal">
+            <!-- TODO: replace href with real App Store URL once published -->
+            <a href="#" class="btn-ghost-dark">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" aria-hidden="true"><path d="M19.36 16.4c-.03-3.05 2.49-4.51 2.6-4.59-1.42-2.07-3.63-2.36-4.42-2.39-1.88-.19-3.66 1.11-4.61 1.11-.96 0-2.42-1.08-3.97-1.05-2.04.03-3.93 1.19-4.98 3.02-2.12 3.67-.54 9.1 1.52 12.09 1.01 1.46 2.21 3.1 3.78 3.04 1.52-.06 2.1-.98 3.94-.98 1.84 0 2.36.98 3.97.95 1.64-.03 2.68-1.49 3.69-2.96 1.16-1.69 1.64-3.33 1.67-3.42-.03-.01-3.19-1.22-3.22-4.82zM16.32 7.36c.84-1.02 1.41-2.43 1.25-3.84-1.21.05-2.67.81-3.54 1.81-.78.89-1.46 2.32-1.28 3.71 1.35.1 2.73-.69 3.57-1.68z"/></svg>
+              <div class="text-left">
+                <div class="text-xs opacity-70" data-i18n="cta.appstore.note"></div>
+                <div class="font-bold" data-i18n="cta.appstore.name"></div>
+              </div>
             </a>
-            <a href="#" class="store-badge" aria-label="App Store">
-              <img src="assets/badge-appstore.svg" alt="App Store" width="140" height="46" style="height:38px" />
+
+            <!-- TODO: replace href with real Play Store URL once published -->
+            <a href="#" class="btn-ghost-dark">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" aria-hidden="true">
+                <path d="M3 2.5v19l11-9.5z" fill="#34A853" />
+                <path d="M3 2.5 17 11l4-3-15-7z" fill="#FBBC04" />
+                <path d="M3 21.5 17 13l4 3-15 6z" fill="#EA4335" />
+                <path d="M17 11 21 8v8l-4-3z" fill="#4285F4" />
+              </svg>
+              <div class="text-left">
+                <div class="text-xs opacity-70" data-i18n="cta.googleplay.note"></div>
+                <div class="font-bold" data-i18n="cta.googleplay.name"></div>
+              </div>
+            </a>
+
+            <a href="#contact" class="btn-ghost-dark is-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              <div class="text-left">
+                <div class="text-xs opacity-70" data-i18n="cta.webapp.note"></div>
+                <div class="font-bold" data-i18n="cta.webapp.name"></div>
+              </div>
             </a>
           </div>
         </div>
+      </section>
+    </main>
 
-        <div>
-          <h3 class="font-heading font-semibold text-sm uppercase tracking-wider text-white/80 mb-3" data-i18n="footer.productHeading"></h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#piliers" data-i18n="nav.piliers" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="#edtech" data-i18n="piliers.edtech.title" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="#reseau" data-i18n="piliers.reseau.title" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="#visibilite" data-i18n="piliers.visibilite.title" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="#methodology" data-i18n="nav.methodology" class="text-white/80 hover:text-white"></a></li>
-          </ul>
+    <!-- ============== FOOTER ============== -->
+    <footer class="bg-brand-darker text-white py-12">
+      <div class="section-wrap flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="flex items-center gap-2 font-heading font-extrabold text-xl">
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-teal" aria-hidden="true"></span>
+          <span data-i18n="logo.name"></span>
         </div>
 
-        <div>
-          <h3 class="font-heading font-semibold text-sm uppercase tracking-wider text-white/80 mb-3" data-i18n="footer.companyHeading"></h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="mailto:contact@big-up.ai?subject=About%20BigUp" data-i18n="footer.about" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="mailto:contact@big-up.ai?subject=Careers" data-i18n="footer.careers" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="mailto:contact@big-up.ai" data-i18n="footer.contact" class="text-white/80 hover:text-white"></a></li>
-          </ul>
-        </div>
+        <ul class="flex flex-wrap items-center gap-6 list-none text-sm">
+          <li><a href="mailto:contact@big-up.ai?subject=About%20Big-Up" class="text-white/40 hover:text-brand-teal transition-colors" data-i18n="footer.about"></a></li>
+          <li><a href="legal/cgu.html" class="text-white/40 hover:text-brand-teal transition-colors" data-i18n="footer.terms"></a></li>
+          <li><a href="legal/privacy.html" class="text-white/40 hover:text-brand-teal transition-colors" data-i18n="footer.privacy"></a></li>
+          <li><a href="legal/mentions.html" class="text-white/40 hover:text-brand-teal transition-colors" data-i18n="footer.legalMentions"></a></li>
+          <li><a href="mailto:contact@big-up.ai" class="text-white/40 hover:text-brand-teal transition-colors" data-i18n="footer.contact"></a></li>
+        </ul>
 
-        <div>
-          <h3 class="font-heading font-semibold text-sm uppercase tracking-wider text-white/80 mb-3" data-i18n="footer.legalHeading"></h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="legal/mentions.html" data-i18n="footer.legalMentions" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="legal/privacy.html" data-i18n="footer.privacy" class="text-white/80 hover:text-white"></a></li>
-            <li><a href="legal/cgu.html" data-i18n="footer.terms" class="text-white/80 hover:text-white"></a></li>
-          </ul>
-        </div>
+        <div class="text-white/30 text-xs" data-i18n="footer.copyright"></div>
       </div>
-
-      <div class="section-wrap mt-10 pt-6 border-t border-white/10 text-center text-white/60 text-sm" data-i18n="footer.copyright"></div>
     </footer>
 
     <!-- ============== VIDEO MODAL ============== -->
@@ -792,27 +684,21 @@
       aria-modal="true"
       data-i18n-attr="aria-label:video.modalTitle"
       aria-label=""
-      class="fixed inset-0 z-50 hidden items-center justify-center bg-brand-primaryDark/80 px-4"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-brand-dark/80 px-4"
     >
       <div class="relative w-full max-w-3xl">
         <button
           type="button"
           id="close-video"
-          class="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 inline-flex items-center justify-center w-11 h-11 rounded-full bg-white text-brand-primaryDark shadow-brand cursor-pointer"
+          class="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 inline-flex items-center justify-center w-11 h-11 rounded-full bg-white text-brand-dark shadow-brand cursor-pointer"
           data-i18n-attr="aria-label:video.close"
           aria-label=""
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
         <div class="aspect-video bg-black rounded-card overflow-hidden shadow-brand">
-          <!-- TODO: replace {{DEMO_VIDEO_URL}} with the founder's screen recording (Talent app onboarding → home) -->
-          <video
-            id="demo-video"
-            controls
-            preload="none"
-            playsinline
-            class="w-full h-full"
-          >
+          <!-- TODO: replace {{DEMO_VIDEO_URL}} with the founder's screen recording -->
+          <video id="demo-video" controls preload="none" playsinline class="w-full h-full">
             <source src="{{DEMO_VIDEO_URL}}" type="video/mp4" />
             <p data-i18n="video.unsupported" class="p-4 text-white"></p>
           </video>
@@ -851,9 +737,7 @@
             const spec = el.getAttribute('data-i18n-attr');
             spec.split(';').forEach((pair) => {
               const [attr, key] = pair.split(':').map((s) => s && s.trim());
-              if (attr && key && dict[key] !== undefined) {
-                el.setAttribute(attr, dict[key]);
-              }
+              if (attr && key && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
             });
           });
           document.documentElement.setAttribute('lang', lang);
@@ -897,86 +781,12 @@
           );
         }
 
-        function wireHeaderScroll() {
-          const header = document.getElementById('site-header');
-          const wordmark = header.querySelector('[data-logo-wordmark]');
-          const strapline = header.querySelector('[data-logo-strapline]');
-          const navLinks = header.querySelectorAll('nav[aria-label="Primary"] a');
-          const langPill = header.querySelector('.lang-pill');
-          const menuToggle = document.getElementById('menu-toggle');
-          const loginLink = document.getElementById('login-link');
-
-          function update() {
-            const scrolled = window.scrollY > 24;
-            header.dataset.scrolled = String(scrolled);
-            header.classList.toggle('bg-white', scrolled);
-            header.classList.toggle('shadow-brand', scrolled);
-            if (scrolled) {
-              wordmark.classList.remove('text-white');
-              wordmark.classList.add('text-brand-primaryDark');
-              strapline.classList.remove('text-white/70');
-              strapline.classList.add('text-neutral-muted');
-              navLinks.forEach((a) => {
-                a.classList.remove('text-white/90', 'hover:text-white');
-                a.classList.add('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
-              });
-              if (loginLink) {
-                loginLink.classList.remove('text-white/90', 'hover:text-white');
-                loginLink.classList.add('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
-              }
-              langPill.classList.add('lang-pill--solid');
-              menuToggle.classList.remove('text-white');
-              menuToggle.classList.add('text-brand-primaryDark');
-            } else {
-              wordmark.classList.add('text-white');
-              wordmark.classList.remove('text-brand-primaryDark');
-              strapline.classList.add('text-white/70');
-              strapline.classList.remove('text-neutral-muted');
-              navLinks.forEach((a) => {
-                a.classList.add('text-white/90', 'hover:text-white');
-                a.classList.remove('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
-              });
-              if (loginLink) {
-                loginLink.classList.add('text-white/90', 'hover:text-white');
-                loginLink.classList.remove('text-brand-primaryDark/85', 'hover:text-brand-primaryDark');
-              }
-              langPill.classList.remove('lang-pill--solid');
-              menuToggle.classList.add('text-white');
-              menuToggle.classList.remove('text-brand-primaryDark');
-            }
-          }
+        function wireNavScroll() {
+          const nav = document.getElementById('site-nav');
+          if (!nav) return;
+          function update() { nav.classList.toggle('scrolled', window.scrollY > 20); }
           update();
           window.addEventListener('scroll', update, { passive: true });
-        }
-
-        function wireTabs() {
-          const tabs = document.querySelectorAll('[role="tab"]');
-          tabs.forEach((tab) => {
-            tab.addEventListener('click', () => activateTab(tab));
-            tab.addEventListener('keydown', (e) => {
-              if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                e.preventDefault();
-                const list = Array.from(tabs);
-                const idx = list.indexOf(tab);
-                const next = list[(idx + (e.key === 'ArrowRight' ? 1 : -1) + list.length) % list.length];
-                next.focus();
-                activateTab(next);
-              }
-            });
-          });
-          activateTab(document.getElementById('tab-talents'));
-
-          function activateTab(tab) {
-            tabs.forEach((t) => {
-              const active = t === tab;
-              t.setAttribute('aria-selected', String(active));
-              t.classList.toggle('bg-brand-primaryDark', active);
-              t.classList.toggle('text-white', active);
-              t.classList.toggle('text-brand-primaryDark/70', !active);
-              const panel = document.getElementById(t.getAttribute('aria-controls'));
-              if (panel) panel.hidden = !active;
-            });
-          }
         }
 
         function wireVideoModal() {
@@ -1020,8 +830,9 @@
             if (!form.reportValidity()) return;
 
             submit.disabled = true;
-            const original = submit.querySelector('span').textContent;
-            submit.querySelector('span').textContent = dict['form.submitting'] || 'Sending…';
+            const originalSpan = submit.querySelector('span');
+            const original = originalSpan ? originalSpan.textContent : '';
+            if (originalSpan) originalSpan.textContent = dict['form.submitting'] || 'Sending…';
             status.classList.add('hidden');
 
             const action = form.getAttribute('action') || '';
@@ -1040,16 +851,16 @@
                 if (!res.ok) throw new Error('Network error');
               }
               status.textContent = dict['form.success'] || 'Thank you!';
-              status.classList.remove('hidden', 'text-brand-red');
-              status.classList.add('text-brand-green');
+              status.classList.remove('hidden');
+              status.style.color = '#1AADA3';
               form.reset();
             } catch (err) {
               status.textContent = dict['form.error'] || 'Something went wrong.';
-              status.classList.remove('hidden', 'text-brand-green');
-              status.classList.add('text-brand-red');
+              status.classList.remove('hidden');
+              status.style.color = '#C0472E';
             } finally {
               submit.disabled = false;
-              submit.querySelector('span').textContent = original;
+              if (originalSpan) originalSpan.textContent = original;
             }
           });
         }
@@ -1057,28 +868,24 @@
         function wireReveals() {
           const els = document.querySelectorAll('.reveal');
           if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            els.forEach((el) => el.classList.add('is-visible'));
+            els.forEach((el) => el.classList.add('visible'));
             return;
           }
-          const io = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('is-visible');
-                  io.unobserve(entry.target);
-                }
-              });
-            },
-            { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
-          );
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                io.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15 });
           els.forEach((el) => io.observe(el));
         }
 
         document.addEventListener('DOMContentLoaded', async () => {
           wireLangPill();
           wireMobileMenu();
-          wireHeaderScroll();
-          wireTabs();
+          wireNavScroll();
           wireVideoModal();
           wireForm();
           wireReveals();
