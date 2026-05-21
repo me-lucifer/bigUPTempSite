@@ -483,6 +483,22 @@
     .partner-logo:hover { transform: none; }
   }
 
+  /* ───────── Footer social icons ───────── */
+  .footer-social {
+    @apply inline-flex items-center justify-center w-9 h-9 rounded-full text-white transition-all duration-200;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  .footer-social:hover {
+    background: var(--tw-brand-teal, #1AADA3);
+    background-color: #1AADA3;
+    border-color: #1AADA3;
+    transform: translateY(-1px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .footer-social:hover { transform: none; }
+  }
+
   /* ───────── Reveal ───────── */
   .reveal {
     opacity: 0;
