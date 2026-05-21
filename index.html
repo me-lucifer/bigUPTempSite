@@ -481,37 +481,60 @@
               data-i18n="partners.title"></h2>
           <p class="text-brand-muted max-w-2xl mx-auto mb-12 reveal" data-i18n="partners.subhead"></p>
 
-          <div class="partners-row reveal max-w-5xl mx-auto">
-            <img src="assets/partners/logo01.png"
-                 class="partner-logo"
-                 data-i18n-attr="alt:partners.logo1.alt"
-                 alt=""
-                 width="160" height="158"
-                 loading="lazy" />
-            <img src="assets/partners/logo02.png"
-                 class="partner-logo"
-                 data-i18n-attr="alt:partners.logo2.alt"
-                 alt=""
-                 width="160" height="33"
-                 loading="lazy" />
-            <img src="assets/partners/logo03.png"
-                 class="partner-logo"
-                 data-i18n-attr="alt:partners.logo3.alt"
-                 alt=""
-                 width="160" height="62"
-                 loading="lazy" />
-            <img src="assets/partners/logo04.png"
-                 class="partner-logo"
-                 data-i18n-attr="alt:partners.logo4.alt"
-                 alt=""
-                 width="160" height="47"
-                 loading="lazy" />
-            <img src="assets/partners/logo05.png"
-                 class="partner-logo"
-                 data-i18n-attr="alt:partners.logo5.alt"
-                 alt=""
-                 width="160" height="62"
-                 loading="lazy" />
+          <!-- Logos scroll horizontally with edge fade (matches the hero marquee).
+               The track is duplicated inline so the loop wraps seamlessly;
+               the duplicate copies are aria-hidden so screen readers don't read
+               every partner twice. -->
+          <div class="partners-marquee-wrap reveal" role="region" aria-label="Our partners">
+            <div class="partners-marquee-track">
+              <!-- Set 1 (real, read by screen readers) -->
+              <div class="partner-slot">
+                <img src="assets/partners/logo01.png" class="partner-logo"
+                     data-i18n-attr="alt:partners.logo1.alt" alt=""
+                     width="160" height="158" loading="lazy" />
+              </div>
+              <div class="partner-slot">
+                <img src="assets/partners/logo02.png" class="partner-logo"
+                     data-i18n-attr="alt:partners.logo2.alt" alt=""
+                     width="160" height="33" loading="lazy" />
+              </div>
+              <div class="partner-slot">
+                <img src="assets/partners/logo03.png" class="partner-logo"
+                     data-i18n-attr="alt:partners.logo3.alt" alt=""
+                     width="160" height="62" loading="lazy" />
+              </div>
+              <div class="partner-slot">
+                <img src="assets/partners/logo04.png" class="partner-logo"
+                     data-i18n-attr="alt:partners.logo4.alt" alt=""
+                     width="160" height="47" loading="lazy" />
+              </div>
+              <div class="partner-slot">
+                <img src="assets/partners/logo05.png" class="partner-logo"
+                     data-i18n-attr="alt:partners.logo5.alt" alt=""
+                     width="160" height="62" loading="lazy" />
+              </div>
+              <!-- Set 2 (visual duplicate for seamless loop) -->
+              <div class="partner-slot" aria-hidden="true">
+                <img src="assets/partners/logo01.png" class="partner-logo" alt=""
+                     width="160" height="158" loading="lazy" />
+              </div>
+              <div class="partner-slot" aria-hidden="true">
+                <img src="assets/partners/logo02.png" class="partner-logo" alt=""
+                     width="160" height="33" loading="lazy" />
+              </div>
+              <div class="partner-slot" aria-hidden="true">
+                <img src="assets/partners/logo03.png" class="partner-logo" alt=""
+                     width="160" height="62" loading="lazy" />
+              </div>
+              <div class="partner-slot" aria-hidden="true">
+                <img src="assets/partners/logo04.png" class="partner-logo" alt=""
+                     width="160" height="47" loading="lazy" />
+              </div>
+              <div class="partner-slot" aria-hidden="true">
+                <img src="assets/partners/logo05.png" class="partner-logo" alt=""
+                     width="160" height="62" loading="lazy" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
