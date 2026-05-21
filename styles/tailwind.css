@@ -394,6 +394,75 @@
     @apply border-brand-teal bg-brand-teal/10;
   }
 
+  /* ───────── Marquee (teal scrolling strip below hero) ───────── */
+  .marquee-wrap {
+    @apply relative overflow-hidden bg-brand-teal;
+    padding: 0.9rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 32s linear infinite;
+  }
+  .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    @apply inline-flex items-center gap-3 font-heading font-semibold text-sm text-white whitespace-nowrap;
+    padding: 0 2.5rem;
+    letter-spacing: -0.01em;
+    opacity: 0.92;
+  }
+  .marquee-dot {
+    @apply inline-block rounded-full bg-white/40;
+    width: 6px;
+    height: 6px;
+  }
+
+  /* ───────── Partners / "Ils nous soutiennent" ───────── */
+  .partners-title {
+    background: linear-gradient(90deg, #1AADA3 0%, #F07B1D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .partners-row {
+    @apply grid items-center justify-items-center gap-x-8 gap-y-10;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width: 768px) {
+    .partners-row {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+  .partner-logo {
+    @apply block w-full;
+    max-width: 160px;
+    max-height: 90px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(20%);
+    opacity: 0.85;
+    transition: filter 0.25s, opacity 0.25s, transform 0.25s;
+  }
+  .partner-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .partner-logo:hover { transform: none; }
+  }
+
   /* ───────── Reveal ───────── */
   .reveal {
     opacity: 0;
