@@ -146,27 +146,26 @@
             <span data-i18n="hero.watchDemo"></span>
           </button>
 
-          <!-- Honest product proof points (replaces fake user stats).
-               flex-wrap (not grid) so each item gets the width its content
-               actually needs — equal columns kept squeezing the longer
-               values into overflow. Items wrap to a new row only if the
-               viewport is genuinely too narrow for them. -->
-          <div class="mt-12 flex flex-wrap gap-x-10 gap-y-6"
+          <!-- Honest KPI strip — visually matches the reference (top border
+               separator + big-number hierarchy) while keeping our actual
+               Phase-1 numbers. Values are short enough (1-4 chars) to take
+               the big font without wrapping. -->
+          <div class="mt-10 lg:mt-12 pt-7 lg:pt-8 border-t border-brand-dark/10 flex flex-wrap gap-x-10 lg:gap-x-12 gap-y-6"
                style="animation: fadeUp .6s .4s ease both;">
             <div>
-              <div class="font-heading font-extrabold text-xl md:text-2xl text-brand-dark leading-none whitespace-nowrap"
+              <div class="font-heading font-extrabold text-3xl md:text-4xl text-brand-dark leading-none whitespace-nowrap tracking-tight"
                    data-i18n="hero.proof.1.value"></div>
-              <div class="text-xs text-brand-muted mt-2" data-i18n="hero.proof.1.label"></div>
+              <div class="text-xs md:text-sm text-brand-muted mt-2 font-medium" data-i18n="hero.proof.1.label"></div>
             </div>
             <div>
-              <div class="font-heading font-extrabold text-xl md:text-2xl text-brand-teal leading-none whitespace-nowrap"
+              <div class="font-heading font-extrabold text-3xl md:text-4xl text-brand-teal leading-none whitespace-nowrap tracking-tight"
                    data-i18n="hero.proof.2.value"></div>
-              <div class="text-xs text-brand-muted mt-2" data-i18n="hero.proof.2.label"></div>
+              <div class="text-xs md:text-sm text-brand-muted mt-2 font-medium" data-i18n="hero.proof.2.label"></div>
             </div>
             <div>
-              <div class="font-heading font-extrabold text-xl md:text-2xl text-brand-orange leading-none whitespace-nowrap"
+              <div class="font-heading font-extrabold text-3xl md:text-4xl text-brand-orange leading-none whitespace-nowrap tracking-tight"
                    data-i18n="hero.proof.3.value"></div>
-              <div class="text-xs text-brand-muted mt-2" data-i18n="hero.proof.3.label"></div>
+              <div class="text-xs md:text-sm text-brand-muted mt-2 font-medium" data-i18n="hero.proof.3.label"></div>
             </div>
           </div>
         </div>
