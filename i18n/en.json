@@ -207,5 +207,19 @@
   "auth.login": "Log in",
   "auth.login.choose": "Log in — choose your account",
   "cta.apps.comingSoon": "The mobile apps are coming soon — use the web app above.",
-  "lang.es": "ES"
+  "lang.es": "ES",
+  "pricing.label": "Pricing",
+  "pricing.title": "Simple plans, no surprises",
+  "pricing.subhead": "Start free. Upgrade when you are ready to be seen by more recruiters.",
+  "pricing.talentHeading": "For talent",
+  "pricing.recruiterHeading": "For recruiters",
+  "pricing.per.week": "per week",
+  "pricing.per.month": "per month",
+  "pricing.per.quarter": "per 3 months",
+  "pricing.per.year": "per year",
+  "pricing.cta.talent": "Start now",
+  "pricing.cta.recruiter": "Start hiring",
+  "pricing.seeAtSignup": "See current pricing when you sign up",
+  "pricing.benefit.talent": "Retake any level as often as you like, across every skill.",
+  "pricing.benefit.recruiter": "Post jobs and reach verified, tested candidates."
 }

@@ -207,5 +207,19 @@
   "auth.login": "Iniciar sesión",
   "auth.login.choose": "Iniciar sesión — elige tu cuenta",
   "cta.apps.comingSoon": "Las aplicaciones móviles llegarán pronto — usa la aplicación web de arriba.",
-  "lang.es": "ES"
+  "lang.es": "ES",
+  "pricing.label": "Precios",
+  "pricing.title": "Planes sencillos, sin sorpresas",
+  "pricing.subhead": "Empieza gratis. Mejora tu plan cuando quieras que te vean más reclutadores.",
+  "pricing.talentHeading": "Para talentos",
+  "pricing.recruiterHeading": "Para reclutadores",
+  "pricing.per.week": "por semana",
+  "pricing.per.month": "por mes",
+  "pricing.per.quarter": "por 3 meses",
+  "pricing.per.year": "por año",
+  "pricing.cta.talent": "Empezar ahora",
+  "pricing.cta.recruiter": "Empezar a contratar",
+  "pricing.seeAtSignup": "Consulta el precio actual al registrarte",
+  "pricing.benefit.talent": "Repite cualquier nivel tantas veces como quieras, en todas tus habilidades.",
+  "pricing.benefit.recruiter": "Publica ofertas y llega a candidatos verificados y evaluados."
 }

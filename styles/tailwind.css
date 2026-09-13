@@ -152,6 +152,34 @@
     @apply border-brand-teal text-brand-teal;
   }
 
+  /* [18A-6] Pricing cards. Built by script, so these classes are the contract
+     between the renderer and the stylesheet - renaming one silently empties a
+     card rather than breaking a build. */
+  .pricing-card {
+    @apply bg-white rounded-chunk border border-black/5 p-5 flex flex-col gap-1;
+  }
+  .pricing-name {
+    @apply font-heading font-bold text-brand-text text-base;
+  }
+  /* The price must FIT. "F CFA 60,000" at text-2xl is 258px inside a 210px
+     card, and the admin can raise a price at any time, so this is sized for the
+     long case rather than the current one. `break-words` is the backstop for a
+     figure longer than anything in the catalogue today. */
+  .pricing-amount {
+    @apply font-heading font-extrabold text-brand-teal text-lg leading-tight break-words;
+  }
+  .pricing-period {
+    @apply text-brand-muted text-xs mb-3;
+  }
+  /* The failure state. Deliberately the same size as a price so the card does
+     not visibly collapse when the API is unreachable. */
+  .pricing-pending {
+    @apply text-brand-muted text-sm leading-snug mb-3;
+  }
+  .pricing-cta {
+    @apply mt-auto inline-flex items-center justify-center gap-1 text-sm font-semibold text-brand-teal hover:text-brand-tealDark transition-colors;
+  }
+
   /* [18A-1] "Log in" - a native <details> disclosure. No framework, and it
      still works with JavaScript disabled, which matters on a page whose every
      string arrives by fetch. */

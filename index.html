@@ -743,6 +743,40 @@
       </section>
 
       <!-- ============== FINAL CTA ============== -->
+      <!-- ============== PRICING (18A-6) ============== -->
+      <!--
+        Every figure in here is fetched from the API at runtime and NEVER typed
+        into this file. The server resolves each price through the same function
+        that bills, so what a visitor reads cannot disagree with what the card is
+        charged. A price hardcoded here would be correct until somebody changed
+        it in the admin panel, and wrong and silent from that moment on - which is
+        a bug this project has already paid for three times.
+
+        The cards are BUILT BY SCRIPT, so this markup carries no prices and no
+        plan names. If the fetch fails the section still renders: names and
+        benefits from i18n, and "see current pricing when you sign up" where the
+        figure would be. Never blank, never a zero, and never a price remembered
+        from a previous visit.
+      -->
+      <section id="pricing" class="section-wrap py-20 lg:py-28">
+        <p class="section-label reveal" data-i18n="pricing.label"></p>
+        <h2 class="section-title reveal" data-i18n="pricing.title"></h2>
+        <p class="text-brand-muted max-w-xl reveal" data-i18n="pricing.subhead"></p>
+
+        <div class="mt-12 grid gap-10 lg:grid-cols-2">
+          <div>
+            <h3 class="font-heading font-bold text-xl mb-1" data-i18n="pricing.talentHeading"></h3>
+            <p class="text-brand-muted text-sm mb-5" data-i18n="pricing.benefit.talent"></p>
+            <div id="pricing-talent" class="grid gap-3 sm:grid-cols-2"></div>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-xl mb-1" data-i18n="pricing.recruiterHeading"></h3>
+            <p class="text-brand-muted text-sm mb-5" data-i18n="pricing.benefit.recruiter"></p>
+            <div id="pricing-recruiter" class="grid gap-3 sm:grid-cols-2"></div>
+          </div>
+        </div>
+      </section>
+
       <section id="cta" class="relative overflow-hidden bg-brand-dark text-center py-24 lg:py-28">
         <div class="absolute inset-0 bg-cta-radial pointer-events-none"></div>
 
@@ -829,7 +863,7 @@
               <li><a href="#edtech" class="text-white/75 hover:text-white transition-colors" data-i18n="footer.edtech"></a></li>
               <li><a href="#reseau" class="text-white/75 hover:text-white transition-colors" data-i18n="footer.reseau"></a></li>
               <li><a href="#visibilite" class="text-white/75 hover:text-white transition-colors" data-i18n="footer.visibilite"></a></li>
-              <li><a href="mailto:contact@big-up.ai?subject=Tarifs%20%2F%20Pricing" class="text-white/75 hover:text-white transition-colors" data-i18n="footer.tarifs"></a></li>
+              <li><a href="#pricing" class="text-white/75 hover:text-white transition-colors" data-i18n="footer.tarifs"></a></li>
             </ul>
           </div>
 
@@ -977,6 +1011,8 @@
             btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
           });
           decorateAuthLinks(lang);
+          // Re-rendered per language: the period words and the CTA are translated.
+          void renderPricing(dict, lang);
           const ogLoc = document.querySelector('meta[property="og:locale"]');
           if (ogLoc) ogLoc.setAttribute('content', OG_LOCALE[lang] ?? 'en_US');
         }
@@ -1112,6 +1148,10 @@
         // must change once. The hrefs are also written ABSOLUTE in the markup so the
         // links work with JavaScript disabled; this map is what 18A-2 will use to
         // decorate them with ?lang=, in one function rather than eight elements.
+        // The API the pricing section asks for today's prices. Same origin
+        // family as the apps; changes once, at handover, with the two below.
+        const API_BASE = 'https://backend-production-13b7.up.railway.app';
+
         const AUTH = {
           talent: 'https://talent-web-production.up.railway.app',
           recruiter: 'https://recruiter-web-production-de44.up.railway.app',
@@ -1157,6 +1197,92 @@
                  translated. */
             }
           });
+        }
+
+        // [18A-6] THE PRICES. Fetched, never typed.
+        //
+        // `GET /public/plans` resolves every figure through `resolvePlanPrice`,
+        // the same function that bills, so this page cannot disagree with the
+        // till. See that route's header for why a public catalogue is safe now
+        // when 18-9 SS4.7 refused one.
+        //
+        // Two rules this obeys and a static pricing page usually does not:
+        //   1. NOTHING IS CACHED CLIENT-SIDE. A remembered price is a stale
+        //      price, which is the exact bug the live fetch exists to avoid.
+        //   2. FAILURE STILL RENDERS. If the API is unreachable the cards are
+        //      built anyway, from i18n, with "see current pricing when you sign
+        //      up" in place of the number. The visitor loses a figure and keeps
+        //      a route. A blank section, or a 0, would be worse than either.
+        const PLANS_URL = API_BASE + '/public/plans';
+
+        /** Only subscriptions belong on a marketing page. */
+        function isMarketable(plan) {
+          return plan.kind === 'subscription';
+        }
+
+        /** duration_days -> the i18n key for its period. */
+        function periodKey(days) {
+          if (days >= 360) return 'pricing.per.year';
+          if (days >= 85) return 'pricing.per.quarter';
+          if (days >= 25) return 'pricing.per.month';
+          return 'pricing.per.week';
+        }
+
+        /**
+         * XOF has NO MINOR UNIT - 1500 is "1 500 F CFA", never "1 500,00".
+         * Formatted here rather than on the server, which does not know the
+         * reader's language and should not carry a presentation decision.
+         */
+        function formatPrice(amount, currency, lang) {
+          try {
+            return new Intl.NumberFormat(lang, {
+              style: 'currency', currency: currency, maximumFractionDigits: 0,
+            }).format(amount);
+          } catch (_) {
+            return amount + ' ' + currency;
+          }
+        }
+
+        function planCard(dict, lang, plan, href, ctaKey) {
+          const price = plan
+            ? '<div class="pricing-amount">' + formatPrice(plan.price_xof, plan.currency, lang) + '</div>'
+              + '<div class="pricing-period">' + (dict[periodKey(plan.duration_days)] || '') + '</div>'
+            : '<div class="pricing-pending">' + (dict['pricing.seeAtSignup'] || '') + '</div>';
+          return '<article class="pricing-card">'
+            + '<h4 class="pricing-name">' + (plan ? plan.name : '') + '</h4>'
+            + price
+            + '<a data-auth-link class="pricing-cta" href="' + href + '">'
+            + (dict[ctaKey] || '') + '</a></article>';
+        }
+
+        async function renderPricing(dict, lang) {
+          const talent = document.getElementById('pricing-talent');
+          const recruiter = document.getElementById('pricing-recruiter');
+          if (!talent || !recruiter) return;
+
+          let plans = null;
+          try {
+            const res = await fetch(PLANS_URL, { credentials: 'omit' });
+            if (res.ok) plans = (await res.json()).plans || [];
+          } catch (_) {
+            /* Deliberately swallowed - the fallback below IS the handling. */
+          }
+
+          const build = (el, audience, href, ctaKey) => {
+            const mine = plans ? plans.filter((p) => p.audience === audience && isMarketable(p)) : [];
+            el.innerHTML = mine.length
+              ? mine.map((p) => planCard(dict, lang, p, href, ctaKey)).join('')
+              // One placeholder card rather than none: the section must never be
+              // an empty hole, and the door must still be reachable.
+              : planCard(dict, lang, null, href, ctaKey);
+          };
+          build(talent, 'talent', AUTH.talent + AUTH.signUp, 'pricing.cta.talent');
+          build(recruiter, 'recruiter', AUTH.recruiter + AUTH.signUp, 'pricing.cta.recruiter');
+
+          // The cards are built AFTER the links were decorated, so they need the
+          // language too - otherwise the eight original doors carry it and these
+          // two do not, which is the kind of gap nobody notices by hand.
+          decorateAuthLinks(lang);
         }
 
         function wireLoginMenu() {

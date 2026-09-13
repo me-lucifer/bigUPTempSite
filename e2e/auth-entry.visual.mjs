@@ -72,8 +72,14 @@ try {
   await page.screenshot({ path: `${OUT}/01-desktop.png`, fullPage: true });
 
   // ── 1. the eight destinations ──────────────────────────────────────────────
-  const hrefs = await page.$$eval('[data-auth-link]', (els) => els.map((e) => e.href));
-  check(hrefs.length === 8, 'eight auth controls exist', `found ${hrefs.length}`);
+  // [18A-6] The EIGHT structural doors - hero, header, drawer, cta band. The
+  // pricing cards carry doors too, but there is one per plan and that count
+  // belongs to the catalogue, not to this contract. They are asserted
+  // separately, and the language check below deliberately covers ALL of them.
+  const hrefs = await page.$$eval('[data-auth-link]:not(.pricing-cta)', (els) =>
+    els.map((e) => e.href),
+  );
+  check(hrefs.length === 8, 'eight structural auth controls exist', `found ${hrefs.length}`);
   // [18A-2] Compare origin+path only: the query now carries the reader's
   // language, which is asserted separately below.
   const bare = (u) => {
@@ -232,9 +238,11 @@ try {
     const langs = await page.$$eval('[data-auth-link]', (els) =>
       els.map((e) => new URL(e.href).searchParams.get('lang')),
     );
+    // Every door, structural AND pricing. The pricing cards are built after the
+    // first decoration pass, so this is exactly where a gap would appear.
     check(
-      langs.length === 8 && langs.every((l) => l === lang),
-      `all eight doors hand over lang=${lang}`,
+      langs.length >= 8 && langs.every((l) => l === lang),
+      `all ${langs.length} doors hand over lang=${lang}`,
       `got ${JSON.stringify([...new Set(langs)])}`,
     );
   }
@@ -245,6 +253,103 @@ try {
     els.every((e) => (e.href.match(/[?&]lang=/g) ?? []).length === 1),
   );
   check(noDupes, 'switching language does not accumulate lang parameters');
+
+  // ── 5d. [18A-6] THE PRICES ON THE PAGE ARE THE PRICES THE API RETURNED ─────
+  //
+  // "A price is displayed" is not the claim worth making - a hardcoded number
+  // satisfies it. The claim is "the SAME price is displayed", so the gate
+  // fetches the catalogue itself and matches every rendered figure back to an
+  // integer the API actually returned.
+  //
+  // Digits are extracted rather than the formatted string compared, because
+  // Intl inserts locale-specific group separators (a narrow no-break space in
+  // French) and the assertion is about the NUMBER, not the typography.
+  await page.click(`.lang-pill button[data-lang="en"]`);
+  await page.waitForTimeout(1200);
+  const api = await page.evaluate(async () => {
+    const r = await fetch('https://backend-production-13b7.up.railway.app/public/plans', {
+      credentials: 'omit',
+    });
+    if (!r.ok) return null;
+    return (await r.json()).plans;
+  });
+
+  if (!api) {
+    check(false, 'the pricing API is reachable from the page', 'fetch failed or non-200');
+  } else {
+    const expected = api
+      .filter((p) => p.kind === 'subscription')
+      .map((p) => p.price_xof);
+    const shown = await page.$$eval('.pricing-amount', (els) =>
+      els.map((e) => Number(e.textContent.replace(/[^0-9]/g, ''))),
+    );
+    check(shown.length === expected.length, 'one card per marketable plan',
+      `showing ${shown.length}, API has ${expected.length} subscriptions`);
+    check(
+      shown.length > 0 && shown.every((n) => expected.includes(n)),
+      'every price on the page is a price the API returned',
+      `page ${JSON.stringify(shown)} vs api ${JSON.stringify(expected)}`,
+    );
+    // The one-offs are RECEIVED and deliberately NOT rendered (B80). If they
+    // ever appear, somebody dropped the `kind` filter.
+    const oneOffs = api.filter((p) => p.kind === 'one_off').map((p) => p.price_xof);
+    const leaked = shown.filter((n) => oneOffs.includes(n) && !expected.includes(n));
+    check(leaked.length === 0, 'no one-off product leaked onto the marketing page',
+      JSON.stringify(leaked));
+    // XOF has no minor unit.
+    const decimals = await page.$$eval('.pricing-amount', (els) =>
+      els.map((e) => e.textContent).filter((t) => /[.,]\d{2}(\D|$)/.test(t)),
+    );
+    check(decimals.length === 0, 'no price is shown with decimal places', decimals.join(' | '));
+
+    // THE PRICE MUST FIT ITS CARD. Caught by looking at the rendered page, not
+    // by any assertion I had written: five of six prices overflowed, because
+    // "F CFA 60,000" is wider than a card at the heading size. The catalogue is
+    // ADMIN-EDITABLE, so a longer figure is a matter of time - this is the
+    // guard, not the one-off fix.
+    const overflowing = await page.$$eval('.pricing-card', (cards) =>
+      cards
+        .map((c) => {
+          const a = c.querySelector('.pricing-amount');
+          if (!a) return null;
+          return a.scrollWidth > c.clientWidth - 40 ? a.textContent : null;
+        })
+        .filter(Boolean),
+    );
+    check(overflowing.length === 0, 'every price fits inside its card', overflowing.join(' | '));
+  }
+
+  // ── 5e. THE FAILURE PATH, DRIVEN RATHER THAN REASONED ──────────────────────
+  //
+  // This is the assertion Playwright can make and a unit test cannot: with the
+  // API returning 500, the section must still be there. Never blank, never a 0,
+  // and never a price remembered from the successful load a moment ago - a
+  // cached price is the drift bug this whole slice exists to avoid.
+  // Everything after this point deliberately breaks the API, so the console
+  // check is taken against what the page logged BEFORE we broke it.
+  const errorsBeforeFailureTest = consoleErrors.length;
+  await page.route('**/public/plans', (route) => route.fulfill({ status: 500, body: '{}' }));
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(1500);
+  const degraded = await page.evaluate(() => ({
+    cards: document.querySelectorAll('.pricing-card').length,
+    amounts: document.querySelectorAll('.pricing-amount').length,
+    pending: document.querySelectorAll('.pricing-pending').length,
+    doors: document.querySelectorAll('.pricing-card a[data-auth-link]').length,
+    zeros: [...document.querySelectorAll('.pricing-card')].filter((e) =>
+      /(^|\D)0(\D|$)/.test(e.textContent),
+    ).length,
+  }));
+  check(degraded.cards > 0, 'the pricing section still renders when the API is down',
+    JSON.stringify(degraded));
+  check(degraded.amounts === 0, 'no figure is shown when the API is down');
+  check(degraded.pending > 0, 'it says where to find the real price instead');
+  check(degraded.doors > 0, 'the doors still work when the API is down');
+  check(degraded.zeros === 0, 'a failed fetch never renders a 0');
+  await page.screenshot({ path: `${OUT}/05-pricing-degraded.png` });
+  await page.unroute('**/public/plans');
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(1200);
 
   // ── 6. no admin surface advertised ─────────────────────────────────────────
   const adminish = await page.$$eval('a[href]', (els) =>
@@ -294,7 +399,11 @@ try {
     await page.screenshot({ path: `${OUT}/04-320-${lang}.png`, fullPage: true });
   }
 
-  check(consoleErrors.length === 0, 'no console errors', consoleErrors.slice(0, 2).join(' | '));
+  check(
+    errorsBeforeFailureTest === 0,
+    'no console errors during normal operation',
+    consoleErrors.slice(0, 2).join(' | '),
+  );
 } finally {
   await browser.close();
 }
