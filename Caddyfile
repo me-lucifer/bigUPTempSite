@@ -1,0 +1,57 @@
+# BigUp public marketing website — Caddy static-site config (18A-5).
+# -----------------------------------------------------------------------------
+# Railway terminates TLS in front, so this listener is plain :8080.
+#
+# Copied from apps/talent-web/Caddyfile deliberately, so the four web surfaces
+# cannot drift apart on caching or security headers — the same reason that file
+# says it was copied from admin's.
+#
+# TWO DELIBERATE DIFFERENCES from its parent, both because this site is static
+# in a way the apps are not:
+#
+#   1. NO SPA FALLBACK. The apps rewrite every unknown path to index.html so a
+#      client-side router can take over. Here a wrong URL should 404 rather than
+#      silently becoming the home page — on a marketing site a broken link that
+#      looks fine is worse than one that looks broken.
+#   2. i18n/*.json gets a SHORT cache, not an immutable one. Those filenames are
+#      not content-hashed, so `fr.json` keeps its name when its contents change.
+#      Caching it for a year would freeze a translation fix out of every browser
+#      that had already loaded the page. Five minutes matches what vercel.json
+#      set before this replaced it.
+# -----------------------------------------------------------------------------
+
+:8080 {
+	root * /usr/share/caddy
+
+	encode gzip zstd
+
+	# Content-hashed nothing here, but assets/ is the stylesheet and the partner
+	# logos: they change only on a deploy, and a deploy can afford a revalidation.
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=86400"
+
+	# Translations are fetched at runtime and their names never change.
+	@i18n path /i18n/*
+	header @i18n Cache-Control "public, max-age=300"
+
+	# index.html and the legal pages must revalidate every load, or a deploy gets
+	# stuck behind a client's stale copy — which has happened on this project:
+	# an admin fix was live and kept not reaching the browser.
+	@html not path /assets/* /i18n/*
+	header @html Cache-Control "no-cache"
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Frame-Options "DENY"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	file_server
+
+	log {
+		level WARN
+		output stdout
+	}
+}

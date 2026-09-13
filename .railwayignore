@@ -1,0 +1,12 @@
+# What `railway up` must NOT upload.
+#
+# `.dockerignore` governs the BUILD CONTEXT; this governs the UPLOAD, and they
+# are different steps. Without this, `railway up` tars node_modules and the
+# upload can time out before a build ever starts — which produces a deployment
+# row stuck at INITIALIZING with no build logs, reading exactly like a broken
+# build when it is not.
+#
+# NOTE: no `!` negation anywhere. Railway's ignore parser does not honour it, so
+# a negated rule silently excludes what it claims to keep.
+node_modules
+e2e
