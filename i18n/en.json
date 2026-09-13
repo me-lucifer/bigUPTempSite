@@ -222,5 +222,7 @@
   "pricing.seeAtSignup": "See current pricing when you sign up",
   "pricing.benefit.talent": "Retake any level as often as you like, across every skill.",
   "pricing.benefit.recruiter": "Post jobs and reach verified, tested candidates.",
-  "phone.scoreValue": "12"
+  "phone.scoreValue": "12",
+  "pricing.per.days": "every {n} days",
+  "pricing.currency": "F CFA"
 }

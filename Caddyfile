@@ -6,8 +6,18 @@
 # cannot drift apart on caching or security headers — the same reason that file
 # says it was copied from admin's.
 #
-# TWO DELIBERATE DIFFERENCES from its parent, both because this site is static
-# in a way the apps are not:
+# FOUR DELIBERATE DIFFERENCES from its parent. [ROUND 2] This said "two", and
+# the review showed the number was already wrong when written: the /assets
+# rule had changed too. Stated in full so the next reader diffs against the
+# truth. The first two exist because this site is static in a way the apps are
+# not; 3 and 4 are below, at the rules themselves:
+#
+#   3. /assets is `no-cache`, not `immutable` - the stylesheet is not hashed.
+#   4. A Content-Security-Policy, which the apps do not send. Its connect-src
+#      NAMES THE BACKEND HOST, and so does API_BASE in index.html: when the
+#      site moves to the client's Railway and domain, both change together.
+#
+# The original two:
 #
 #   1. NO SPA FALLBACK. The apps rewrite every unknown path to index.html so a
 #      client-side router can take over. Here a wrong URL should 404 rather than
@@ -25,10 +35,19 @@
 
 	encode gzip zstd
 
-	# Content-hashed nothing here, but assets/ is the stylesheet and the partner
-	# logos: they change only on a deploy, and a deploy can afford a revalidation.
+	# [REVIEW FIX] assets/tailwind.css is NOT content-hashed - the filename never
+	# changes when the contents do. `max-age=86400` does not revalidate, so a
+	# visitor who loaded the site in the previous 24 hours got the NEW html
+	# (no-cache) against the OLD stylesheet: the pricing section rendering as
+	# unstyled text, the login panel shoving the header apart, and - worst -
+	# `.is-inert` missing, so the dead store badges look pressable again,
+	# reproducing the exact defect this epic spent its effort removing.
+	#
+	# The parent config could use `immutable` because Vite hashes its filenames.
+	# This site copied the shape without the property that justified it. These
+	# files are small; a revalidation is a 304.
 	@assets path /assets/*
-	header @assets Cache-Control "public, max-age=86400"
+	header @assets Cache-Control "no-cache"
 
 	# Translations are fetched at runtime and their names never change.
 	@i18n path /i18n/*
@@ -41,6 +60,19 @@
 	header @html Cache-Control "no-cache"
 
 	header {
+		# [REVIEW FIX] Defence in depth behind the XSS fix. The cards are built
+		# from DOM nodes now, so admin-edited plan names cannot become markup -
+		# but this page pulls JSON at runtime and a CSP is what stops the NEXT
+		# injection from doing anything, rather than relying on every future
+		# author remembering textContent.
+		#
+		# 'unsafe-inline' is present and is not an oversight: the whole site is
+		# one file with an inline <script> and inline <style>, which is the
+		# client's finalised build. Removing it means hashing or extracting
+		# both, which is a change to their artefact rather than to ours.
+		# connect-src is the narrow one that matters here: the page may talk to
+		# the API and to nothing else.
+		Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://backend-production-13b7.up.railway.app; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 		Strict-Transport-Security "max-age=31536000; includeSubDomains"
 		X-Frame-Options "DENY"
 		X-Content-Type-Options "nosniff"

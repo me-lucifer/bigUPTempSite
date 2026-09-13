@@ -60,6 +60,13 @@
         </div>
 
         <!-- [18A-1] Log in - a native <details>, so it works with JS disabled.
+             [ROUND 2] That claim was half true: the hrefs worked, but every label
+             was an empty data-i18n node, so with JS off it rendered as a bare
+             chevron opening onto two invisible links. The auth controls now carry
+             French default text in the markup - French because it is the launch
+             market and the site's own fallback - which the dictionary replaces.
+             The rest of the client's page still needs JS for its text; that is
+             the client's architecture and this epic does not change it.
              Two doors framed by INTENT, never a dropdown of "Talent"/"Recruiter":
              those are our words, not the visitor's. -->
         <!-- Desktop only. The same two doors are full-width items in the mobile
@@ -69,17 +76,27 @@
           <summary
             class="nav-link cursor-pointer list-none select-none"
             data-i18n-attr="aria-label:auth.login.choose"
-            aria-label=""
-          ><span data-i18n="auth.login"></span></summary>
+            aria-label="Se connecter — choisissez votre compte"
+          ><span data-i18n="auth.login">Se connecter</span></summary>
           <div class="login-menu-panel">
             <a data-auth-link href="https://talent-web-production.up.railway.app/"
-               class="login-menu-item" data-i18n="auth.talent.cta"></a>
+               class="login-menu-item" data-i18n="auth.talent.cta">Je cherche un emploi</a>
             <a data-auth-link href="https://recruiter-web-production-de44.up.railway.app/"
-               class="login-menu-item" data-i18n="auth.recruiter.cta"></a>
+               class="login-menu-item" data-i18n="auth.recruiter.cta">Je recrute</a>
           </div>
         </details>
 
-        <a href="#cta" class="nav-cta">
+        <!-- [ROUND 2] Hidden below `sm`. The header row - logo, language pill,
+             this button, the menu button - is wider than a phone, and because
+             the nav clips rather than scrolls, the MENU BUTTON was the thing
+             pushed off-screen: measured live at 360, 375, 390 and 412px in all
+             three languages. On a phone that button is the only way to the
+             navigation and to "Se connecter". The client's original already lost
+             it below 375px in French; the third language button made it every
+             phone. This same button is the drawer's own first action, and the
+             hero directly below carries both sign-up doors, so nothing becomes
+             unreachable - one duplicate moves inside the menu instead. -->
+        <a href="#cta" class="nav-cta hidden sm:inline-flex">
           <span data-i18n="nav.start"></span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
@@ -108,12 +125,12 @@
         <li class="pt-2"><a href="#cta" class="nav-cta w-full justify-center"><span data-i18n="nav.start"></span></a></li>
         <!-- [18A-1] The same two doors, full-width. Never a dropdown inside a drawer. -->
         <li class="pt-3 mt-1 border-t border-black/5">
-          <p class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wide text-brand-muted" data-i18n="auth.login"></p>
+          <p class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wide text-brand-muted" data-i18n="auth.login">Se connecter</p>
         </li>
         <li><a data-auth-link href="https://talent-web-production.up.railway.app/"
-               class="block py-2 nav-link" data-i18n="auth.talent.cta"></a></li>
+               class="block py-2 nav-link" data-i18n="auth.talent.cta">Je cherche un emploi</a></li>
         <li><a data-auth-link href="https://recruiter-web-production-de44.up.railway.app/"
-               class="block py-2 nav-link" data-i18n="auth.recruiter.cta"></a></li>
+               class="block py-2 nav-link" data-i18n="auth.recruiter.cta">Je recrute</a></li>
       </ul>
     </div>
 
@@ -156,11 +173,11 @@
                  Marketing surfaces SELL, so both go to sign-UP; the header's "Log in"
                  goes to sign-IN. -->
             <a data-auth-link href="https://talent-web-production.up.railway.app/signup" class="btn-primary">
-              <span data-i18n="auth.talent.cta"></span>
+              <span data-i18n="auth.talent.cta">Je cherche un emploi</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
             <a data-auth-link href="https://recruiter-web-production-de44.up.railway.app/signup" class="btn-secondary">
-              <span data-i18n="auth.recruiter.cta"></span>
+              <span data-i18n="auth.recruiter.cta">Je recrute</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
           </div>
@@ -205,7 +222,10 @@
         </div>
 
         <!-- Hero visual: profile card mockup + floating mini cards -->
-        <div class="relative z-10 hidden lg:block" style="animation: fadeUp .6s .2s ease both;" aria-hidden="false">
+        <!-- [ROUND 2] `hero.illustrationAlt` existed in all three languages and was
+             bound to nothing, so its rewrite in 18A-4 reached no screen reader.
+             The mockup is an illustration; it is described as one. -->
+        <div class="relative z-10 hidden lg:block" style="animation: fadeUp .6s .2s ease both;" role="img" aria-label="" data-i18n-attr="aria-label:hero.illustrationAlt">
           <div class="relative p-8">
             <div class="profile-card">
               <div class="profile-card__bar"></div>
@@ -791,21 +811,25 @@
                decides. -->
           <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8 reveal">
             <a data-auth-link href="https://talent-web-production.up.railway.app/signup" class="btn-primary">
-              <span data-i18n="auth.talent.cta"></span>
+              <span data-i18n="auth.talent.cta">Je cherche un emploi</span>
             </a>
             <a data-auth-link href="https://recruiter-web-production-de44.up.railway.app/signup" class="btn-secondary is-on-dark">
-              <span data-i18n="auth.recruiter.cta"></span>
+              <span data-i18n="auth.recruiter.cta">Je recrute</span>
             </a>
           </div>
 
           <div class="flex flex-col sm:flex-row justify-center gap-4 reveal">
             <!-- [18A-1] The badges KEEP the client's approved design exactly - same
-                 place, same size, same layout - but they are no longer CONTROLS. The
+                 place, same size, same layout - but they are no longer CONTROLS.
+                 [ROUND 2] They are plain TEXT now, not role="img": that role takes
+                 its name from an aria-label only and prunes its children, so a
+                 screen reader heard three unlabeled graphics and never "App
+                 Store", "Google Play" or "Web App". The
                  apps are not published, and a badge that does nothing when pressed is
                  an inert control this project has already shipped twice and paid for
                  twice. The line of TEXT below says they are coming; text may say that,
                  a control may not. -->
-            <span role="img" aria-disabled="true" tabindex="-1" class="btn-ghost-dark is-inert">
+            <span tabindex="-1" class="btn-ghost-dark is-inert">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" aria-hidden="true"><path d="M19.36 16.4c-.03-3.05 2.49-4.51 2.6-4.59-1.42-2.07-3.63-2.36-4.42-2.39-1.88-.19-3.66 1.11-4.61 1.11-.96 0-2.42-1.08-3.97-1.05-2.04.03-3.93 1.19-4.98 3.02-2.12 3.67-.54 9.1 1.52 12.09 1.01 1.46 2.21 3.1 3.78 3.04 1.52-.06 2.1-.98 3.94-.98 1.84 0 2.36.98 3.97.95 1.64-.03 2.68-1.49 3.69-2.96 1.16-1.69 1.64-3.33 1.67-3.42-.03-.01-3.19-1.22-3.22-4.82zM16.32 7.36c.84-1.02 1.41-2.43 1.25-3.84-1.21.05-2.67.81-3.54 1.81-.78.89-1.46 2.32-1.28 3.71 1.35.1 2.73-.69 3.57-1.68z"/></svg>
               <div class="text-left">
                 <div class="text-xs opacity-70" data-i18n="cta.appstore.note"></div>
@@ -813,7 +837,7 @@
               </div>
             </span>
 
-            <span role="img" aria-disabled="true" tabindex="-1" class="btn-ghost-dark is-inert">
+            <span tabindex="-1" class="btn-ghost-dark is-inert">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" aria-hidden="true">
                 <path d="M3 2.5v19l11-9.5z" fill="#34A853" />
                 <path d="M3 2.5 17 11l4-3-15-7z" fill="#FBBC04" />
@@ -829,7 +853,7 @@
             <!-- The third badge is de-controlled TOO. The two doors sit directly
                  above it, and a button labelled "Web App" that silently picks one of
                  the two apps for the visitor contradicts the two-doors ruling. -->
-            <span role="img" aria-disabled="true" tabindex="-1" class="btn-ghost-dark is-accent is-inert">
+            <span tabindex="-1" class="btn-ghost-dark is-accent is-inert">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
               <div class="text-left">
                 <div class="text-xs opacity-70" data-i18n="cta.webapp.note"></div>
@@ -896,25 +920,25 @@
           <!-- [18A-1] De-controlled for the same reason as the store badges: these
                point at accounts that do not exist yet. Same look, no dead click. -->
           <div class="flex items-center gap-2" aria-label="Social media">
-            <span role="img" aria-disabled="true" tabindex="-1" class="footer-social is-inert"
+            <span role="img" tabindex="-1" class="footer-social is-inert"
                data-i18n-attr="aria-label:footer.social.x" aria-label="">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" aria-hidden="true">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </span>
-            <span role="img" aria-disabled="true" tabindex="-1" class="footer-social is-inert"
+            <span role="img" tabindex="-1" class="footer-social is-inert"
                data-i18n-attr="aria-label:footer.social.linkedin" aria-label="">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" aria-hidden="true">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             </span>
-            <span role="img" aria-disabled="true" tabindex="-1" class="footer-social is-inert"
+            <span role="img" tabindex="-1" class="footer-social is-inert"
                data-i18n-attr="aria-label:footer.social.facebook" aria-label="">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" aria-hidden="true">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
             </span>
-            <span role="img" aria-disabled="true" tabindex="-1" class="footer-social is-inert"
+            <span role="img" tabindex="-1" class="footer-social is-inert"
                data-i18n-attr="aria-label:footer.social.youtube" aria-label="">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" aria-hidden="true">
                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -965,11 +989,68 @@
         const SUPPORTED = Object.keys(I18N_URLS);
         const OG_LOCALE = { fr: 'fr_FR', en: 'en_US', es: 'es_ES' };
         const STORAGE_KEY = 'bigup.lang';
+        /**
+         * Did the visitor CHOOSE this language, or did we guess it from the
+         * browser? The app writes a handed-over `?lang=` to the account, so the
+         * difference decides whether a guess can silently change somebody's
+         * email language. See decorateAuthLinks.
+         */
+        let langWasChosen = false;
+        /** The dictionary currently on screen, for strings built by script. */
+        let currentDict = {};
         const dictionaries = {};
         let currentLang = 'fr';
 
+        /**
+         * [REVIEW FIX - the worst finding] Storage access must never be able to
+         * blank the page.
+         *
+         * Reproduced live: with `localStorage` throwing SecurityError, 202 of
+         * 208 translatable nodes rendered EMPTY - the whole marketing site
+         * reduced to "Aller au contenu principal Big-Up FR EN ES". One uncaught
+         * getItem on the only init path took everything with it.
+         *
+         * That is not exotic. It is iOS Safari "Block All Cookies", Chrome's
+         * "Don't allow sites to save data", Firefox "Block cookies: All", kiosk
+         * and managed browsers, and some in-app webviews - in a mobile-first
+         * launch market. BOTH product apps already guard these exact two calls
+         * and say why; the site dropped the guard.
+         */
+        function readStored() {
+          try {
+            return localStorage.getItem(STORAGE_KEY);
+          } catch (_) {
+            return null;
+          }
+        }
+
+        function writeStored(value) {
+          try {
+            localStorage.setItem(STORAGE_KEY, value);
+          } catch (_) {
+            /* A visitor who blocks storage still gets a working page; they
+               simply do not get their choice remembered. */
+          }
+        }
+
         function detectInitialLang() {
-          const stored = localStorage.getItem(STORAGE_KEY);
+          // [REVIEW FIX, round 2] The site SENT `?lang=` onward but never READ
+          // it, so a campaign, QR code or shared link to the marketing page
+          // could not pin a language - the one place such a link is used. An
+          // explicit parameter is a choice, on the same reasoning the product
+          // apps apply (18-11 H6): a browser default is a guess, a URL someone
+          // chose to send is not.
+          try {
+            const handed = (new URLSearchParams(location.search).get('lang') || '')
+              .toLowerCase().split('-')[0];
+            if (SUPPORTED.includes(handed)) {
+              langWasChosen = true;
+              return handed;
+            }
+          } catch (_) { /* no usable query string */ }
+          const stored = readStored();
+          // A stored value only exists because the pill was clicked once.
+          if (SUPPORTED.includes(stored)) langWasChosen = true;
           if (SUPPORTED.includes(stored)) return stored;
           const nav = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
           const base = nav.split('-')[0];
@@ -980,7 +1061,14 @@
 
         async function loadDict(lang) {
           if (dictionaries[lang]) return dictionaries[lang];
+          // [REVIEW FIX] The PRICE fetch checks `res.ok` and has a documented
+          // fallback; the STRING fetch, which every visible character depends
+          // on, had neither. Reproduced live: fr.json returning 503 produced
+          // the same blank page as the storage failure, via
+          // `Unexpected token 'u'`. And Caddy caches /i18n for 300s, so a bad
+          // deploy's 404 sticks in browsers too.
           const res = await fetch(I18N_URLS[lang]);
+          if (!res.ok) throw new Error('i18n ' + lang + ' -> ' + res.status);
           dictionaries[lang] = await res.json();
           return dictionaries[lang];
         }
@@ -1001,11 +1089,57 @@
           document.documentElement.setAttribute('dir', 'ltr');
         }
 
+        /**
+         * Returns what happened, because two of the outcomes look alike and must
+         * not be treated alike:
+         *   'applied'     - this language is on screen now;
+         *   'failed'      - its dictionary would not load (fall back);
+         *   'superseded'  - a NEWER choice overtook this one (stop - the visitor
+         *                   has decided, and falling back would overwrite them).
+         * [ROUND 2] The first version returned a boolean, so the init fallback
+         * read "a click overtook me" as "my file failed", fell through to the
+         * next locale, and replaced the language the visitor had just clicked.
+         * The double-click race test caught it.
+         */
         async function setLang(lang, persist) {
-          if (!SUPPORTED.includes(lang)) return;
+          if (!SUPPORTED.includes(lang)) return 'failed';
+          const previousLang = currentLang;
           currentLang = lang;
-          if (persist) localStorage.setItem(STORAGE_KEY, lang);
-          const dict = await loadDict(lang);
+          // `persist` is true only when a human clicked the pill. A value we
+          // previously stored because of such a click counts too.
+          if (persist) langWasChosen = true;
+          if (persist) writeStored(lang);
+          // [REVIEW FIX] Reproduced live with two ORDINARY clicks 120ms apart:
+          // click EN then FR and the page ends up ENGLISH with `fr` in storage,
+          // because the second dictionary was already cached and resolved
+          // first, so the first click's `applyDict` landed last and won. That
+          // is the "the language switcher doesn't work" report, plus a DOM and
+          // storage that disagree until the next reload.
+          //
+          // The guard belongs HERE and not only in renderPricing: with it in
+          // one place the failure changes shape rather than going away - chrome
+          // and doors flip to the stale language while the prices hold the new
+          // one, which is a permanently mixed page.
+          let dict;
+          try {
+            dict = await loadDict(lang);
+          } catch (_) {
+            // A dictionary that will not load must not take the page down. On a
+            // SECOND switch the previous language is still on screen. On FIRST
+            // load there is no previous language - the markup's data-i18n nodes
+            // are empty - so the caller at init falls back to another locale.
+            // [REVIEW FIX, round 2] The first version of this comment claimed
+            // the previous language always survives. It does not on first load,
+            // and the test that "proved" it reloaded a page whose stored
+            // language was English, so it never requested the broken file.
+            if (currentLang === lang) {
+              currentLang = previousLang;
+              return 'failed';
+            }
+            return 'superseded';
+          }
+          if (lang !== currentLang) return 'superseded';
+          currentDict = dict;
           applyDict(dict, lang);
           document.querySelectorAll('.lang-pill button[data-lang]').forEach((btn) => {
             btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
@@ -1015,6 +1149,7 @@
           void renderPricing(dict, lang);
           const ogLoc = document.querySelector('meta[property="og:locale"]');
           if (ogLoc) ogLoc.setAttribute('content', OG_LOCALE[lang] ?? 'en_US');
+          return 'applied';
         }
 
         function wireLangPill() {
@@ -1142,7 +1277,12 @@
           els.forEach((el) => io.observe(el));
         }
 
-        // [18A-1] The four destinations, in ONE place (B41). Both apps declare
+        // [ROUND 2] This comment used to claim the destinations live "in ONE place
+        // (B41)". They do not: the eight markup hrefs are absolute so the doors
+        // work without JS, and this map feeds the script-built pricing doors. Two
+        // sources, stated plainly. What keeps them from drifting is the gate,
+        // which pins every href against its own constants.
+        // Both apps declare
         // `signIn: '/'` and `signUp: '/signup'` in their own routes.ts, so the ROOT
         // is the sign-in page when signed out. These domains change at handover and
         // must change once. The hrefs are also written ABSOLUTE in the markup so the
@@ -1185,16 +1325,44 @@
         //     that a `?lang=` handed over from here IS an explicit choice - she
         //     picked French on this page - as opposed to a `navigator.languages`
         //     guess, which must never overwrite a choice. That is correct.
+        /**
+         * [REVIEW FIX - H6 REOPENED THROUGH THIS SEAM] Only hand over a language
+         * the visitor actually CHOSE.
+         *
+         * The product side treats any `?lang=` from here as an explicit act:
+         * `localeWasChosen()` returns true and SessionGate PATCHes
+         * `/me/prefs/locale`, which decides the language of every email that
+         * account receives, on every device.
+         *
+         * This function ran on the INITIAL load too, so a visitor who had
+         * touched nothing still sent `?lang=en` from an English-default
+         * machine. Reproduced live. The consequence is exactly 18-11's H6: a
+         * talent whose preference is French opens the site once on a borrowed
+         * laptop, signs in, and every OTP and interview email switches to
+         * English - durably, invisibly, on her own phone.
+         *
+         * A browser's default is a GUESS. Only a click on the pill, or a value
+         * this site persisted because of one, is a choice. When it is a guess we
+         * send nothing and let the app apply its own rule, which is what it is
+         * for.
+         */
         function decorateAuthLinks(lang) {
+          const chosen = langWasChosen;
           document.querySelectorAll('a[data-auth-link]').forEach((a) => {
+            // [ROUND 2] This try/catch's comment used to promise that "a
+            // malformed href is a bug for the gate to catch". It cannot be:
+            // `a.href` is always an absolute, already-resolved URL, so this
+            // `new URL` does not throw on a bad attribute. The guard stays -
+            // one broken door must never abort decorating the other thirteen -
+            // but what catches a wrong href is the gate's section 1, which pins
+            // every door against its own constants.
             try {
               const u = new URL(a.href);
-              u.searchParams.set('lang', lang);
+              if (chosen) u.searchParams.set('lang', lang);
+              else u.searchParams.delete('lang');
               a.href = u.toString();
             } catch (_) {
-              /* A malformed href is a bug for the gate to catch, not a reason
-                 to throw during language switching and leave the page half
-                 translated. */
+              /* Unreachable in today's browsers; kept as a firewall. */
             }
           });
         }
@@ -1207,8 +1375,13 @@
         // when 18-9 SS4.7 refused one.
         //
         // Two rules this obeys and a static pricing page usually does not:
-        //   1. NOTHING IS CACHED CLIENT-SIDE. A remembered price is a stale
-        //      price, which is the exact bug the live fetch exists to avoid.
+        //   1. NOTHING IS PERSISTED CLIENT-SIDE - no price in localStorage, no
+        //      price in the markup. [ROUND 2] This used to say "nothing is cached"
+        //      and that was false: the endpoint sends `public, max-age=300`, so a
+        //      browser or proxy may serve a response up to five minutes old. That
+        //      bound is deliberate and stated in the route's header; what is
+        //      forbidden is an UNBOUNDED stale price, which is what persisting one
+        //      would be.
         //   2. FAILURE STILL RENDERS. If the API is unreachable the cards are
         //      built anyway, from i18n, with "see current pricing when you sign
         //      up" in place of the number. The visitor loses a figure and keeps
@@ -1220,12 +1393,30 @@
           return plan.kind === 'subscription';
         }
 
-        /** duration_days -> the i18n key for its period. */
-        function periodKey(days) {
-          if (days >= 360) return 'pricing.per.year';
-          if (days >= 85) return 'pricing.per.quarter';
-          if (days >= 25) return 'pricing.per.month';
-          return 'pricing.per.week';
+        /**
+         * The period a price is charged over.
+         *
+         * [REVIEW FIX] This used to bucket `duration_days` with thresholds:
+         * >=360 year, >=85 quarter, >=25 month, else week. A price is a number
+         * PER UNIT OF TIME, and the endpoint goes to real lengths to guarantee
+         * the digits come from the function that bills - while the unit was
+         * being reconstructed here from a table nobody tested.
+         *
+         * The harm was concrete and reachable from the admin panel alone: a plan
+         * at 28 days read "per month", so somebody buying "monthly" got three
+         * days less than the word promised; 14 days read "per week", advertising
+         * double the true rate.
+         *
+         * Now: only an EXACT canonical duration gets a friendly word. Anything
+         * else states the real number of days, which is always true.
+         */
+        function planPeriod(dict, plan) {
+          const exact = { 7: 'pricing.per.week', 30: 'pricing.per.month',
+                          90: 'pricing.per.quarter', 365: 'pricing.per.year' };
+          const key = exact[plan.duration_days];
+          if (key) return dict[key] || '';
+          const n = Number(plan.duration_days);
+          return Number.isFinite(n) && n > 0 ? (dict['pricing.per.days'] || '').replace('{n}', n) : '';
         }
 
         /**
@@ -1234,25 +1425,87 @@
          * reader's language and should not carry a presentation decision.
          */
         function formatPrice(amount, currency, lang) {
+          // [REVIEW FIX] `Intl.format(null)` is 0, so a nulled column used to
+          // render "F CFA 0" on a live pricing page. An unusable figure must
+          // fall back to the placeholder text, never to a number.
+          if (typeof amount !== 'number' || !Number.isFinite(amount)) return '';
+          // [REVIEW FIX, round 2] Intl's CURRENCY style has no symbol for XOF in
+          // Spanish, so the live ES page read "1500 XOF" and "12.000 XOF" beside
+          // "1 500 F CFA" in French - a raw ISO code, and four-digit prices left
+          // ungrouped because Spanish groups only from five digits. So the NUMBER
+          // is formatted by locale with grouping forced on, and the currency label
+          // comes from i18n, where it reads "F CFA" in all three languages. The
+          // grouping separator still follows the reader's locale.
+          let number;
           try {
-            return new Intl.NumberFormat(lang, {
-              style: 'currency', currency: currency, maximumFractionDigits: 0,
+            number = new Intl.NumberFormat(lang, {
+              maximumFractionDigits: 0, useGrouping: true,
             }).format(amount);
           } catch (_) {
-            return amount + ' ' + currency;
+            number = String(amount);
           }
+          const label = currency === 'XOF'
+            ? (currentDict['pricing.currency'] || 'F CFA')
+            : currency;
+          return number + '\u00a0' + label;
         }
 
+        /**
+         * Build one card as DOM NODES, never as an HTML string.
+         *
+         * [REVIEW FIX - CRITICAL] `plan.name` is a free-text column an ADMIN
+         * edits, and it used to be concatenated into an `innerHTML` string on
+         * this live public page. A plan named `Pro<img src=x onerror="...">`
+         * EXECUTES. (`<script>` inserted via innerHTML does not, which is why a
+         * casual test looks safe and the hole was real.)
+         *
+         * The payload that mattered was never an alert(): it was one line that
+         * repoints every `[data-auth-link]` on the page at a phishing clone -
+         * every sign-up and log-in door on the client's main acquisition page,
+         * from their own domain, under their own certificate, on a product that
+         * handles identity and payments.
+         *
+         * `textContent` makes a name TEXT. It cannot become markup, so the class
+         * is gone rather than one instance of it patched - and a plan called
+         * "Talent & Pro" or "Pro < 10 offres" now renders correctly instead of
+         * silently eating the rest of the card.
+         */
         function planCard(dict, lang, plan, href, ctaKey) {
-          const price = plan
-            ? '<div class="pricing-amount">' + formatPrice(plan.price_xof, plan.currency, lang) + '</div>'
-              + '<div class="pricing-period">' + (dict[periodKey(plan.duration_days)] || '') + '</div>'
-            : '<div class="pricing-pending">' + (dict['pricing.seeAtSignup'] || '') + '</div>';
-          return '<article class="pricing-card">'
-            + '<h4 class="pricing-name">' + (plan ? plan.name : '') + '</h4>'
-            + price
-            + '<a data-auth-link class="pricing-cta" href="' + href + '">'
-            + (dict[ctaKey] || '') + '</a></article>';
+          const card = document.createElement('article');
+          card.className = 'pricing-card';
+
+          const name = document.createElement('h4');
+          name.className = 'pricing-name';
+          // A null/blank name falls back to the plan CODE rather than rendering
+          // the literal word "null", which is what `plan ? plan.name : ''` did.
+          name.textContent = (plan && (plan.name || plan.code)) || '';
+          // An empty heading is an accessibility failure; drop it entirely on the
+          // placeholder card rather than leaving a blank one to navigate into.
+          if (name.textContent) card.appendChild(name);
+
+          if (plan) {
+            const amount = document.createElement('div');
+            amount.className = 'pricing-amount';
+            amount.textContent = formatPrice(plan.price_xof, plan.currency, lang);
+            const period = document.createElement('div');
+            period.className = 'pricing-period';
+            period.textContent = planPeriod(dict, plan);
+            card.appendChild(amount);
+            card.appendChild(period);
+          } else {
+            const pending = document.createElement('div');
+            pending.className = 'pricing-pending';
+            pending.textContent = dict['pricing.seeAtSignup'] || '';
+            card.appendChild(pending);
+          }
+
+          const cta = document.createElement('a');
+          cta.className = 'pricing-cta';
+          cta.setAttribute('data-auth-link', '');
+          cta.href = href;
+          cta.textContent = dict[ctaKey] || '';
+          card.appendChild(cta);
+          return card;
         }
 
         async function renderPricing(dict, lang) {
@@ -1260,21 +1513,50 @@
           const recruiter = document.getElementById('pricing-recruiter');
           if (!talent || !recruiter) return;
 
+          // [REVIEW FIX] A HANG is not a rejection. The old code awaited a bare
+          // fetch with no timeout, so on a cold start or a bad mobile connection
+          // the section stayed EMPTY - the one state the comment promised was
+          // impossible - for as long as the socket stayed open. The gate only
+          // ever tested an instant 500, which proves the rejected path and
+          // leaves the pending one, the common one, untested.
           let plans = null;
           try {
-            const res = await fetch(PLANS_URL, { credentials: 'omit' });
-            if (res.ok) plans = (await res.json()).plans || [];
+            const ctl = new AbortController();
+            const timer = setTimeout(() => ctl.abort(), 6000);
+            try {
+              const res = await fetch(PLANS_URL, { credentials: 'omit', signal: ctl.signal });
+              if (res.ok) {
+                const body = await res.json();
+                // `|| []` catches MISSING, not WRONG-TYPED. A non-array `plans`
+                // used to throw inside build(), outside this try, leaving both
+                // columns blank and skipping the link decoration below.
+                plans = Array.isArray(body && body.plans) ? body.plans : [];
+              }
+            } finally {
+              clearTimeout(timer);
+            }
           } catch (_) {
             /* Deliberately swallowed - the fallback below IS the handling. */
           }
 
+          // [REVIEW FIX] A slow render must not overwrite a newer one. Two
+          // language clicks put two fetches in flight, and the LAST TO RESOLVE
+          // used to win rather than the last requested - so a slow French render
+          // could land after an English one and rewrite every door on the page
+          // to ?lang=fr. That is exactly the hand-off failure ADR-024 names.
+          if (lang !== currentLang) return;
+
           const build = (el, audience, href, ctaKey) => {
-            const mine = plans ? plans.filter((p) => p.audience === audience && isMarketable(p)) : [];
-            el.innerHTML = mine.length
-              ? mine.map((p) => planCard(dict, lang, p, href, ctaKey)).join('')
-              // One placeholder card rather than none: the section must never be
-              // an empty hole, and the door must still be reachable.
-              : planCard(dict, lang, null, href, ctaKey);
+            const mine = plans
+              ? plans.filter((p) => p && p.audience === audience && isMarketable(p))
+              : [];
+            el.replaceChildren(
+              ...(mine.length
+                ? mine.map((p) => planCard(dict, lang, p, href, ctaKey))
+                // One placeholder card rather than none: the section must never
+                // be an empty hole, and the door must still be reachable.
+                : [planCard(dict, lang, null, href, ctaKey)]),
+            );
           };
           build(talent, 'talent', AUTH.talent + AUTH.signUp, 'pricing.cta.talent');
           build(recruiter, 'recruiter', AUTH.recruiter + AUTH.signUp, 'pricing.cta.recruiter');
@@ -1324,7 +1606,16 @@
           wireVideoModal();
           wireForm();
           wireReveals();
-          await setLang(detectInitialLang(), false);
+          // [REVIEW FIX, round 2] If the preferred dictionary will not load,
+          // try the others before giving up. A blank marketing page is worse
+          // than the right page in the wrong language.
+          const first = detectInitialLang();
+          const order = [first, ...SUPPORTED.filter((l) => l !== first)];
+          for (const l of order) {
+            // Only a FAILED load falls through. Applied or superseded both mean
+            // the page now shows the right thing, or the visitor has chosen.
+            if ((await setLang(l, false)) !== 'failed') break;
+          }
         });
       })();
     </script>

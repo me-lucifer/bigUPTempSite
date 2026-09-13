@@ -83,7 +83,7 @@
   "how.step1.body": "Regístrate en unos minutos en la aplicación. Añade tus habilidades y tus especialidades.",
   "how.step2.title": "Haz tu evaluación",
   "how.step2.body": "Demuestra tu saber hacer con pruebas psicométricas validadas científicamente. Repite cuando lo necesites.",
-  "how.step3.title": " únete a la red",
+  "how.step3.title": "Únete a la red",
   "how.step3.body": "Forma parte de la comunidad verificada. Accede a oportunidades adaptadas a tu perfil.",
   "how.step4.title": "Haz crecer tu actividad",
   "how.step4.body": "Recibe invitaciones a entrevistas de los reclutadores. Sigue todas tus candidaturas en un solo lugar.",
@@ -153,7 +153,7 @@
   "form.error": "Algo ha salido mal. Inténtalo de nuevo o escríbenos a contact@big-up.ai.",
   "form.required": "Obligatorio",
   "cta.h2": "¿Listo para impulsar tu carrera?",
-  "cta.subhead": " únete a los primeros talentos y artesanos que hacen crecer su actividad con Big-Up.",
+  "cta.subhead": "Únete a los primeros talentos y artesanos que hacen crecer su actividad con Big-Up.",
   "cta.appstore.note": "Descárgala en",
   "cta.appstore.name": "App Store",
   "cta.googleplay.note": "Consíguela en",
@@ -222,5 +222,7 @@
   "pricing.seeAtSignup": "Consulta el precio actual al registrarte",
   "pricing.benefit.talent": "Repite cualquier nivel tantas veces como quieras, en todas tus habilidades.",
   "pricing.benefit.recruiter": "Publica ofertas y llega a candidatos verificados y evaluados.",
-  "phone.scoreValue": "12"
+  "phone.scoreValue": "12",
+  "pricing.per.days": "cada {n} días",
+  "pricing.currency": "F CFA"
 }

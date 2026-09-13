@@ -1,0 +1,10 @@
+# Without this, `COPY . .` overwrites the alpine `npm ci` tree with the HOST's
+# Windows node_modules and the build then runs a foreign tailwind binary.
+# Railway is saved by .railwayignore; a plain `docker build .` is not - and this
+# project adopted `docker build .` as the local proof after a lockfile incident
+# where a passing `npm run build` did not mean a passing image.
+node_modules
+.git
+.gitignore
+e2e
+*.log

@@ -210,7 +210,7 @@
   "lang.es": "ES",
   "pricing.label": "Tarifs",
   "pricing.title": "Des formules simples, sans surprise",
-  "pricing.subhead": "Commencez gratuitement. Passez à la vitesse supérieure quand vous voulez ètre vu par plus de recruteurs.",
+  "pricing.subhead": "Commencez gratuitement. Passez à la vitesse supérieure quand vous voulez être vu par plus de recruteurs.",
   "pricing.talentHeading": "Pour les talents",
   "pricing.recruiterHeading": "Pour les recruteurs",
   "pricing.per.week": "par semaine",
@@ -222,5 +222,7 @@
   "pricing.seeAtSignup": "Voir le tarif actuel au moment de l’inscription",
   "pricing.benefit.talent": "Repassez n’importe quel niveau autant de fois que vous voulez, sur toutes vos compétences.",
   "pricing.benefit.recruiter": "Publiez des offres et touchez des candidats vérifiés et évalués.",
-  "phone.scoreValue": "12"
+  "phone.scoreValue": "12",
+  "pricing.per.days": "tous les {n} jours",
+  "pricing.currency": "F CFA"
 }

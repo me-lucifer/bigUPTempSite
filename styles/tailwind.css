@@ -158,8 +158,10 @@
   .pricing-card {
     @apply bg-white rounded-chunk border border-black/5 p-5 flex flex-col gap-1;
   }
+  /* [ROUND 2] The plan NAME is admin-editable too - up to 120 characters with
+     no spaces is accepted - and only the amount had been guarded for width. */
   .pricing-name {
-    @apply font-heading font-bold text-brand-text text-base;
+    @apply font-heading font-bold text-brand-text text-base break-words;
   }
   /* The price must FIT. "F CFA 60,000" at text-2xl is 258px inside a 210px
      card, and the admin can raise a price at any time, so this is sized for the
@@ -288,9 +290,24 @@
   .section-label {
     @apply text-xs font-semibold tracking-widest uppercase text-brand-teal mb-3;
   }
+  /* [ROUND 2] A single long word at the 2rem floor in this wide display face is
+     wider than a phone: "autodeclaradas" made the Spanish page 427px wide on a
+     412px screen, and "auto-déclarées" did the same to the client's French at
+     320px. Every page then scrolled sideways. `hyphens` breaks such a word
+     properly (the page sets <html lang> per locale, which it needs); the
+     overflow-wrap is the fallback for a browser without that dictionary. PHONE
+     WIDTHS ONLY: `hyphens: auto` also splits words that would fit, to even out
+     lines, and the client's approved desktop headings must not change. No copy
+     changed, no size changed. */
   .section-title {
     @apply font-heading font-extrabold text-brand-dark leading-tight;
     font-size: clamp(2rem, 3.5vw, 2.8rem);
+  }
+  @media (max-width: 639px) {
+    .section-title {
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
   }
   .section-title.on-dark {
     @apply text-white;
