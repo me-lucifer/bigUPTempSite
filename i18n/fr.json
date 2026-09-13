@@ -1,12 +1,9 @@
 {
   "meta.title": "Big-Up — Votre talent, notre réseau, votre succès.",
   "meta.description": "Big-Up connecte les talents et artisans qualifiés d'Afrique francophone à leur marché. Certifiez votre savoir-faire, rejoignez un réseau de confiance, boostez votre visibilité.",
-
   "skip.toMain": "Aller au contenu principal",
-
   "logo.name": "Big-Up",
   "logo.brandAlt": "Big-Up",
-
   "nav.features": "Fonctionnalités",
   "nav.howItWorks": "Comment ça marche",
   "nav.testimonials": "Témoignages",
@@ -14,11 +11,9 @@
   "nav.menuOpen": "Ouvrir le menu",
   "nav.menuClose": "Fermer le menu",
   "nav.start": "Commencer",
-
   "lang.toggleLabel": "Changer de langue",
   "lang.fr": "FR",
   "lang.en": "EN",
-
   "hero.tag": "Application Made for Africa",
   "hero.h1.line1": "Votre talent,",
   "hero.h1.line2.a": "notre",
@@ -28,14 +23,12 @@
   "hero.subhead": "Big-Up connecte les talents et artisans qualifiés à leur marché. Certifiez votre savoir-faire, rejoignez un réseau de confiance et boostez votre visibilité.",
   "hero.primaryCta": "Télécharger l'app",
   "hero.secondaryCta": "Découvrir",
-
   "hero.proof.1.value": "10K+",
   "hero.proof.1.label": "Artisans certifiés",
   "hero.proof.2.value": "8",
   "hero.proof.2.label": "Pays couverts",
   "hero.proof.3.value": "95%",
   "hero.proof.3.label": "Satisfaction client",
-
   "hero.card.name": "Konan Yao",
   "hero.card.role": "Menuisier — Abidjan",
   "hero.card.badge": "Certifié",
@@ -49,16 +42,13 @@
   "hero.float.1.value": "+24 ce mois",
   "hero.float.2.label": "Note moyenne",
   "hero.float.2.value": "4.8 / 5",
-
   "hero.illustrationAlt": "Aperçu d'un profil de talent certifié sur l'application Big-Up",
-
   "marquee.item1": "Certifiez vos compétences",
   "marquee.item2": "Réseau professionnel vérifié",
   "marquee.item3": "Boostez votre visibilité",
-  "marquee.item4": "Trouvez des clients locaux",
+  "marquee.item4": "Postulez à de vraies offres",
   "marquee.item5": "Tests psychométriques validés",
   "marquee.item6": "Lancement en Côte d'Ivoire",
-
   "partners.eyebrow": "Nos partenaires",
   "partners.title": "Ils nous soutiennent",
   "partners.subhead": "Aux côtés des institutions et organisations qui croient en l'avenir des talents africains.",
@@ -67,43 +57,36 @@
   "partners.logo3.alt": "Article 1 — Prendre le pouvoir sur l'avenir",
   "partners.logo4.alt": "RURA — Révéler le potentiel de la jeunesse des territoires",
   "partners.logo5.alt": "AFEV — Créateur de liens solidaires",
-
-
   "piliers.label": "3 Piliers de Big-Up",
   "piliers.title": "Tout ce dont vous avez besoin pour réussir",
-
   "piliers.edtech.title": "EdTech — Certifiez votre savoir-faire",
   "piliers.edtech.body": "Passez des évaluations psychométriques validées scientifiquement. Obtenez des certifications reconnues qui valorisent votre expertise auprès des clients et recruteurs.",
   "piliers.edtech.bullet1": "Tests psychométriques validés",
   "piliers.edtech.bullet2": "Scores instantanés et vérifiables",
   "piliers.edtech.bullet3": "Badge de compétence reconnu",
   "piliers.edtech.cta": "En savoir plus",
-
   "piliers.reseau.title": "Réseau professionnel des artisans",
   "piliers.reseau.body": "Rejoignez une communauté de talents et d'artisans vérifiés. Partagez des opportunités, échangez en messagerie directe, collaborez sur des projets plus grands.",
   "piliers.reseau.bullet1": "Profils 100% vérifiés",
   "piliers.reseau.bullet2": "Messagerie directe sans intermédiaire",
-  "piliers.reseau.bullet3": "Localisé par zone d'activité",
+  "piliers.reseau.bullet3": "Les recruteurs cherchent par compétence vérifiée",
   "piliers.reseau.cta": "En savoir plus",
-
   "piliers.visibilite.title": "Boostez votre visibilité",
-  "piliers.visibilite.body": "Apparaissez en tête des recherches locales et attirez de nouveaux clients. Profils sponsorisés transparents, étiquetés clairement, ciblés par compétence et zone.",
-  "piliers.visibilite.bullet1": "Profils sponsorisés ciblés",
-  "piliers.visibilite.bullet2": "Étiquetage transparent « Sponsorisé »",
-  "piliers.visibilite.bullet3": "Ciblage par compétence et zone",
+  "piliers.visibilite.body": "Apparaissez dans les recherches des recruteurs avec vos compétences vérifiées et votre niveau d’étoiles. Plus vous prouvez, mieux vous êtes classé.",
+  "piliers.visibilite.bullet1": "Compétences vérifiées sur votre profil",
+  "piliers.visibilite.bullet2": "Un certificat vérifiable par les employeurs",
+  "piliers.visibilite.bullet3": "Classé selon votre niveau d’étoiles",
   "piliers.visibilite.cta": "En savoir plus",
-
   "how.label": "Comment ça marche",
   "how.title": "Lancez-vous en 4 étapes simples",
   "how.step1.title": "Créez votre profil",
-  "how.step1.body": "Inscrivez-vous en quelques minutes depuis l'application. Renseignez vos compétences, votre zone d'activité, vos spécialités.",
+  "how.step1.body": "Inscrivez-vous en quelques minutes depuis l’application. Renseignez vos compétences et vos spécialités.",
   "how.step2.title": "Passez votre évaluation",
   "how.step2.body": "Faites valider votre savoir-faire par des tests psychométriques scientifiquement validés. Repassez tant que nécessaire.",
   "how.step3.title": "Rejoignez le réseau",
   "how.step3.body": "Intégrez la communauté d'artisans et de talents vérifiés. Accédez à des opportunités d'affaires exclusives à votre profil.",
   "how.step4.title": "Développez votre activité",
-  "how.step4.body": "Recevez des demandes de clients et de recruteurs. Gérez vos projets et boostez votre chiffre d'affaires.",
-
+  "how.step4.body": "Recevez des invitations à un entretien de la part des recruteurs. Suivez toutes vos candidatures au même endroit.",
   "phone.greeting.hello": "Bonjour,",
   "phone.greeting.name": "Moussa",
   "phone.scoreLabel": "Votre score professionnel",
@@ -120,7 +103,6 @@
   "phone.requests.sample.name": "Awa K.",
   "phone.requests.sample.detail": "Rénovation cuisine",
   "phone.requests.sample.tag": "Nouveau",
-
   "stats.1.value": "10K+",
   "stats.1.label": "Artisans certifiés",
   "stats.2.value": "50K+",
@@ -129,38 +111,31 @@
   "stats.3.label": "Pays couverts",
   "stats.4.value": "95%",
   "stats.4.label": "Satisfaction",
-
   "methodology.label": "Notre méthodologie",
   "methodology.title": "Une marketplace de compétences vérifiées, pas auto-déclarées",
   "methodology.p1": "Big-Up s'appuie sur des cadres psychométriques validés scientifiquement. Nos évaluations mesurent les compétences cognitives, les aptitudes professionnelles et les traits comportementaux à partir de modèles utilisés en sélection RH depuis plus de 50 ans.",
   "methodology.p2": "Chaque score est calculé à partir d'algorithmes standardisés, vérifiable par le talent et par le recruteur. Aucune compétence affichée sur Big-Up n'est auto-déclarée — elle est mesurée.",
   "methodology.banner": "Phase 1 — Lancement en cours. Rejoignez les premiers talents.",
-
   "temo.label": "Témoignages",
   "temo.title": "Ce que diront nos premiers talents",
   "temo.subhead": "Phase 1 — Lancement en cours en Côte d'Ivoire. Soyez parmi les premiers profils certifiés.",
   "temo.placeholderBadge": "Place réservée",
-
   "temo.1.quote": "Mes compétences ne se devinent plus. Elles se mesurent, elles se prouvent, elles se voient.",
   "temo.1.name": "Premier·ère menuisier·ère certifié·e",
   "temo.1.role": "Artisan · Abidjan · à venir",
   "temo.1.initial": "1",
-
   "temo.2.quote": "Le réseau Big-Up va me connecter directement aux clients qui cherchent exactement mes compétences.",
   "temo.2.name": "Premier·ère électricien·ne certifié·e",
   "temo.2.role": "Artisan · Bouaké · à venir",
   "temo.2.initial": "2",
-
   "temo.3.quote": "Mon score Big-Up sera la preuve que je sais faire ce que je dis savoir faire.",
   "temo.3.name": "Premier·ère plombier·ère certifié·e",
   "temo.3.role": "Artisan · Yamoussoukro · à venir",
   "temo.3.initial": "3",
-
   "video.modalTitle": "Démo de l'application Big-Up",
   "video.close": "Fermer la fenêtre",
   "video.unsupported": "Votre navigateur ne prend pas en charge la lecture vidéo.",
   "hero.watchDemo": "Voir la démo",
-
   "form.h2": "Demander un accès anticipé",
   "form.subhead": "Remplissez ce formulaire et notre équipe revient vers vous sous 48h.",
   "form.fullName": "Nom complet",
@@ -177,7 +152,6 @@
   "form.success": "Merci ! Nous reviendrons vers vous sous 48h.",
   "form.error": "Une erreur est survenue. Veuillez réessayer ou nous écrire à contact@big-up.ai.",
   "form.required": "Champ obligatoire",
-
   "cta.h2": "Prêt à booster votre carrière ?",
   "cta.subhead": "Rejoignez les premiers talents et artisans qui développent leur activité avec Big-Up.",
   "cta.appstore.note": "Télécharger sur",
@@ -186,7 +160,6 @@
   "cta.googleplay.name": "Google Play",
   "cta.webapp.note": "Accéder via",
   "cta.webapp.name": "Web App",
-
   "footer.tagline": "La plateforme qui certifie, connecte et booste les artisans et professionnels qualifiés à travers l'Afrique.",
   "footer.productHeading": "Produit",
   "footer.companyHeading": "Entreprise",
@@ -205,16 +178,14 @@
   "footer.cookies": "Cookies",
   "footer.legalMentions": "Mentions légales",
   "footer.copyright": "© 2026 Big-Up. Tous droits réservés.",
-  "footer.availability": "Disponible en français et en anglais.",
+  "footer.availability": "Disponible en français, anglais et espagnol.",
   "footer.social.x": "Suivez-nous sur X",
   "footer.social.linkedin": "Suivez-nous sur LinkedIn",
   "footer.social.facebook": "Suivez-nous sur Facebook",
   "footer.social.youtube": "Suivez-nous sur YouTube",
-
   "legal.stub.title": "À compléter",
   "legal.stub.body": "Cette page est en cours de rédaction et sera disponible prochainement. Pour toute question, contactez-nous à contact@big-up.ai.",
   "legal.back": "Retour à l'accueil",
-
   "country.civ": "Côte d'Ivoire",
   "country.sen": "Sénégal",
   "country.bfa": "Burkina Faso",
@@ -230,5 +201,11 @@
   "country.fra": "France",
   "country.bel": "Belgique",
   "country.can": "Canada",
-  "country.other": "Autre"
+  "country.other": "Autre",
+  "auth.talent.cta": "Je cherche un emploi",
+  "auth.recruiter.cta": "Je recrute",
+  "auth.login": "Se connecter",
+  "auth.login.choose": "Se connecter — choisissez votre compte",
+  "cta.apps.comingSoon": "Les applications mobiles arrivent bientôt — utilisez l'application web ci-dessus.",
+  "lang.es": "ES"
 }

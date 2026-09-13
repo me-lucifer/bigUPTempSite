@@ -1,12 +1,9 @@
 {
   "meta.title": "Big-Up — Your talent, our network, your success.",
   "meta.description": "Big-Up connects skilled talent and artisans across French-speaking Africa to their market. Certify your know-how, join a trusted network, boost your visibility.",
-
   "skip.toMain": "Skip to main content",
-
   "logo.name": "Big-Up",
   "logo.brandAlt": "Big-Up",
-
   "nav.features": "Features",
   "nav.howItWorks": "How it works",
   "nav.testimonials": "Testimonials",
@@ -14,11 +11,9 @@
   "nav.menuOpen": "Open menu",
   "nav.menuClose": "Close menu",
   "nav.start": "Get started",
-
   "lang.toggleLabel": "Change language",
   "lang.fr": "FR",
   "lang.en": "EN",
-
   "hero.tag": "Application Made for Africa",
   "hero.h1.line1": "Your talent,",
   "hero.h1.line2.a": "our",
@@ -28,14 +23,12 @@
   "hero.subhead": "Big-Up connects skilled talent and artisans to their market. Certify your know-how, join a trusted network, boost your visibility.",
   "hero.primaryCta": "Download the app",
   "hero.secondaryCta": "Discover",
-
   "hero.proof.1.value": "10K+",
   "hero.proof.1.label": "Certified artisans",
   "hero.proof.2.value": "8",
   "hero.proof.2.label": "Countries covered",
   "hero.proof.3.value": "95%",
   "hero.proof.3.label": "Client satisfaction",
-
   "hero.card.name": "Konan Yao",
   "hero.card.role": "Carpenter — Abidjan",
   "hero.card.badge": "Certified",
@@ -49,16 +42,13 @@
   "hero.float.1.value": "+24 this month",
   "hero.float.2.label": "Avg. rating",
   "hero.float.2.value": "4.8 / 5",
-
   "hero.illustrationAlt": "Preview of a certified talent profile on the Big-Up app",
-
   "marquee.item1": "Certify your skills",
   "marquee.item2": "Verified professional network",
   "marquee.item3": "Boost your visibility",
-  "marquee.item4": "Find local clients",
+  "marquee.item4": "Apply to real job openings",
   "marquee.item5": "Validated psychometric tests",
   "marquee.item6": "Launching in Ivory Coast",
-
   "partners.eyebrow": "Our partners",
   "partners.title": "They support us",
   "partners.subhead": "Alongside the institutions and organizations that believe in the future of African talent.",
@@ -67,43 +57,36 @@
   "partners.logo3.alt": "Article 1 — Take power over your future",
   "partners.logo4.alt": "RURA — Revealing the potential of territorial youth",
   "partners.logo5.alt": "AFEV — Creator of solidarity links",
-
-
   "piliers.label": "3 Pillars of Big-Up",
   "piliers.title": "Everything you need to succeed",
-
   "piliers.edtech.title": "EdTech — Certify your know-how",
   "piliers.edtech.body": "Take scientifically validated psychometric assessments. Earn recognized certifications that prove your expertise to clients and recruiters.",
   "piliers.edtech.bullet1": "Scientifically validated tests",
   "piliers.edtech.bullet2": "Instant, verifiable scores",
   "piliers.edtech.bullet3": "Recognized skill badges",
   "piliers.edtech.cta": "Learn more",
-
   "piliers.reseau.title": "Professional artisan network",
   "piliers.reseau.body": "Join a community of verified talent and artisans. Share opportunities, message directly, collaborate on bigger projects.",
   "piliers.reseau.bullet1": "100% verified profiles",
   "piliers.reseau.bullet2": "Direct messaging — no middleman",
-  "piliers.reseau.bullet3": "Localized by service area",
+  "piliers.reseau.bullet3": "Recruiters search by verified skill",
   "piliers.reseau.cta": "Learn more",
-
   "piliers.visibilite.title": "Boost your visibility",
-  "piliers.visibilite.body": "Appear at the top of local searches and attract new clients. Transparent sponsored profiles, clearly labeled, targeted by skill and area.",
-  "piliers.visibilite.bullet1": "Targeted sponsored profiles",
-  "piliers.visibilite.bullet2": "Transparent \"Sponsored\" labeling",
-  "piliers.visibilite.bullet3": "Targeting by skill and area",
+  "piliers.visibilite.body": "Appear in recruiter searches with your verified skills and your star level. The more you prove, the higher you rank.",
+  "piliers.visibilite.bullet1": "Verified skills on your profile",
+  "piliers.visibilite.bullet2": "A certificate employers can check",
+  "piliers.visibilite.bullet3": "Ranked by your star level",
   "piliers.visibilite.cta": "Learn more",
-
   "how.label": "How it works",
   "how.title": "Get started in 4 simple steps",
   "how.step1.title": "Create your profile",
-  "how.step1.body": "Sign up in minutes on the app. Add your skills, service area, and specialties.",
+  "how.step1.body": "Sign up in minutes on the app. Add your skills and your specialties.",
   "how.step2.title": "Take your assessment",
   "how.step2.body": "Prove your know-how with scientifically validated psychometric tests. Retake as needed.",
   "how.step3.title": "Join the network",
   "how.step3.body": "Become part of the verified community. Access opportunities tailored to your profile.",
   "how.step4.title": "Grow your business",
-  "how.step4.body": "Receive client and recruiter requests. Manage projects, increase your revenue.",
-
+  "how.step4.body": "Receive interview invitations from recruiters. Follow every application in one place.",
   "phone.greeting.hello": "Hello,",
   "phone.greeting.name": "Moussa",
   "phone.scoreLabel": "Your professional score",
@@ -120,7 +103,6 @@
   "phone.requests.sample.name": "Awa K.",
   "phone.requests.sample.detail": "Kitchen renovation",
   "phone.requests.sample.tag": "New",
-
   "stats.1.value": "10K+",
   "stats.1.label": "Certified artisans",
   "stats.2.value": "50K+",
@@ -129,38 +111,31 @@
   "stats.3.label": "Countries covered",
   "stats.4.value": "95%",
   "stats.4.label": "Satisfaction",
-
   "methodology.label": "Our methodology",
   "methodology.title": "A verified-skills marketplace — not self-declared",
   "methodology.p1": "Big-Up is grounded in scientifically validated psychometric frameworks. Our assessments measure cognitive skills, professional aptitudes, and behavioral traits using models that have been used in HR selection for over 50 years.",
   "methodology.p2": "Every score is computed from standardized algorithms, verifiable by both Talent and Recruiter. No skill displayed on Big-Up is self-declared — it's measured.",
   "methodology.banner": "Phase 1 — Now launching. Join the founding cohort of talents.",
-
   "temo.label": "Testimonials",
   "temo.title": "What our first talents will say",
   "temo.subhead": "Phase 1 — Launch in progress in Ivory Coast. Be among the first certified profiles.",
   "temo.placeholderBadge": "Spot reserved",
-
   "temo.1.quote": "My skills are no longer guessed. They are measured, proven, visible.",
   "temo.1.name": "First certified carpenter",
   "temo.1.role": "Artisan · Abidjan · coming soon",
   "temo.1.initial": "1",
-
   "temo.2.quote": "The Big-Up network will connect me directly to clients looking for exactly my skills.",
   "temo.2.name": "First certified electrician",
   "temo.2.role": "Artisan · Bouaké · coming soon",
   "temo.2.initial": "2",
-
   "temo.3.quote": "My Big-Up score will be the proof that I can do what I claim I can do.",
   "temo.3.name": "First certified plumber",
   "temo.3.role": "Artisan · Yamoussoukro · coming soon",
   "temo.3.initial": "3",
-
   "video.modalTitle": "Big-Up app demo",
   "video.close": "Close window",
   "video.unsupported": "Your browser does not support video playback.",
   "hero.watchDemo": "Watch the demo",
-
   "form.h2": "Request Early Access",
   "form.subhead": "Fill out this form and our team will get back to you within 48h.",
   "form.fullName": "Full name",
@@ -177,7 +152,6 @@
   "form.success": "Thank you! We'll get back to you within 48h.",
   "form.error": "Something went wrong. Please try again or email us at contact@big-up.ai.",
   "form.required": "Required",
-
   "cta.h2": "Ready to boost your career?",
   "cta.subhead": "Join the first talents and artisans growing their business with Big-Up.",
   "cta.appstore.note": "Download on",
@@ -186,7 +160,6 @@
   "cta.googleplay.name": "Google Play",
   "cta.webapp.note": "Access via",
   "cta.webapp.name": "Web App",
-
   "footer.tagline": "The platform that certifies, connects and boosts qualified artisans and professionals across Africa.",
   "footer.productHeading": "Product",
   "footer.companyHeading": "Company",
@@ -205,16 +178,14 @@
   "footer.cookies": "Cookies",
   "footer.legalMentions": "Legal mentions",
   "footer.copyright": "© 2026 Big-Up. All rights reserved.",
-  "footer.availability": "Available in French and English.",
+  "footer.availability": "Available in French, English and Spanish.",
   "footer.social.x": "Follow us on X",
   "footer.social.linkedin": "Follow us on LinkedIn",
   "footer.social.facebook": "Follow us on Facebook",
   "footer.social.youtube": "Follow us on YouTube",
-
   "legal.stub.title": "To be completed",
   "legal.stub.body": "This page is being drafted and will be available shortly. For any question, contact us at contact@big-up.ai.",
   "legal.back": "Back to home",
-
   "country.civ": "Ivory Coast",
   "country.sen": "Sénégal",
   "country.bfa": "Burkina Faso",
@@ -230,5 +201,11 @@
   "country.fra": "France",
   "country.bel": "Belgique",
   "country.can": "Canada",
-  "country.other": "Other"
+  "country.other": "Other",
+  "auth.talent.cta": "I'm looking for work",
+  "auth.recruiter.cta": "I'm hiring",
+  "auth.login": "Log in",
+  "auth.login.choose": "Log in — choose your account",
+  "cta.apps.comingSoon": "The mobile apps are coming soon — use the web app above.",
+  "lang.es": "ES"
 }
