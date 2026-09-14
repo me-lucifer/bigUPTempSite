@@ -446,6 +446,35 @@ try {
   check(xss.doorsIntact, 'every door still points at the product, not at catalogue content');
   await page.unroute('**/public/plans*');
 
+  // [18A-7 review] A name that fell back to another language carries that
+  // language, so it is pronounced correctly; a name in the page's own language
+  // carries none. Driven with a fulfilled payload, because production has every
+  // name in every language and would make this vacuous.
+  await page.click('.lang-pill button[data-lang="es"]');
+  await page.waitForTimeout(600);
+  await page.route('**/public/plans*', (route) =>
+    route.fulfill({
+      status: 200, contentType: 'application/json',
+      body: JSON.stringify({ plans: [
+        { code: 'a', name: 'Hebdomadaire', name_locale: 'fr', fell_back: true, audience: 'talent',
+          kind: 'subscription', price_xof: 500, currency: 'XOF', duration_days: 7, sort_order: 1 },
+        { code: 'b', name: 'Mensual', name_locale: 'es', fell_back: false, audience: 'talent',
+          kind: 'subscription', price_xof: 1500, currency: 'XOF', duration_days: 30, sort_order: 2 },
+      ], omitted: 0 }),
+    }),
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(1500);
+  const nameLangs = await page.$$eval('.pricing-card .pricing-name', (els) =>
+    els.map((e) => ({ text: e.textContent.trim(), lang: e.getAttribute('lang') })));
+  check(
+    nameLangs.some((n) => n.text === 'Hebdomadaire' && n.lang === 'fr') &&
+      nameLangs.some((n) => n.text === 'Mensual' && n.lang === null),
+    'a fallback plan name is marked with its own language, and only a fallback one',
+    JSON.stringify(nameLangs),
+  );
+  await page.unroute('**/public/plans*');
+
   // A duration that is not a canonical period must state the real number of
   // days rather than being rounded into a friendly word. 28 days reading "per
   // month" is a customer losing three days they were told they had.

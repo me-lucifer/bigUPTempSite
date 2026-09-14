@@ -1479,6 +1479,11 @@
           // A null/blank name falls back to the plan CODE rather than rendering
           // the literal word "null", which is what `plan ? plan.name : ''` did.
           name.textContent = (plan && (plan.name || plan.code)) || '';
+          // [18A-7 review] A name that fell back to another language says so -
+          // "Hebdomadaire" on the Spanish page is French, and a screen reader
+          // should pronounce it as French. `name_locale` is null when the name is
+          // the admin's own label, whose language nobody recorded.
+          if (plan && plan.name_locale && plan.name_locale !== lang) name.lang = plan.name_locale;
           // An empty heading is an accessibility failure; drop it entirely on the
           // placeholder card rather than leaving a blank one to navigate into.
           if (name.textContent) card.appendChild(name);
