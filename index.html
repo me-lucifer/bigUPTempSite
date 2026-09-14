@@ -1524,7 +1524,13 @@
             const ctl = new AbortController();
             const timer = setTimeout(() => ctl.abort(), 6000);
             try {
-              const res = await fetch(PLANS_URL, { credentials: 'omit', signal: ctl.signal });
+              // [18A-7] Ask for plan NAMES in the language on screen. The query
+              // string is the whole cache key on the server, so French and
+              // English visitors never share a cached response. A backend that
+              // predates this simply ignores the parameter and names plans the
+              // old way - the page works against either.
+              const url = PLANS_URL + '?locale=' + encodeURIComponent(lang);
+              const res = await fetch(url, { credentials: 'omit', signal: ctl.signal });
               if (res.ok) {
                 const body = await res.json();
                 // `|| []` catches MISSING, not WRONG-TYPED. A non-array `plans`

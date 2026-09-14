@@ -306,9 +306,46 @@ try {
     // while English and French were fine, and the overflow guard, written
     // BECAUSE prices overflowed, never measured the two locales whose strings
     // are wider. So all of it now runs per locale.
+    // [18A-7] Every /public/plans request the PAGE makes, so each locale can
+    // prove it asked for ITS OWN language rather than trusting the result.
+    const planRequests = [];
+    page.on('request', (r) => {
+      if (r.url().includes('/public/plans')) planRequests.push(r.url());
+    });
     for (const lang of ['en', 'fr', 'es']) {
+      const before = planRequests.length;
       await page.click(`.lang-pill button[data-lang="${lang}"]`);
       await page.waitForTimeout(1500);
+      // [18A-7] The page must ASK for plan names in the language on screen.
+      // Asserted on the request, not only on the result: before the backend
+      // carries names in every language, a page that sent no locale would still
+      // render the right names by coincidence of the fallback.
+      const asked = planRequests.slice(before).map((u) => new URL(u).searchParams.get('locale'));
+      check(
+        asked.length > 0 && asked.every((l) => l === lang),
+        `[${lang}] the page asks for plan names in ${lang}`,
+        JSON.stringify(asked),
+      );
+      const apiNames = await page.evaluate(async (l) => {
+        const r = await fetch(
+          `https://backend-production-13b7.up.railway.app/public/plans?locale=${l}`,
+          { credentials: 'omit' },
+        );
+        if (!r.ok) return null;
+        return (await r.json()).plans
+          .filter((p) => p.kind === 'subscription')
+          .map((p) => p.name);
+      }, lang);
+      const shownNames = await page.$$eval('.pricing-card .pricing-name', (els) =>
+        els.map((e) => e.textContent.trim()),
+      );
+      // The names on the cards are exactly the names the server gives for this
+      // language - one derivation, rendered, not re-decided on the page.
+      check(
+        !!apiNames && apiNames.length === shownNames.length && apiNames.every((n) => shownNames.includes(n)),
+        `[${lang}] every plan name is the server's name for ${lang}`,
+        JSON.stringify({ shown: shownNames, api: apiNames }),
+      );
       const cards = await page.$$eval('.pricing-card', (els) =>
         els.map((c) => {
           const a = c.querySelector('.pricing-amount');
@@ -375,7 +412,7 @@ try {
   // `<img onerror>` does. And the damage is not a dialog - it is silently
   // repointing every sign-up and log-in door on the client's main acquisition
   // page at a phishing clone, from their own domain under their own certificate.
-  await page.route('**/public/plans', (route) =>
+  await page.route('**/public/plans*', (route) =>
     route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -407,12 +444,12 @@ try {
   check(xss.injectedImg === 0, 'a plan name cannot inject an element');
   check(xss.rendersAsText, 'a plan name containing markup renders as visible text');
   check(xss.doorsIntact, 'every door still points at the product, not at catalogue content');
-  await page.unroute('**/public/plans');
+  await page.unroute('**/public/plans*');
 
   // A duration that is not a canonical period must state the real number of
   // days rather than being rounded into a friendly word. 28 days reading "per
   // month" is a customer losing three days they were told they had.
-  await page.route('**/public/plans', (route) =>
+  await page.route('**/public/plans*', (route) =>
     route.fulfill({
       status: 200, contentType: 'application/json',
       body: JSON.stringify({ plans: [{
@@ -428,7 +465,7 @@ try {
     'a non-standard duration states its real length instead of rounding to a month',
     `showed "${period}"`,
   );
-  await page.unroute('**/public/plans');
+  await page.unroute('**/public/plans*');
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
 
@@ -436,7 +473,7 @@ try {
   // wrong-typed one: a string where an array belongs used to throw inside the
   // render, outside its try, leaving both columns blank AND skipping the link
   // decoration that follows. Added because the fix for it was untested.
-  await page.route('**/public/plans', (route) =>
+  await page.route('**/public/plans*', (route) =>
     route.fulfill({ status: 200, contentType: 'application/json',
       body: JSON.stringify({ plans: 'not-an-array' }) }),
   );
@@ -450,14 +487,14 @@ try {
   check(wrongShape.cards > 0, 'a wrong-shaped body still renders the section',
     JSON.stringify(wrongShape));
   check(wrongShape.doorsDecorated, 'a wrong-shaped body does not strand the doors without a language');
-  await page.unroute('**/public/plans');
+  await page.unroute('**/public/plans*');
 
   // TWO LANGUAGE SWITCHES IN FLIGHT AT ONCE. The slow one must not win. This is
   // the ADR-024 hand-off failure wearing a different hat: a late French render
   // rewriting every door to ?lang=fr under an English page. Added because the
   // fix for it was untested - the guard existed and nothing drove it.
   let slow = true;
-  await page.route('**/public/plans', async (route) => {
+  await page.route('**/public/plans*', async (route) => {
     if (slow) { slow = false; await new Promise((r) => setTimeout(r, 2500)); }
     await route.continue();
   });
@@ -477,7 +514,7 @@ try {
     'a slow render cannot overwrite a newer language',
     JSON.stringify(raced),
   );
-  await page.unroute('**/public/plans');
+  await page.unroute('**/public/plans*');
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
 
@@ -501,7 +538,7 @@ try {
   // deliberate 500s, so a passing check printed "Failed to load resource: 500"
   // beside "ok". Snapshot the errors that actually count, here.
   const errorsThatCount = consoleErrors.slice(0, errorsBeforeFailureTest);
-  await page.route('**/public/plans', (route) => route.fulfill({ status: 500, body: '{}' }));
+  await page.route('**/public/plans*', (route) => route.fulfill({ status: 500, body: '{}' }));
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
   const degraded = await page.evaluate(() => ({
@@ -526,7 +563,7 @@ try {
   check(degraded.doors > 0, 'the doors still work when the API is down');
   check(degraded.zeros === 0, 'a failed fetch never renders a 0');
   await page.screenshot({ path: `${OUT}/05-pricing-degraded.png` });
-  await page.unroute('**/public/plans');
+  await page.unroute('**/public/plans*');
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForTimeout(1200);
 
