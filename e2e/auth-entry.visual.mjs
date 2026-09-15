@@ -38,8 +38,8 @@ const BASE = process.env.SITE_URL ?? 'http://localhost:5173';
 const OUT = 'e2e/.shots-auth-entry';
 mkdirSync(OUT, { recursive: true });
 
-const TALENT = 'https://talent-web-production.up.railway.app';
-const RECRUITER = 'https://recruiter-web-production-de44.up.railway.app';
+const TALENT = 'https://talent-web-production-a964.up.railway.app';
+const RECRUITER = 'https://recruiter-web-production-ded4.up.railway.app';
 
 /** The contract from the story's §2.2 table. Order-independent: counted. */
 const EXPECTED = {
@@ -290,7 +290,7 @@ try {
   // Intl inserts locale-specific group separators (a narrow no-break space in
   // French) and the assertion is about the NUMBER, not the typography.
   const api = await page.evaluate(async () => {
-    const r = await fetch('https://backend-production-13b7.up.railway.app/public/plans', {
+    const r = await fetch('https://backend-production-101a3.up.railway.app/public/plans', {
       credentials: 'omit',
     });
     if (!r.ok) return null;
@@ -328,7 +328,7 @@ try {
       );
       const apiNames = await page.evaluate(async (l) => {
         const r = await fetch(
-          `https://backend-production-13b7.up.railway.app/public/plans?locale=${l}`,
+          `https://backend-production-101a3.up.railway.app/public/plans?locale=${l}`,
           { credentials: 'omit' },
         );
         if (!r.ok) return null;
