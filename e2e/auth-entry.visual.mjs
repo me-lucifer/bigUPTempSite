@@ -951,6 +951,14 @@ try {
       'footer.terms',
       'footer.privacy',
       'footer.cookies',
+      'footer.edtech',
+      'footer.reseau',
+      'footer.visibilite',
+      'footer.tarifs',
+      'footer.about',
+      'footer.blog',
+      'footer.partners',
+      'footer.contact',
     ];
 
     const noJs = await browser.newContext({ javaScriptEnabled: false });
@@ -960,12 +968,12 @@ try {
 
       const served = await raw.evaluate((navKeys) => {
         const meta = (sel) => document.querySelector(sel)?.getAttribute('content')?.trim() ?? '';
-        // The nav, plus the footer links to the legal pages — which are the
-        // ONLY route to the CGU, privacy and cookies documents anywhere in
-        // this document, so an empty one makes them unreachable to a crawler.
-        const links = [
-          ...document.querySelectorAll('#site-nav a, #mobile-menu a, a[href^="legal/"]'),
-        ];
+        // The nav and the whole footer. The footer matters as much as the nav:
+        // its three legal links are the ONLY route to the CGU, privacy and
+        // cookies documents anywhere in this document, so an empty one makes
+        // them unreachable to a crawler and unnamed to a screen reader.
+        // Icon-only links are excluded below by their aria-label, not here.
+        const links = [...document.querySelectorAll('#site-nav a, #mobile-menu a, footer a')];
         const text = {};
         for (const k of navKeys) {
           const el = document.querySelector(`[data-i18n="${k}"]`);
@@ -1023,13 +1031,13 @@ try {
       // selector matched NOTHING, so without this the next assertion would
       // survive the nav being deleted or its ids renamed.
       check(
-        served.linkCount >= 15,
-        'JS off — the link selector actually matched the nav and legal links',
+        served.linkCount >= 25,
+        'JS off — the link selector actually matched the nav and footer',
         `${served.linkCount} links`,
       );
       check(
         served.emptyLinks.length === 0,
-        'JS off — no nav or legal-page link is empty',
+        'JS off — no nav or footer link is empty',
         served.emptyLinks.join(' ') || 'none',
       );
 
