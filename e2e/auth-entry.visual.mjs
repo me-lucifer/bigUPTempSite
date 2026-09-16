@@ -918,6 +918,170 @@ try {
     'no console errors during normal operation',
     errorsThatCount.slice(0, 2).join(' | '),
   );
+
+  // ── WHAT A LINK SCRAPER ACTUALLY RECEIVES ───────────────────────────────
+  //
+  // Every assertion above this point runs with JavaScript ON, and applyDict
+  // fills the document the instant it executes. That is precisely why the site
+  // shipped an empty <title>, an empty meta description, empty og: tags and
+  // four empty navigation links without one of the checks above noticing: they
+  // could not see the page the way WhatsApp, LinkedIn, Facebook, Google and a
+  // screen reader see it, which is WITHOUT running the script.
+  //
+  // The cost of that blind spot was not theoretical. Sharing a Big-Up link
+  // produced a blank preview card, and it took the client's own analysis to
+  // find it.
+  //
+  // So this block disables JavaScript and reads the raw document. A mutation
+  // proven "red" with JS enabled proves nothing here — the runtime simply
+  // refills it, and the assertion passes for the wrong reason.
+  {
+    // The French dictionary is the SINGLE SOURCE of the static copy. Fetched
+    // from the JS-enabled page because the no-JS context cannot run fetch.
+    const frDict = await page.evaluate(() => fetch('i18n/fr.json').then((r) => r.json()));
+
+    // Keys whose text is baked into the markup, and the element that carries
+    // each. Head values are attributes; the rest are [data-i18n] text nodes.
+    const NAV_KEYS = [
+      'nav.features',
+      'nav.howItWorks',
+      'nav.testimonials',
+      'nav.contact',
+      'nav.start',
+      'footer.terms',
+      'footer.privacy',
+      'footer.cookies',
+    ];
+
+    const noJs = await browser.newContext({ javaScriptEnabled: false });
+    try {
+      const raw = await noJs.newPage();
+      await raw.goto(BASE, { waitUntil: 'domcontentloaded' });
+
+      const served = await raw.evaluate((navKeys) => {
+        const meta = (sel) => document.querySelector(sel)?.getAttribute('content')?.trim() ?? '';
+        // The nav, plus the footer links to the legal pages — which are the
+        // ONLY route to the CGU, privacy and cookies documents anywhere in
+        // this document, so an empty one makes them unreachable to a crawler.
+        const links = [
+          ...document.querySelectorAll('#site-nav a, #mobile-menu a, a[href^="legal/"]'),
+        ];
+        const text = {};
+        for (const k of navKeys) {
+          const el = document.querySelector(`[data-i18n="${k}"]`);
+          text[k] = el ? el.textContent.trim() : null;
+        }
+        return {
+          title: document.title.trim(),
+          description: meta('meta[name="description"]'),
+          ogTitle: meta('meta[property="og:title"]'),
+          ogDescription: meta('meta[property="og:description"]'),
+          ogImage: meta('meta[property="og:image"]'),
+          linkCount: links.length,
+          emptyLinks: links
+            .filter((a) => !a.textContent.trim() && !a.getAttribute('aria-label')?.trim())
+            .map((a) => a.getAttribute('href') ?? '(no href)'),
+          menuToggleLabel:
+            document.querySelector('#menu-toggle')?.getAttribute('aria-label')?.trim() ?? '',
+          text,
+        };
+      }, NAV_KEYS);
+
+      // Equality with the dictionary, not merely non-emptiness. A length check
+      // would pass on the bare wordmark that actually shipped, and would never
+      // notice the markup drifting away from fr.json — which is silent by
+      // construction, because applyDict overwrites it for anyone with JS on.
+      check(
+        served.title === frDict['meta.title'],
+        'JS off — <title> equals fr.json meta.title',
+        served.title || '(empty)',
+      );
+      check(
+        served.description === frDict['meta.description'],
+        'JS off — meta description equals fr.json',
+        served.description.slice(0, 60) || '(empty)',
+      );
+      check(
+        served.ogTitle === frDict['meta.title'],
+        'JS off — og:title equals fr.json (the heading on a shared link card)',
+        served.ogTitle || '(empty)',
+      );
+      check(
+        served.ogDescription === frDict['meta.description'],
+        'JS off — og:description equals fr.json (the body of a shared link card)',
+        served.ogDescription.slice(0, 60) || '(empty)',
+      );
+
+      const drift = NAV_KEYS.filter((k) => served.text[k] !== frDict[k]);
+      check(
+        drift.length === 0,
+        'JS off — every baked-in nav and legal label equals fr.json',
+        drift.map((k) => `${k}="${served.text[k]}"`).join(' ') || 'none',
+      );
+
+      // NON-VACUITY. `emptyLinks.length === 0` is equally true when the
+      // selector matched NOTHING, so without this the next assertion would
+      // survive the nav being deleted or its ids renamed.
+      check(
+        served.linkCount >= 15,
+        'JS off — the link selector actually matched the nav and legal links',
+        `${served.linkCount} links`,
+      );
+      check(
+        served.emptyLinks.length === 0,
+        'JS off — no nav or legal-page link is empty',
+        served.emptyLinks.join(' ') || 'none',
+      );
+
+      // A control with no accessible name is invisible to a screen reader, and
+      // this one is the only way to open the menu on a phone.
+      check(
+        served.menuToggleLabel.length > 0,
+        'JS off — the menu button has an accessible name',
+        served.menuToggleLabel || '(empty)',
+      );
+
+      // The accented French is now literal bytes in the document rather than
+      // JSON decoded at runtime, so the charset declaration became
+      // load-bearing for the first thing a visitor and a crawler read.
+      const headText = [
+        served.title,
+        served.description,
+        served.ogTitle,
+        served.ogDescription,
+      ].join(' ');
+      check(
+        !/Ã|â€|�/.test(headText),
+        'JS off — no mojibake in the title or description',
+        headText.slice(0, 50),
+      );
+
+      // og:image is the tag the preview CARD is built from. Title and
+      // description alone still render an imageless card, and this file was
+      // referenced by the page for months while returning 404.
+      const image = await page.evaluate(async (src) => {
+        const res = await fetch(src);
+        if (!res.ok) return { ok: false, status: res.status, w: 0, h: 0 };
+        const blob = await res.blob();
+        const bmp = await createImageBitmap(blob);
+        return { ok: true, status: res.status, w: bmp.width, h: bmp.height };
+      }, served.ogImage);
+      check(
+        image.ok,
+        'og:image actually resolves (a 404 here is a blank preview card)',
+        `${served.ogImage} → HTTP ${image.status}`,
+      );
+      check(
+        image.w === 1200 && image.h === 630,
+        'og:image is the 1200×630 the scrapers expect',
+        `${image.w}×${image.h}`,
+      );
+
+      await raw.screenshot({ path: `${OUT}/05-no-js.png`, fullPage: false });
+    } finally {
+      await noJs.close();
+    }
+  }
 } finally {
   await browser.close();
 }
