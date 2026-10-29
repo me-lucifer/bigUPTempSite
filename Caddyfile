@@ -72,7 +72,7 @@
 		# both, which is a change to their artefact rather than to ours.
 		# connect-src is the narrow one that matters here: the page may talk to
 		# the API and to nothing else.
-		Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://backend-production-101a3.up.railway.app; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+		Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://backend-production-9a42a.up.railway.app; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 		Strict-Transport-Security "max-age=31536000; includeSubDomains"
 		X-Frame-Options "DENY"
 		X-Content-Type-Options "nosniff"
